@@ -1,0 +1,56 @@
+\documentclass[a4paper,11pt,oneside]{article}
+\usepackage{geometry}%Este paquete permite definir con que tipo de papel trabajaremos y crear los márgenes de la página.
+\usepackage[utf8]{inputenc}%Permite agregar símholos especiales entre ellos los acentos en español
+\usepackage[T1]{fontenc}
+%\usepackage[spanish]{babel}%Le indica al paquete babel que se usa el lenguaje español.
+%\selectlanguage{spanish} %Se usa para seleclecionar el lenguaje 
+\usepackage{fancyhdr} %paquete para encabezado y pie de página.
+\usepackage[hidelinks]{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue, urlcolor=blue} 
+\sloppy
+\usepackage{graphicx} %Permite manipular gráficos en latex.
+\usepackage{multirow} %Permite manipular filas en tablas.
+\usepackage{colortbl} %agrega color a las tablas.
+\usepackage{multicol} %Permite trabajar con columnas.
+\usepackage{color} %Permite ingresar formatos de  colores a las tablas.
+\usepackage{ragged2e}
+\usepackage{comment}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{algorithmicx,algorithm,eqparbox,array}
+
+%\geometry{
+%    a4paper,
+%    left=20mm,
+%    top=20mm,
+%	voffset=-50pt,
+%}
+
+
+\pagestyle{fancy}
+\thispagestyle{fancy}
+\fancyhf{}
+\lhead{
+	\includegraphics[scale=0.2]{../../../Developments/Templates/LaTex/imagenes/LOGO_EMIC.png}
+	}
+\rhead{Stream}
+\cfoot{\thepage}% /\pageref{LastPage}} esta línea comentada es para que 
+
+\setlength{\parindent}{0pt}
+
+\begin{document}
+
+\vspace{1cm}
+\sffamily
+\newpage
+\section{Libraries}
+
+
+
+\newpage
+%\addtocontents{toc}{\hspace{-7.5mm} \textbf{Capítulos}}
+%\addtocontents{toc}{\hfill \textbf{Página} \par}
+%\addtocontents{toc}{\vspace{-2mm} \hspace{-7.5mm} \hrule \par}
+\tableofcontents
+
+\end{document}

@@ -1,0 +1,226 @@
+//RFI TAG:alias=useLedsV2,7
+//RFI TAG:driverDefineList=Leds
+//RFI TAG:driverName=LED
+
+#ifdef PIN_Led1
+
+/*RFI JSon
+{
+	'Nombre': 'led1',
+	'NombreToolBox': 'led1.State',
+	'Tipo' : 'SistemFnc',
+	'title': 'Change the state of the led, 1-on, 0-off, 2-toggle',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name':'State',
+					'tooltip': '1-on 0-off 2-toggle',
+					'required': 'true',
+					'type': 'state'}
+					],
+
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_LED1_function'  originalclass='funcion' originalid='led1' draggable='true' ondragstart='drag_linea(event)'>
+			Led1.State(<div type='uint16_t' title='1-on 0-off 2-toggle' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+
+/*RFI JSon
+{
+	'Nombre': 'blkLed1',
+	'NombreToolBox': 'led1.blink',
+	'Tipo' : 'SistemFnc',
+		'title': 'blink led1',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'timeOn',
+					'tooltip': '1-on, 0-off, 2-toggle',
+					'required': 'true',
+					'type': 'uint16_t'},
+					{'name': 'period',
+					'tooltip': '',
+					'required': 'true',
+					'type': 'uint16_t'},
+					{'name': 'times',
+					'tooltip': '',
+					'required': '',
+					'type': 'uint16_t'}
+					],
+	'InnerHTML':"
+<div type='void' class='lineaDeCodigo' definir='use_blkLed1_function use_pullLeds_function'  originalclass='funcion' originalid='blkLed1' draggable='true' ondragstart='drag_linea(event)' >Led1.blink(<div title='time on (ms)' class='parametroDiv' type='uint16_t'></div>,<div title='period (ms)' class='parametroDiv' type='uint16_t'></div> ,<div title='times' class='parametroDiv' type='uint16_t'></div>)</div>"
+}
+*/
+#endif
+
+
+#ifdef PIN_Led2
+
+/*RFI JSon
+{
+	'Nombre': 'led2',
+	'NombreToolBox': 'led2.status',
+	'Tipo' : 'SistemFnc',
+		'title': 'Change the state of the led, 1-on, 0-off, 2-toggle',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'State',
+					'tooltip': '1-on, 0-off, 2-toggle',
+					'required': 'true',
+					'type': 'state'}
+					],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_LED2_function'  originalclass='funcion' originalid='led2' draggable='true' ondragstart='drag_linea(event)'>
+			Led2.status(<div type='uint16_t' title='1-on, 0-off, 2-toggle' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'blkLed2',
+	'NombreToolBox': 'led2.blink',
+	'Tipo' : 'SistemFnc',
+		'title': 'blink led2',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'timeOn',
+					'tooltip': '1-on, 0-off, 2-toggle',
+					'required': 'true',
+					'type': 'uint16_t'},
+					{'name': 'period',
+					'tooltip': '',
+					'required': 'true',
+					'type': 'uint16_t'},
+					{'name': 'times',
+					'tooltip': '',
+					'required': '',
+					'type': 'uint16_t'}
+					],
+	'InnerHTML':"
+<div type='void' class='lineaDeCodigo' definir='use_blkLed2_function use_pullLeds_function'  originalclass='funcion' originalid='blkLed2' draggable='true' ondragstart='drag_linea(event)' incluir='_hard/Timer/inc/timer.h'>Led2.blink(<div title='time on (ms)' class='parametroDiv' type='uint16_t'></div>,<div title='period (ms)' class='parametroDiv' type='uint16_t'></div> ,<div title='times' class='parametroDiv' type='uint16_t'></div>)</div>"
+}
+*/
+#endif
+
+
+#ifdef PIN_Led3
+/*RFI JSon
+{
+	'Nombre': 'led3',
+	'NombreToolBox': 'led3.status',
+	'Tipo' : 'SistemFnc',
+		'title': 'Change the state of the led, 1-on, 0-off, 2-toggle',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'State',
+					'tooltip': '1-on, 0-off, 2-toggle',
+					'required': 'true',
+					'type': 'state'}
+					],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_LED3_function'  originalclass='funcion' originalid='led3' draggable='true' ondragstart='drag_linea(event)'>
+			Led3.status(<div type='uint16_t' title='1-on, 0-off, 2-toggle' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'blkLed3',
+	'NombreToolBox': 'led3.blink',
+	'Tipo' : 'SistemFnc',
+		'title': 'blink led3',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'timeOn',
+					'tooltip': '1-on, 0-off, 2-toggle',
+					'required': 'true',
+					'type': 'uint16_t'},
+					{'name': 'period',
+					'tooltip': '',
+					'required': 'true',
+					'type': 'uint16_t'},
+					{'name': 'times',
+					'tooltip': '',
+					'required': '',
+					'type': 'uint16_t'}
+					],
+	'InnerHTML':"
+<div type='void' class='lineaDeCodigo' definir='use_blkLed3_function use_pullLeds_function'  originalclass='funcion' originalid='blkLed3' draggable='true' ondragstart='drag_linea(event)' incluir='_hard/Timer/inc/timer.h'>Led3.blink(<div title='time on (ms)' class='parametroDiv' type='uint16_t'></div>,<div title='period (ms)' class='parametroDiv' type='uint16_t'></div> ,<div title='times' class='parametroDiv' type='uint16_t'></div>)</div>"
+}
+*/
+#endif
+
+
+#ifdef PIN_Led4
+
+/*RFI JSon
+{
+	'Nombre': 'led4',
+	'NombreToolBox': 'led4.status',
+	'Tipo' : 'SistemFnc',
+		'title': 'Change the state of the led, 1-on, 0-off, 2-toggle',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'State',
+					'tooltip': '1-on, 0-off, 2-toggle',
+					'required': 'true',
+					'type': 'state'}
+					],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_LED4_function'  originalclass='funcion' originalid='led4' draggable='true' ondragstart='drag_linea(event)'>
+			Led4.status(<div type='uint16_t' title='1-on, 0-off, 2-toggle' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'blkLed4',
+	'NombreToolBox': 'led4.blink',
+	'Tipo' : 'SistemFnc',
+		'title': 'blink led4',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'timeOn',
+					'tooltip': '1-on, 0-off, 2-toggle',
+					'required': 'true',
+					'type': 'uint16_t'},
+					{'name': 'period',
+					'tooltip': '',
+					'required': 'true',
+					'type': 'uint16_t'},
+					{'name': 'times',
+					'tooltip': '',
+					'required': '',
+					'type': 'uint16_t'}
+					],
+	'InnerHTML':"
+<div type='void' class='lineaDeCodigo' definir='use_blkLed4_function use_pullLeds_function'  originalclass='funcion' originalid='blkLed4' draggable='true' ondragstart='drag_linea(event)' incluir='_hard/Timer/inc/timer.h'>Led4.blink(<div title='time on (ms)' class='parametroDiv' type='uint16_t'></div>,<div title='period (ms)' class='parametroDiv' type='uint16_t'></div> ,<div title='times' class='parametroDiv' type='uint16_t'></div>)</div>"
+}
+*/
+
+#endif
+
+
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/GPIO/gpio.emic)
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/PinMap/pinMap.emic)
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/Timer/timer.emic)
+
+#setFile codigo.c
+	##include(inc\ledV2.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\ledV2.c)
+#unSetFile
+
