@@ -1,0 +1,7 @@
+#setFile codigo.c
+	##include(inc\I2C_master.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\I2C_master.c)
+#unSetFile

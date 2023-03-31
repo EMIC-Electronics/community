@@ -1,0 +1,99 @@
+{
+"type":"gcc",
+"toolTip":"Two relays outputs",
+"description":"The HRD_X2_Relay module has two relays outputs and direct connection with EMIC bus.",
+"Sizes":"TBD",
+"ImageFile":"blz1.gif",
+"IconFile":"TBD",
+"Mounting":"Holder Riel DIN",
+"Table":[ 
+	{
+		"Name": "VccMax",
+		"Value": "5V"
+	},
+	{
+		"Name":"VccMin",
+		"Value":"3.75V"
+	},
+	{
+		"Name":"IccMax",
+		"Value":"80mA"
+	},
+    {
+		"Name":"Switching Voltage",
+		"Value":"250VCA,125VCC (Max)"
+	},
+     {
+		"Name":"Switching Current",
+		"Value":"10A (Max)"
+	},
+   
+	],
+
+"HardwareDescription":[ 
+	{
+		"PinName": "J1,J2",
+		"PinType": "I2C",
+		"PinDescription": "EMIC connector",
+	},
+	{
+		"PinName": "J3NC",
+        "PinType": "Output",
+		"PinDescription": "Relay 1 Normally Closed contact",
+		},{
+		"PinName": "J3C",
+        "PinType": "Output",
+		"PinDescription": "Relay 1 Common contact",
+		},{
+		"PinName": "J4NA",
+        "PinType": "Output",
+		"PinDescription": "Relay 1 Normally Opened contact",
+		},{
+		"PinName": "J4NC",
+        "PinType": "Output",
+		"PinDescription": "Relay 2 Normally Closed contact",
+		},{
+		"PinName": "J5C",
+        "PinType": "Output",
+		"PinDescription": "Relay 2 Common contact",
+		},{
+		"PinName": "J5NA",
+        "PinType": "Output",
+		"PinDescription": "Relay 2 Normally Opened contact",
+        },{
+		"PinName": "Relay1",
+		"PinType": "Led",
+		"PinDescription": "Relay 1 indicator led",
+        },{
+		"PinName": "Relay2",
+		"PinType": "Led",
+		"PinDescription": "Relay 2 indicator led",
+        },{
+		"PinName": "Led1",
+		"PinType": "Led",
+		"PinDescription": "General purpose indicator led",
+	}
+],
+"Simulation":"DRN1285.dll",
+"features":[
+				"Compatible with EMIC Bus.",
+				"Size:7x2cm",
+				"Mounting type Holder Riel DIN.",
+				"Temperature range -25ºC a 80ºC.",
+                "Normally Closed and Normally Opened contacts.",
+				"Suitable for Industrial Use."
+				],
+"applications":["Drive high voltage circuits.",
+				"Drive high current circuits.",
+                "Drive resistive loads",
+                "Drive inductive loads",
+				],
+"keyWord":[
+			"Relay",
+			"NormallyClosed",
+			"NormallyOpened",
+			"industrial",
+            "Control",
+            "dryContact"
+			]
+}

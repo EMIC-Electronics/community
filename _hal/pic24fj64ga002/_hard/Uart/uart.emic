@@ -1,0 +1,19 @@
+#ifndef _UART__{puerto}__EMIC
+    #define _UART__{puerto}__EMIC
+	
+    #setFile codigo.c
+	
+		
+		#newRFIcode(_util/Stream/stream.emic)
+
+        ##include(inc/UartX.h|inc/Uart_{puerto}_.h,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+    #unSetFile
+
+    #setFile src.c
+        ##include(src/UartX.c|src/Uart_{puerto}_.c,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+    #unSetFile
+
+#endif
+
+
+

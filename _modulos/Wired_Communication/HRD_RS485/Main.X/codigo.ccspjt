@@ -1,0 +1,14 @@
+[PROJECT]
+Target=build\default\production\_ext\1472\codigo.hex
+Processor_Text=PIC24FJ64GA002
+CCSVersion=5.042
+Compiler=PCD
+[Target Data]
+FileList=..\codigo.c
+[build\default\production\_ext\1472\codigo.c]
+Type=4
+[mru-list]
+1=build\default\production\_ext\1472\codigo.c
+[Units]
+Count=1
+1=codigo (main)
