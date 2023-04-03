@@ -1,0 +1,22 @@
+/*****************************************************************************
+  @file     stream_i2c.emic
+
+  @brief    Includer of driver to use i2c as stream
+
+  @author   Pentacolo Tomas
+
+  @date 	03/04/2023
+
+  @version  v0.0.1 - Initial release.
+ ******************************************************************************/
+
+#newRFIcode(_util/Stream/stream.emic)
+#newRFIcode(_hal\.{UC_FAMILY}.\_hard\I2C_master\I2C_master.emic)
+
+#setFile codigo.c
+	##include(inc\stream_i2c.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\stream_i2c.c)
+#unSetFile
