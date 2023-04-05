@@ -74,7 +74,7 @@ char pop_in()
 uint16_t bytes_to_read()
 {
   uint16_t c2_IE = 65536 - Indice_escritura_in;     //Calculo el complemento a 2 del indice de escritura, el cual funciona de extremo.
-  return (Indice_lectura_in + c2_IE) & 0x03FF;      //Hago la diferencia entre el indice de lectura y el de escritura.
+  return (!is_Tramas_in_empty(stream_i2c_flags))?(Indice_lectura_in + c2_IE) & 0x03FF:0;      //Hago la diferencia entre el indice de lectura y el de escritura.
 }
 
 uint8_t tramas_to_read()
@@ -158,7 +158,7 @@ char pop_out()
 uint8_t bytes_to_write()
 {
   uint8_t c2_IE = 256 - Indice_escritura_out;   //Calculo el complemento a 2 del indice de escritura, el cual funciona de extremo.
-  return (Indice_lectura_out + c2_IE) & 0xFF;   //Hago la diferencia entre el indice de lectura y el de escritura.
+  return (!is_Tramas_out_empty(stream_i2c_flags))?(Indice_lectura_out + c2_IE) & 0xFF:0;   //Hago la diferencia entre el indice de lectura y el de escritura.
 }
 
 uint8_t tramas_to_write()

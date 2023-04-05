@@ -24,11 +24,6 @@ void I2cRfi_init()
 	i2crfi_config.mode = I2C_MASTER_MODE;
 	i2crfi_config.en_interrupt = 1;
 	Init_I2C(i2crfi_config);
-
-	ini_I2C_IN();
-	ini_I2C_OUT();
-	ini_I2C_OUT_FM();
-
 }
 
 void I2cRfi_Send()
@@ -50,11 +45,10 @@ void I2cRfi_Send()
 	
 }
 
-
 void I2cRfi_PoolSend(){
 	if (i2crfi_tic == 0)
 	{
-		if (cont_byte_I2C_OUT_FM && (!IsI2cStart(i2crfi_config)) && (i2crfi_tic == 0)  )
+		if (tramas_to_write() && (!IsI2cStart(i2crfi_config)) && (i2crfi_tic == 0)  )
 			I2cRfi_Send();
 	}
 	else
@@ -63,74 +57,11 @@ void I2cRfi_PoolSend(){
 
 uint8_t stopflag=0;
 
-void ini_I2C_IN(void)
-{
-	punt_entr_I2C_IN	= 0;
-	punt_sal_I2C_IN	= 0;
-	cont_byte_I2C_IN	= 0;
-	cont_byte_I2C_IN_FM = 0;
-}
-
-void ini_I2C_OUT(void)
-{
-	punt_entr_I2C_OUT	= 0;
-	punt_sal_I2C_OUT	= 0;
-	puntB_sal_I2C_OUT = 0;
-	cont_byte_I2C_OUT	= 0;
-	contB_byte_I2C_OUT = 0;
-}
-
-void ini_I2C_OUT_FM(void)
-{
-	cont_byte_I2C_OUT_FM = 0;
-}
-
-void reset_I2C_FRAME()
-{
-	punt_sal_I2C_OUT = puntB_sal_I2C_OUT;
-	contB_byte_I2C_OUT = 0;
-}
-
-void ok_I2C_FRAME()
-{
-	puntB_sal_I2C_OUT = punt_sal_I2C_OUT;
-	contB_byte_I2C_OUT = 0;
-}
-
-	
-void push_I2C_IN(char dato)
-{
-	fifo_I2C_IN[punt_entr_I2C_IN] = dato;
-	if (dato == 0)
-		cont_byte_I2C_IN_FM ++;
-	punt_entr_I2C_IN ++;
-	cont_byte_I2C_IN ++;
-	if (punt_entr_I2C_IN == MAX_I2C_IN) punt_entr_I2C_IN = 0;
-
-}
-
-
-void push_I2C_OUT(char dato)
-{
-
-	fifo_I2C_OUT[punt_entr_I2C_OUT] = dato;
-	if (dato == 0)
-	{
-		cont_byte_I2C_OUT_FM ++;
-	
-		// aca pregunta si debe transmitir el primero.
-	}	
-	punt_entr_I2C_OUT ++;
-	cont_byte_I2C_OUT ++;
-	if (punt_entr_I2C_OUT == MAX_I2C_OUT) punt_entr_I2C_OUT = 0;
-	// aca pregunta si debe transmitir el primero.
-}
-
 void pI2C(char* format,...)
 {
 	va_list arg;
     va_start(arg, format);
-    push_I2C_OUT(tipoTrama_mensaje);
+    push_out(tipoTrama_mensaje);
  	for (; *format > 0; format++)
 	{
 		if ( *format == '%' )
@@ -144,104 +75,28 @@ void pI2C(char* format,...)
 					str = va_arg(arg, char*);
 					while (*str)
 					{
-						push_I2C_OUT( *str++);
+						push_out( *str++);
 					}
 					break;
 				case 'r':
 					dataIn = va_arg(arg, streamIn_t*);
 					while (dataIn->count())
 					{
-						push_I2C_OUT( dataIn->get(1));
+						push_out( dataIn->get(1));
 					}
 					break;
 				default:
-					push_I2C_OUT(*format);
+					push_out(*format);
 					break;
 			}
 		}
 		else
 		{
-			push_I2C_OUT(*format);
+			push_out(*format);
 		}
 	}
-    push_I2C_OUT(0);
+    terminar_trama_escritura_out();
 	va_end(arg);
-}
-
-
-uint16_t I2CXpunt_sal_aux = 0xffff;// ffff es un valor para saber que esta sin usar
-char pop_I2C_IN(uint8_t extrae)
-{
-
-	char dato;
-	if(extrae == 1)
-	{
-		dato = fifo_I2C_IN[punt_sal_I2C_IN];
-
-		punt_sal_I2C_IN ++;
-		cont_byte_I2C_IN --;
-		if (punt_sal_I2C_IN == MAX_I2C_IN)
-		{
-			punt_sal_I2C_IN = 0;
-		}
-		if (dato == 0)
-		{
-			cont_byte_I2C_IN_FM--;
-		}
-		if(cont_byte_I2C_IN <= 0)
-		{
-			punt_sal_I2C_IN = punt_entr_I2C_IN;
-			cont_byte_I2C_IN=0;
-			cont_byte_I2C_IN_FM = 0;
-		}
-	}
-	else
-	{
-		if (I2CXpunt_sal_aux == 0xffff)
-		{
-			I2CXpunt_sal_aux = punt_sal_I2C_IN;
-		}
-		dato = fifo_I2C_IN[I2CXpunt_sal_aux];
-
-		I2CXpunt_sal_aux ++;
-
-		if (I2CXpunt_sal_aux == MAX_I2C_IN)
-		{
-			I2CXpunt_sal_aux = 0;
-		}
-		if (dato == 0)
-		{
-			I2CXpunt_sal_aux = 0xffff;// reseteo el valor indicando que ya termino el frame
-		}
-	}
-	return dato;
-}
-
-char pop_I2C_OUT(void)
-{
-	char dato;
-	dato = fifo_I2C_OUT[punt_sal_I2C_OUT];
-	punt_sal_I2C_OUT ++;
-	contB_byte_I2C_OUT ++;
-	if (punt_sal_I2C_OUT == MAX_I2C_OUT) punt_sal_I2C_OUT = 0;
-	return dato;
-}
-
-void pop_I2C_OUT_FM(void)
-{
-
-	cont_byte_I2C_OUT -= contB_byte_I2C_OUT;
-	puntB_sal_I2C_OUT = punt_sal_I2C_OUT;
-	contB_byte_I2C_OUT = 0;
-
-	cont_byte_I2C_OUT_FM --;
-	if(cont_byte_I2C_OUT <= 0)
-	{
-		punt_sal_I2C_OUT = punt_entr_I2C_OUT;
-		puntB_sal_I2C_OUT = punt_sal_I2C_OUT;
-		cont_byte_I2C_OUT = 0;
-		cont_byte_I2C_OUT_FM = 0;
-	}
 }
 
 
@@ -275,49 +130,49 @@ void poll_I2C()
 		OverflowReset_I2C(i2crfi_config);
 	}
 
-	if (cont_byte_I2C_IN_FM)
+	if (bytes_to_read())
 	{
-		d=pop_I2C_IN(1);
+		d=pop_in();
 		switch(d)
 		{
 			case tipoTrama_mensaje:;
 			#ifdef event_I2CsetModoReceiveMensajeEvent_active				
-				if (cont_byte_I2C_IN_FM > 0)
+				if (tramas_to_read() > 0)
 				{
 					char tag[20];
 					char d;
 					uint8_t i = 0;
-					d = pop_I2C_IN(1);
+					d = pop_in();
 					while (d != 0 && d != '\t' && i < 20)
 					{
 						tag[i++] = d;
-						d = pop_I2C_IN(1);
+						d = pop_in();
 					}
 					tag[i] = 0;
 					eI2C(tag, &getI2C);		
 				}
 			#else
-				while (cont_byte_I2C_IN_FM)
+				while (tramas_to_read())
 				{
-					pop_I2C_IN(1);
+					pop_in();
 				}	
 			#endif
 				break;
 			case tipoTrama_control:;
-				switch(pop_I2C_IN(1))
+				switch(pop_in())
 				{
 					case 'R'://si es un reset
 						//reset_cpu();
 						break;
 					default:
-						while (cont_byte_I2C_IN_FM > 0)
-							pop_I2C_IN(1);
+						while (tramas_to_read() > 0)
+							pop_in();
 					break;
 				}
 				break;
 			default:
-				while (cont_byte_I2C_IN_FM > 0)
-					pop_I2C_IN(1);
+				while (tramas_to_read() > 0)
+					pop_in();
 				break;
 		}	
 	}
@@ -325,14 +180,14 @@ void poll_I2C()
 	if(stopflag==1 && IsI2cStop(i2crfi_config) )
 	{
 		stopflag=0;
-		pop_I2C_OUT_FM();
+		pop_I2C_OUT_FM();//ni idea por que reemplazarlo
 	}
-	if (cont_byte_I2C_OUT_FM && (!IsI2cStart(i2crfi_config)))
+	if (tramas_to_write) && (!IsI2cStart(i2crfi_config)))
 	{
 		if(stopflag == 1)
 		{
 			stopflag=0;
-			pop_I2C_OUT_FM();
+			pop_I2C_OUT_FM();//idem
 		}
 		else
 		{
@@ -377,7 +232,7 @@ void ISR_I2C1_SLAVE_CALLBACK(void)
 		}
 		else if (i2crfi_estado_rcv == I2C_ESTADO_RCV_DATA)
 		{
-			push_I2C_IN(d);
+			push_in(d);
 			
 			i2crfi_tout=timeStamp;
 		}	
@@ -431,7 +286,7 @@ void ISR_I2C1_MASTER_CALLBACK(void)
 			else
 			{
 				char d;
-				d =  pop_I2C_OUT();
+				d =  pop_out();
 				if (d == 0)
 				{
 					i2crfi_estado = I2C_ESTADO_END;
