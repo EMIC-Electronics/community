@@ -32,37 +32,6 @@
 #define Tramas_out_is_full(A)   (A|64)
 #define Tramas_out_is_empty(A)  (A|128)
 
-#define I2CRFI_TOUT 300ul               //en decimas de segundo
-
-enum{
-	I2C_ESTADO_IDLE,
-	I2C_ESTADO_SENDING,
-	I2C_ESTADO_END
-};
-
-enum{
-	I2C_ESTADO_RCV_IDLE,
-	I2C_ESTADO_PKT_ID,
-	I2C_ESTADO_RCV_ID,
-	I2C_ESTADO_RCV_DATA
-};
-
-enum
-{
-	tipoTrama_noUsar=0,
-	tipoTrama_mensaje=1,
-	tipoTrama_ejecuable=2,
-	tipoTrama_control=3,
-	tipoTrama_bootloader=4,
-	tipoTrama_buffer=5
-};
-
-#ifdef _I2C_ID
-char I2C_ID = _I2C_ID;                  //ID del dispositivo.
-#else
-char I2C_ID = 0x64;                     //ID del dispositivo.
-#endif
-
 //Variables recepción
 
 uint8_t     Buffer_in[512];             //Buffer que contiene los bytes que se reciben por el i2c.
@@ -81,7 +50,8 @@ char        pop_in(void);               //Obtiene un byte de la trama asignada p
 uint16_t    bytes_to_read(void);        //Obtiene la cantidad de bytes que le quedan a la trama de lectura actual.
 uint8_t     tramas_to_read(void);       //Obtiene la cantidad de tramas que se pueden leer.
 
-void        terminar_trama_in();        //Se ejecuta cuando finaliza la recepción del i2c.
+void        terminar_trama_escritura_in();	//Se ejecuta cuando finaliza la recepción de datos por i2c.
+void        terminar_trama_lectura_in();	//Se ejecuta se quita el ultimo byte de una trama.
 
 //Variables transmisión
 
@@ -103,17 +73,10 @@ char        pop_out(void);              //Obtiene un byte de la trama asignada p
 uint8_t     bytes_to_write(void);       //Obtiene la cantidad de bytes que le quedan a la trama de lectura actual.
 uint8_t     tramas_to_write(void);      //Obtiene la cantidad de tramas que se pueden transmitir.
 
-void        terminar_trama_out();       //Se ejecuta cuando finaliza la transmisión del i2c.
+void        terminar_trama_escritura_out();  	//Se ejecuta cuando se termina de cargar la trama a transmitir.
+void        terminar_trama_lectura_out();	  	//Se ejecuta al transmitir el ultimo byte a traves del i2c.
 
 //Variables de la maquina de estado y de configuración general
-
-char i2crfi_estado = I2C_ESTADO_IDLE;         //Estado en que se encuentra la maquina de estados.
-char i2crfi_estado_rcv = I2C_ESTADO_RCV_IDLE; //
-
-i2c_config_t i2crfi_config;                   //Estructura de configuración del i2c.
-
-uint32_t i2crfi_tout = 0;                     //Variable utilizada para el calculo del timeout.
-uint16_t i2crfi_tic = 0;                      //Variable utilizada para el calculo del timeout.
 
 uint8_t stream_i2c_flags = 0;
 /*
@@ -131,19 +94,6 @@ uint8_t stream_i2c_flags = 0;
 
 const streamIn_t  getI2C = {Buffer_in, pop_in, bytes_to_read};
 const streamOut_t setI2C = {Buffer_out, push_out};
-
-//Interrupciones del i2c
-
-#ifdef S_I2C2
-void ISR_I2C2_SLAVE_CALLBACK(void);     //Se ejecuta cuando se recibe un byte por i2c.
-#else
-void ISR_I2C1_SLAVE_CALLBACK(void);     //Se ejecuta cuando se recibe un byte por i2c.
-#endif
-#ifdef S_I2C2
-void ISR_I2C2_MASTER_CALLBACK(void);     //Se ejecuta cuando se transmite un byte por i2c.
-#else
-void ISR_I2C1_MASTER_CALLBACK(void);     //Se ejecuta cuando se transmite un byte por i2c.
-#endif         
 
 //Funciones de inicialización y polling
 
