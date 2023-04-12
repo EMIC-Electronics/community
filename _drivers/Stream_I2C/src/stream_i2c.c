@@ -64,11 +64,13 @@ char pop_in()
       stream_i2c_flags = Buffer_in_is_empty(stream_i2c_flags);        //Significa que se vacio el buffer, por lo que guardo esta condición.
     }
 
-    if (Tramas_in[indice_lectura_trama_in] == 0)                      //Si la trama se ha quedado sin bytes.
+    if (Tramas_in[Indice_lectura_trama_in] == 0)                      //Si la trama se ha quedado sin bytes.
     {
       terminar_trama_lectura_in();                                    //Paso a la siguiente trama.
     }
+    return ret;                                                       //Devuelvo el valor del byte quitado de la cola.
   }
+  return 0;
 }
 
 uint16_t bytes_to_read()
@@ -93,7 +95,7 @@ void terminar_trama_lectura_in()
 
     if (Indice_lectura_trama_in == Indice_escritura_trama_in) //Si el indice de lectura alcanza al indice de escritura.
     {
-      stream_i2c_flags = Trama_in_is_empty(stream_i2c_flags); //Significa que ya no hay más tramas disponibles.
+      stream_i2c_flags = Tramas_in_is_empty(stream_i2c_flags); //Significa que ya no hay más tramas disponibles.
     }
   }
 }
@@ -108,7 +110,7 @@ void terminar_trama_escritura_in()
 
     if (Indice_escritura_trama_in == Indice_lectura_trama_in)   //Si el indice de escritura alcanza al de lectura.
     {
-      stream_i2c_flags = Trama_in_is_full(stream_i2c_flags);    //Significa que el buffer de tramas esta lleno.
+      stream_i2c_flags = Tramas_in_is_full(stream_i2c_flags);    //Significa que el buffer de tramas esta lleno.
     }
   }
 }
@@ -148,11 +150,14 @@ char pop_out()
       stream_i2c_flags = Buffer_out_is_empty(stream_i2c_flags); //Significa que se vacio el buffer, por lo que guardo esta condición.
     }
 
-    if (Tramas_in[indice_lectura_trama_out] == 0)               //Si la trama se ha quedado sin bytes.
+    if (Tramas_in[Indice_lectura_trama_out] == 0)               //Si la trama se ha quedado sin bytes.
     {
       terminar_trama_lectura_out();                             //Paso a la siguiente trama.
     }
+
+    return ret;                                                 //Devuelvo el valor del byte quitado de la cola.
   }
+  return 0;                              
 }
 
 uint8_t bytes_to_write()
@@ -174,10 +179,11 @@ void terminar_trama_lectura_out()
     Indice_lectura_trama_out++;                                 //Salto a la siguiente trama a leer.
     Indice_lectura_trama_out &= 0x0F;                           //Evita que el contador exceda el valor maximo.
     stream_i2c_flags = stream_i2c_flags & 0b10111111;           //El buffer de tramas deja de estar lleno.
+    last_package_length = Tramas_out[Indice_lectura_trama_out]; //Guardo el tamaño del paquete a transmitir.
 
     if (Indice_lectura_trama_out == Indice_escritura_trama_out) //Si el indice de lectura alcanza al indice de escritura.
     {
-      stream_i2c_flags = Trama_out_is_empty(stream_i2c_flags);  //Significa que ya no hay más tramas disponibles.
+      stream_i2c_flags = Tramas_out_is_empty(stream_i2c_flags);  //Significa que ya no hay más tramas disponibles.
     }
   }
 }
@@ -192,8 +198,20 @@ void terminar_trama_escritura_out()
 
     if (Indice_escritura_trama_out == Indice_lectura_trama_out)   //Si el indice de escritura alcanza al de lectura.
     {
-      stream_i2c_flags = Trama_out_is_full(stream_i2c_flags);     //Significa que el buffer de tramas esta lleno.
+      stream_i2c_flags = Tramas_out_is_full(stream_i2c_flags);     //Significa que el buffer de tramas esta lleno.
     }
+  }
+}
+
+void resetear_trama()
+{
+  uint8_t difference = last_package_length - Tramas_out[Indice_lectura_trama_out];  //Calculo la cantidad de bytes que se transmitieron.
+  Indice_lectura_out -= difference;                                                 //Vuelvo para atras esa cantidad de bytes.
+  Tramas_out[Indice_lectura_trama_out] = last_package_length;                       //Reinicio el contador de la trama.
+
+  if(Indice_lectura_out == Indice_escritura_out)                  //Si el indice de lectura es igual al de escritura.
+  {
+    stream_i2c_flags = Buffer_out_is_full(stream_i2c_flags);      //Significa que el buffer estaba lleno, por lo que guardo esta condición.
   }
 }
 

@@ -58,25 +58,6 @@ char I2C_ID = _I2C_ID;
 char I2C_ID = 0x64;
 #endif
 
-uint8_t i2c_packet_id = 0;
-uint8_t i2c_rv_id = 0;
-
-uint16_t I2Ctic = 0;
-uint16_t punt_entr_I2C_IN;
-uint16_t punt_sal_I2C_IN;
-uint16_t cont_byte_I2C_IN;
-uint16_t cont_byte_I2C_IN_FM = 0;
-char fifo_I2C_IN[MAX_I2C_IN];
-
-uint16_t punt_entr_I2C_OUT;
-uint16_t punt_sal_I2C_OUT;
-uint16_t cont_byte_I2C_OUT;
-char fifo_I2C_OUT[MAX_I2C_OUT];
-
-uint16_t puntB_sal_I2C_OUT;
-uint16_t cont_byte_I2C_OUT_FM;
-uint16_t contB_byte_I2C_OUT;
-
 uint32_t i2crfi_tout = 0;//variable auxiliar para el timeout por error del i2c
 uint16_t i2crfi_tic = 0;
 
@@ -104,45 +85,19 @@ void ISR_I2C2_MASTER_CALLBACK(void);
 void ISR_I2C1_MASTER_CALLBACK(void);
 #endif
 
-uint16_t EB_in_count(void)
-{
-    return cont_byte_I2C_IN;
-}
-
-uint16_t EB_out_count(void)
-{
-    return contB_byte_I2C_OUT;
-}
-
 void I2cRfi_init(void);
 #setFile temp/EMICinits.c
 	I2cRfi_init();
 #unSetFile	
 
-
-
-void ini_I2C_IN(void);
-void ini_I2C_OUT(void);
-void ini_I2C_OUT_FM(void);
-void push_I2C_IN(char dato);
-void push_I2C_OUT(char dato);
-
 void pI2C(char* format,...);
 doCMDf(pI2C)
-
-char pop_I2C_IN(uint8_t extrae);
-char pop_I2C_OUT(void);
-void pop_I2C_OUT_FM(void);
 
 void poll_I2C(void);
 
 #setFile temp/EMICpolling.c
 	poll_I2C();
 #unSetFile	
-
-
-const streamIn_t  getI2C = {fifo_I2C_IN,pop_I2C_IN,EB_in_count};
-const streamOut_t setI2C = {fifo_I2C_OUT,push_I2C_OUT};
 
 #endif
 

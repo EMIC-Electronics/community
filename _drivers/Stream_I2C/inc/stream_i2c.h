@@ -10,6 +10,9 @@
   @version  v0.0.1 - Initial release.
  ******************************************************************************/
 
+#ifndef __stream_i2c_h__
+#define __stream_i2c_h__
+
 //Definiciones
 
 #define is_Buffer_in_full(A)    (A&1)
@@ -76,6 +79,7 @@ uint8_t     tramas_to_write(void);      //Obtiene la cantidad de tramas que se p
 void        terminar_trama_escritura_out();  	//Se ejecuta cuando se termina de cargar la trama a transmitir.
 void        terminar_trama_lectura_out();	  	//Se ejecuta al transmitir el ultimo byte a traves del i2c.
 
+void        resetear_trama();           //Este metodo se obtiene cuando ocurre un error, resetea la ultima trama. 
 //Variables de la maquina de estado y de configuración general
 
 uint8_t stream_i2c_flags = 0;
@@ -99,10 +103,12 @@ const streamOut_t setI2C = {Buffer_out, push_out};
 
 void stream_i2c_init(void);
 #setFile temp/EMICinits.c
-  stream_i2c_init();
+    stream_i2c_init();
 #unSetFile
 
-void stream_i2c_poll(void);
+/*void stream_i2c_poll(void);
 #setFile temp/EMICpolling.c
   stream_i2c_poll();
-#unSetFile
+#unSetFile*/
+
+#endif //__stream_i2c_h__

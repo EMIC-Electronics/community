@@ -1,12 +1,13 @@
-/*************************************************************************//**
+/*****************************************************************************
+  @file     emicBus.c
 
-  @file     I2CxBufferC.V2.1.c
+  @brief    Driver to use i2c as stream
 
-  @brief    Driver Library to use I2C
+  @author   Pentacolo Tomas
 
-  @author   Ivan Schneider (IS)
+  @date 	12/04/2023
 
-  @version  20200810 v0.0.1   IS Initial release.
+  @version  v0.0.1 - Initial release.
  ******************************************************************************/
 
 #newRFIcode(_util/Stream/stream.emic)
@@ -177,17 +178,17 @@ void poll_I2C()
 		}	
 	}
 	
-	if(stopflag==1 && IsI2cStop(i2crfi_config) )
+	if(stopflag==1 && IsI2cStop(i2crfi_config))
 	{
 		stopflag=0;
-		pop_I2C_OUT_FM();//ni idea por que reemplazarlo
+		//pop_I2C_OUT_FM();//ni idea por que reemplazarlo
 	}
-	if (tramas_to_write) && (!IsI2cStart(i2crfi_config)))
+	if ((tramas_to_write()) && (!IsI2cStart(i2crfi_config)))
 	{
 		if(stopflag == 1)
 		{
 			stopflag=0;
-			pop_I2C_OUT_FM();//idem
+			//pop_I2C_OUT_FM();//idem
 		}
 		else
 		{
@@ -203,7 +204,6 @@ void ISR_I2C1_SLAVE_CALLBACK(void)
 #endif
 {
 	uint8_t d;
-	static uint8_t i2c_packet_id_rcv;
 #ifdef S_I2C2
 	IFS3bits.SI2C2IF = 0;
 #else
@@ -258,7 +258,7 @@ void ISR_I2C1_MASTER_CALLBACK(void)
 		CollisionReset_I2C(i2crfi_config);
 		i2crfi_estado = I2C_ESTADO_IDLE;
 		I2CBusCol = 1;
-		reset_I2C_FRAME();
+		resetear_trama();
 
 		return;
 	}	
