@@ -26,7 +26,6 @@
 }
 */
 
-#newRFIcode(_util/Stream/stream.emic)
 #newRFIcode(_drivers/Stream_i2c/stream_i2c.emic)
 #newRFIcode(_hal\.{UC_FAMILY}.\_hard\I2C_master\I2C_master.emic)
 

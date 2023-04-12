@@ -9,6 +9,9 @@
   @version  20200803 v0.0.1   PL Initial release.
  ******************************************************************************/
 
+#ifndef __I2C_master_c__
+#define __I2C_master_c__
+
 void Init_I2C(i2c_config_t config)
 {
 	#ifdef setI2cPullUp
@@ -287,3 +290,5 @@ uint8_t Read_I2C(i2c_config_t config)
 	}
 
 }
+
+#endif
