@@ -1,0 +1,107 @@
+//RFI TAG:driverName=Balanza
+
+/*****************************************************************************
+
+  @file     Balanza.emic
+
+  @brief    Balanza interface
+
+  @author   Tomas Pentacolo
+
+  @date     13/04/2023
+
+  @version  v0.0.1 - Initial release.
+
+ ******************************************************************************/
+ 
+/*RFI JSon
+{
+	'Nombre': 'DynaOn',
+	'NombreToolBox': 'On',
+	'Tipo' : 'SistemFnc',
+	'title': 'Power on Dynamometer',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+
+	'InnerHTML':"
+		<div class='lineaDeCodigo' definir='use_DynaPowerOn_function' type='void' originalclass='funcion' originalid='DynaOn' draggable='true' ondragstart='drag_linea(event)'>
+			Dynamometer.On()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'DynaOff',
+	'NombreToolBox': 'Off',
+	'Tipo' : 'SistemFnc',
+	'title': 'Power off Dynamometer',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+
+	'InnerHTML':"
+		<div class='lineaDeCodigo' definir='use_DynaPowerOff_function' type='void' originalclass='funcion' originalid='DynaOff' draggable='true' ondragstart='drag_linea(event)'>
+			Dynamometer.Off()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'sMin',
+	'NombreToolBox': 'sMin',
+	'Tipo' : 'SistemFnc',
+	'title': 'Minimun balance value',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+
+	'InnerHTML':"
+		<div class='lineaDeCodigo' definir='use_sMin_function' originalclass='funcion' type='void' originalid='sMin' draggable='true' ondragstart='drag_linea(event)'>
+			Dynamometer.sMin()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'sMax',
+	'NombreToolBox': 'sMax',
+	'Tipo' : 'SistemFnc',
+	'title': 'Maximun balance value',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Peso_conocido',
+					'tooltip': 'Peso conocido',
+					'required': 'true"',
+					'type': 'int32_t'},],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' originalclass='funcion' originalid='sMax' draggable='true' ondragstart='drag_linea(event)'>
+			Dynamometer.sMax(<div type='int32_t' title='Peso conocido' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eBal',
+	'NombreToolBox': 'Adquisition ready',
+	'Tipo' : 'SistemEvt',
+	'title': 'When the strength value is ready to be read',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.AdquisitionReady",
+		"definir":"event_eBal_active",
+		"parametros": []
+		}'
+}
+*/
+
+#newRFIcode(_drivers\ADC\ADS1231\ADS1231.emic)
+
+#setFile codigo.c
+	##include(inc\balanza.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\balanza.c)
+#unSetFile
