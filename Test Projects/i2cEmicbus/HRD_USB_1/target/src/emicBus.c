@@ -1,3 +1,15 @@
+/*************************************************************************//**
+
+  @file     I2CxBufferC.V2.1.c
+
+  @brief    Driver Library to use I2C
+
+  @author   Ivan Schneider (IS)
+
+  @version  20200810 v0.0.1   IS Initial release.
+ ******************************************************************************/
+
+
 void I2cRfi_init()
 {
 	AD1PCFG = 0xFFFF;
@@ -7,10 +19,13 @@ void I2cRfi_init()
 	i2crfi_config.mode = I2C_MASTER_MODE;
 	i2crfi_config.en_interrupt = 1;
 	Init_I2C(i2crfi_config);
+
 	ini_I2C_IN();
 	ini_I2C_OUT();
 	ini_I2C_OUT_FM();
+
 }
+
 void I2cRfi_Send()
 {
 	if (!IsI2cStart(i2crfi_config))
@@ -27,7 +42,10 @@ void I2cRfi_Send()
 		I2CBusCol = 1;
 		return;
 	}	
+	
 }
+
+
 void I2cRfi_PoolSend(){
 	if (i2crfi_tic == 0)
 	{
@@ -37,7 +55,9 @@ void I2cRfi_PoolSend(){
 	else
 		i2crfi_tic--;
 }
+
 uint8_t stopflag=0;
+
 void ini_I2C_IN(void)
 {
 	punt_entr_I2C_IN	= 0;
@@ -45,6 +65,7 @@ void ini_I2C_IN(void)
 	cont_byte_I2C_IN	= 0;
 	cont_byte_I2C_IN_FM = 0;
 }
+
 void ini_I2C_OUT(void)
 {
 	punt_entr_I2C_OUT	= 0;
@@ -53,20 +74,25 @@ void ini_I2C_OUT(void)
 	cont_byte_I2C_OUT	= 0;
 	contB_byte_I2C_OUT = 0;
 }
+
 void ini_I2C_OUT_FM(void)
 {
 	cont_byte_I2C_OUT_FM = 0;
 }
+
 void reset_I2C_FRAME()
 {
 	punt_sal_I2C_OUT = puntB_sal_I2C_OUT;
 	contB_byte_I2C_OUT = 0;
 }
+
 void ok_I2C_FRAME()
 {
 	puntB_sal_I2C_OUT = punt_sal_I2C_OUT;
 	contB_byte_I2C_OUT = 0;
 }
+
+	
 void push_I2C_IN(char dato)
 {
 	fifo_I2C_IN[punt_entr_I2C_IN] = dato;
@@ -75,18 +101,26 @@ void push_I2C_IN(char dato)
 	punt_entr_I2C_IN ++;
 	cont_byte_I2C_IN ++;
 	if (punt_entr_I2C_IN == MAX_I2C_IN) punt_entr_I2C_IN = 0;
+
 }
+
+
 void push_I2C_OUT(char dato)
 {
+
 	fifo_I2C_OUT[punt_entr_I2C_OUT] = dato;
 	if (dato == 0)
 	{
 		cont_byte_I2C_OUT_FM ++;
+	
+		// aca pregunta si debe transmitir el primero.
 	}	
 	punt_entr_I2C_OUT ++;
 	cont_byte_I2C_OUT ++;
 	if (punt_entr_I2C_OUT == MAX_I2C_OUT) punt_entr_I2C_OUT = 0;
+	// aca pregunta si debe transmitir el primero.
 }
+
 void pI2C(char* format,...)
 {
 	va_list arg;
@@ -128,13 +162,17 @@ void pI2C(char* format,...)
     push_I2C_OUT(0);
 	va_end(arg);
 }
+
+
 uint16_t I2CXpunt_sal_aux = 0xffff;// ffff es un valor para saber que esta sin usar
 char pop_I2C_IN(uint8_t extrae)
 {
+
 	char dato;
 	if(extrae == 1)
 	{
 		dato = fifo_I2C_IN[punt_sal_I2C_IN];
+
 		punt_sal_I2C_IN ++;
 		cont_byte_I2C_IN --;
 		if (punt_sal_I2C_IN == MAX_I2C_IN)
@@ -159,7 +197,9 @@ char pop_I2C_IN(uint8_t extrae)
 			I2CXpunt_sal_aux = punt_sal_I2C_IN;
 		}
 		dato = fifo_I2C_IN[I2CXpunt_sal_aux];
+
 		I2CXpunt_sal_aux ++;
+
 		if (I2CXpunt_sal_aux == MAX_I2C_IN)
 		{
 			I2CXpunt_sal_aux = 0;
@@ -171,6 +211,7 @@ char pop_I2C_IN(uint8_t extrae)
 	}
 	return dato;
 }
+
 char pop_I2C_OUT(void)
 {
 	char dato;
@@ -180,11 +221,14 @@ char pop_I2C_OUT(void)
 	if (punt_sal_I2C_OUT == MAX_I2C_OUT) punt_sal_I2C_OUT = 0;
 	return dato;
 }
+
 void pop_I2C_OUT_FM(void)
 {
+
 	cont_byte_I2C_OUT -= contB_byte_I2C_OUT;
 	puntB_sal_I2C_OUT = punt_sal_I2C_OUT;
 	contB_byte_I2C_OUT = 0;
+
 	cont_byte_I2C_OUT_FM --;
 	if(cont_byte_I2C_OUT <= 0)
 	{
@@ -194,6 +238,8 @@ void pop_I2C_OUT_FM(void)
 		cont_byte_I2C_OUT_FM = 0;
 	}
 }
+
+
 void poll_I2C()
 {
 	char d;
@@ -218,10 +264,12 @@ void poll_I2C()
 	{
 		i2crfi_tout=timeStamp;
 	}
+
 	if(IsI2cReceiveOverflow(i2crfi_config))//si hay un overflow lo resetea
 	{
 		OverflowReset_I2C(i2crfi_config);
 	}
+
 	if (cont_byte_I2C_IN_FM)
 	{
 		d=pop_I2C_IN(1);
@@ -237,6 +285,7 @@ void poll_I2C()
 				switch(pop_I2C_IN(1))
 				{
 					case 'R'://si es un reset
+						//reset_cpu();
 						break;
 					default:
 						while (cont_byte_I2C_IN_FM > 0)
@@ -250,6 +299,7 @@ void poll_I2C()
 				break;
 		}	
 	}
+	
 	if(stopflag==1 && IsI2cStop(i2crfi_config) )
 	{
 		stopflag=0;
@@ -268,14 +318,17 @@ void poll_I2C()
 		}
 	}
 }
+
 void ISR_I2C2_SLAVE_CALLBACK(void)
 {
 	uint8_t d;
 	static uint8_t i2c_packet_id_rcv;
 	IFS3bits.SI2C2IF = 0;
+
 	if (IsI2cReceiveBufferFull(i2crfi_config))
 	{
 		d = Read_I2C(i2crfi_config);
+
 		if (!IsI2cDataOrAddress(i2crfi_config))
 		{
 			i2crfi_estado_rcv = I2C_ESTADO_RCV_ID; //I2C_ESTADO_PKT_ID;
@@ -295,22 +348,28 @@ void ISR_I2C2_SLAVE_CALLBACK(void)
 		else if (i2crfi_estado_rcv == I2C_ESTADO_RCV_DATA)
 		{
 			push_I2C_IN(d);
+			
 			i2crfi_tout=timeStamp;
 		}	
 	}	
 }
+
+
 void ISR_I2C2_MASTER_CALLBACK(void)
 {
 	i2crfi_tic = 100;
 	IFS3bits.MI2C2IF = 0;
+
 	if (IsI2cCollisionDetect(i2crfi_config))
 	{
 		CollisionReset_I2C(i2crfi_config);
 		i2crfi_estado = I2C_ESTADO_IDLE;
 		I2CBusCol = 1;
 		reset_I2C_FRAME();
+
 		return;
 	}	
+
 	if (IsI2cStop(i2crfi_config))
 	{
 		i2crfi_estado= I2C_ESTADO_IDLE;
@@ -330,6 +389,7 @@ void ISR_I2C2_MASTER_CALLBACK(void)
 				Write_I2C(I2C_ID,i2crfi_config);
 				i2crfi_indice++;
 			}	
+
 			else
 			{
 				char d;
@@ -342,6 +402,7 @@ void ISR_I2C2_MASTER_CALLBACK(void)
 				i2crfi_tout=timeStamp;
 			}				
 		}
+
 		else if (i2crfi_estado == I2C_ESTADO_END)
 		{
 			i2crfi_estado = I2C_ESTADO_IDLE;
@@ -350,6 +411,8 @@ void ISR_I2C2_MASTER_CALLBACK(void)
 		}
 		else  if (i2crfi_estado == 3)
 		{
+
 		}	
 	}		
 }	
+

@@ -1,8 +1,14 @@
 void init_led (void)
 {
+	//gpio_init();
+
 	HAL_PinMap_Led1(PinMap_DIGITAL);
+
 	HAL_GPIO_PinCfg(Led1, GPIO_OUTPUT);
 }
+
+
+
 void led1(led_status_t status)
 {
 	switch (status)
@@ -24,10 +30,17 @@ void led1(led_status_t status)
 			break;
 	}
 }
+
+
+
+
+
+
 uint16_t blkLed1_timerOn = 0; 
 uint16_t blkLed1_period = 0; 
 uint16_t blkLed1_times = 0; 
 uint32_t blkLed1_tStamp;
+ 
 void blkLed1(uint16_t timeOn, uint16_t period, uint16_t times)
 {
 	HAL_GPIO_PinSet(Led1, GPIO_HIGH);
@@ -36,6 +49,13 @@ void blkLed1(uint16_t timeOn, uint16_t period, uint16_t times)
 	blkLed1_times = times;
 	blkLed1_tStamp = timeStamp;
 }
+
+
+
+
+
+
+
 void Poll_LEDs()
 {
 	if (blkLed1_period > 0)
@@ -60,5 +80,14 @@ void Poll_LEDs()
 		{
 			HAL_GPIO_PinSet(Led1, GPIO_LOW);
 		}
+
 	}
+
+
+
+
+
+	
 }
+
+
