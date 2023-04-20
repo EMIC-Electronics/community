@@ -10,40 +10,52 @@
   @version  v0.0.1 - Initial release.
  ******************************************************************************/
 
-uint8_t balanzaActive = 0;
+//Variables accesibles para el usuario.
+float Peso;
+doCMDfloat(Peso)        //Current weight value.
+float Capacidad;
+doCMDfloat(Capacidad)   //Maximun weight for which the load cell is lineal.
+float mVxV;
+doCMDfloat(mVxV)        //Ratio between the output voltage and the calibrated weight with a source of 1[V].
+float mVxV_cal;
+doCMDfloat(mVxV_cal)    //mVxV value given in the specs of load cell.
 
-int32_t Ord = 0 ;
-int32_t Num = 1 ;
-int32_t Den = 1 ;
-int32_t DMin = 1 ;
-int32_t adConv = 0 ;
-int32_t mVxV = 0 ;
+//Variables no accesibles para el usuario.
+float K;                //Slope of the linear function which describes the load cell.
+int32_t Cero;           //Intercept of the linear function which describes the load cell.
+int32_t Corrimiento;    //Offset due to the deformation of the load cell.
+int32_t Historial[32];  //Circular FIFO used to eliminate the noise of the load cell measure.
+int64_t Acumulador;     //Is the sumatory of all values contains in the FIFO.
 
-doCMDn32(Ord)
-doCMDn32(Num)
-doCMDn32(Den)
-doCMDn32(DMin)
-doCMDn32(adConv)
-doCMDn32(mVxV)
+//Funciones accesibles para el usuario
 
-int32_t adVal = 0 ;
-doCMDn32(adVal)//Srength value
+void setZero(void);       //Sets the current value as zero.
+void setReference(float Peso_de_referencia);  //Defines the current value as the reference weight given as parameter.
+void setmVxV(float mVxV); //Sets the value of mVxV_cal.
 
-//----------------------------------------------------
+//Funciones no accesibles para el usuario
 
-void sMax(int32_t Peso_conocido);
-void sMin(void);
-void DynaOn(void);
-void DynaOff(void);
+float nuevaLectura(int32_t nuevo_valor);  //Receives the new data from the sensor and applies the change in the weight value.
 
-void init_Balanza(void);
+void init_Balanza(void);  //Initializes the correspondent variables for a correct work of the module.
 #setFile temp/EMICinits.c
 	init_Balanza();
 #unSetFile
 
-void Balanza_poll(void);
+void poll_Balanza(void);  //Iteration when the module logic is implemented.
 #setFile temp/EMICpolling.c
-	Balanza_poll();
+	poll_Balanza();
 #unSetFile
+
+//Eventos
+
+extern void cero(void);
+extern void estable(Void);
+extern void capacidadMaximaSuperada(void);
+
+//----------------------------------------------------
+
+
+
 
 

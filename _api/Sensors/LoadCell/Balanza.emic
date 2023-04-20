@@ -10,87 +10,107 @@
 
   @date     13/04/2023
 
-  @version  v0.0.1 - Initial release.
+  @version  v0.0.2 
 
  ******************************************************************************/
- 
+
+
+
 /*RFI JSon
 {
-	'Nombre': 'DynaOn',
-	'NombreToolBox': 'On',
+	'Nombre': 'setZero',
+	'NombreToolBox': 'setZero',
 	'Tipo' : 'SistemFnc',
-	'title': 'Power on Dynamometer',
+	'title': 'Set current value as zero.',
 	'returnInfo': {'type':'','tooltip':'Nothing'},
 	'parameters': [],
 
 	'InnerHTML':"
-		<div class='lineaDeCodigo' definir='use_DynaPowerOn_function' type='void' originalclass='funcion' originalid='DynaOn' draggable='true' ondragstart='drag_linea(event)'>
-			Dynamometer.On()
+		<div class='lineaDeCodigo' definir='use_zero_function' originalclass='funcion' type='void' originalid='setZero' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.Zero()
 		</div>"
 }
 */
 
 /*RFI JSon
 {
-	'Nombre': 'DynaOff',
-	'NombreToolBox': 'Off',
+	'Nombre': 'setReference',
+	'NombreToolBox': 'setReference',
 	'Tipo' : 'SistemFnc',
-	'title': 'Power off Dynamometer',
-	'returnInfo': {'type':'','tooltip':'Nothing'},
-	'parameters': [],
-
-	'InnerHTML':"
-		<div class='lineaDeCodigo' definir='use_DynaPowerOff_function' type='void' originalclass='funcion' originalid='DynaOff' draggable='true' ondragstart='drag_linea(event)'>
-			Dynamometer.Off()
-		</div>"
-}
-*/
-
-/*RFI JSon
-{
-	'Nombre': 'sMin',
-	'NombreToolBox': 'sMin',
-	'Tipo' : 'SistemFnc',
-	'title': 'Minimun balance value',
-	'returnInfo': {'type':'','tooltip':'Nothing'},
-	'parameters': [],
-
-	'InnerHTML':"
-		<div class='lineaDeCodigo' definir='use_sMin_function' originalclass='funcion' type='void' originalid='sMin' draggable='true' ondragstart='drag_linea(event)'>
-			Dynamometer.sMin()
-		</div>"
-}
-*/
-
-/*RFI JSon
-{
-	'Nombre': 'sMax',
-	'NombreToolBox': 'sMax',
-	'Tipo' : 'SistemFnc',
-	'title': 'Maximun balance value',
+	'title': 'Set current value as equal to the reference.',
 	'returnInfo': {'type':'','tooltip':'Nothing'},
 	'parameters': [{'name': 'Peso_conocido',
-					'tooltip': 'Peso conocido',
+					'tooltip': 'Reference weight',
 					'required': 'true"',
-					'type': 'int32_t'},],
+					'type': 'float'},],
 	'InnerHTML':"
-		<div type='void' class='lineaDeCodigo' originalclass='funcion' originalid='sMax' draggable='true' ondragstart='drag_linea(event)'>
-			Dynamometer.sMax(<div type='int32_t' title='Peso conocido' class='parametroDiv'></div>)
+		<div type='void' class='lineaDeCodigo' definir='use_reference_function' originalclass='funcion' originalid='setReference' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.Reference(<div type='float' title='Peso conocido' class='parametroDiv'></div>)
 		</div>"
 }
 */
 
 /*RFI JSon
 {
-	'Nombre': 'eBal',
-	'NombreToolBox': 'Adquisition ready',
+	'Nombre': 'setmVxV',
+	'NombreToolBox': 'set_mVxV',
+	'Tipo' : 'SistemFnc',
+	'title': 'Set the mVxV value for which the load cell was calibrated.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'mVxV',
+					'tooltip': 'mVxV, given in the load cell specs.',
+					'required': 'true"',
+					'type': 'float'},],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_reference_function' originalclass='funcion' originalid='setReference' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.Reference(<div type='float' title='mVxV' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eZero',
+	'NombreToolBox': 'Zero',
 	'Tipo' : 'SistemEvt',
-	'title': 'When the strength value is ready to be read',
+	'title': 'When the weight value return to zero.',
 	'returnInfo': {'type':'','tooltip':'Nothing'},
 	'parameters': [],
 	'instancia':'{
-		"NombreWorkBox":"Event.Balanza.AdquisitionReady",
-		"definir":"event_eBal_active",
+		"NombreWorkBox":"Event.Balanza.Zero",
+		"definir":"event_eZero_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eStable',
+	'NombreToolBox': 'Stable',
+	'Tipo' : 'SistemEvt',
+	'title': 'When the weight value is stable.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.Stable",
+		"definir":"event_eStable_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eOverLoad',
+	'NombreToolBox': 'Overload',
+	'Tipo' : 'SistemEvt',
+	'title': 'When the weight value is greater than load cell capacity.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.Overload",
+		"definir":"event_eOverload_active",
 		"parametros": []
 		}'
 }
