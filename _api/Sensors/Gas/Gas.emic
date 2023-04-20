@@ -1,0 +1,32 @@
+#ifndef GAS_EMIC_
+#define GAS_EMIC_
+
+/**
+* @fn uint32_t getPPM(uint32_t actualtemp, uint32_t actualhumd);
+* @alias Read PPM
+* @brief Read the CO2 concentration in ppm
+* @return uint32_t
+* @param actualtemp Temperature in real time
+* @param actualhumd Hummidity in real time
+*/
+
+/**
+* @fn uint32_t getRO(uint32_t actualtemp, uint32_t actualhumd);
+* @alias Read RO
+* @brief Read the RO of CO2
+* @return uint32_t
+* @param actualtemp Temperature in real time
+* @param actualhumd Hummidity in real time
+*/
+
+#newRFIcode(_drivers/Sensors/_{driver}_/_{driver}_.emic)
+
+#setFile codigo.c
+	##include(inc\Gas.h)
+#unSetFile
+
+#setFile src.c	
+	##include(src\Gas.c)
+#unSetFile
+
+#endif

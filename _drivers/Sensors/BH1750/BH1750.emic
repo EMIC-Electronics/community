@@ -1,0 +1,15 @@
+#ifndef BH1750_EMIC_
+#define BH1750_EMIC_
+
+#setFile codigo.c
+        ##include(inc\BH1750.h)
+    #unSetFile
+
+	#setFile src.c
+		##include(src\BH1750.c)
+	#unSetFile
+
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/Timer/timer.emic)
+#newRFIcode(_hal/.{UC_FAMILY}./I2C_master/inc/I2C_master.h)
+
+#endif

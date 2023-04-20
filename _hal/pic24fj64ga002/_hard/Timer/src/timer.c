@@ -26,6 +26,16 @@ void init_timer4(void)
 }
 
 
+uint32_t getSystemUs()
+{
+	uint32_t temp = clock();
+	uint32_t rv = 0;
+	rv = (temp - timer_lastTime) / (FCY / 1000000);
+	timer_lastTime = temp;
+	_systemUs += rv;
+	return _systemUs;
+}
+
 void __attribute__((__interrupt__)) _T4Interrupt( void )	
 		{
 	/* clear interrupt flag */
