@@ -11,14 +11,10 @@
  ******************************************************************************/
 
 //Variables accesibles para el usuario.
-float Peso;
-doCMDfloat(Peso)        //Current weight value.
-float Capacidad;
-doCMDfloat(Capacidad)   //Maximun weight for which the load cell is lineal.
-float mVxV;
-doCMDfloat(mVxV)        //Ratio between the output voltage and the calibrated weight with a source of 1[V].
-float mVxV_cal;
-doCMDfloat(mVxV_cal)    //mVxV value given in the specs of load cell.
+float Peso;             /**< Current weight value. */
+float Capacidad;        /**< Maximun weight for which the load cell is lineal. */
+float mVxV;             /**< Ratio between the output voltage and the calibrated weight with a source of 1[V]. */
+float mVxV_cal;         /**< mVxV value given in the specs of load cell. */
 
 //Variables no accesibles para el usuario.
 float K;                  //Slope of the linear function which describes the load cell.
@@ -32,7 +28,7 @@ int64_t Acumulador;       //Is the sumatory of all values contains in the FIFO.
 
 int8_t Indice = 0;        //Position of the new value of the FIFO.
 
-int8_t flags = 0;         
+int8_t Balanza_flags = 0;         
 /*
  * Bit 0: Stable. Indicates if the measure is stable.
  * Bit 1: Zero. Indicates if the measure is zero.

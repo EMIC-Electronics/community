@@ -31,7 +31,7 @@ void init_Balanza(void)
 
 void setZero(void)
 {
-  if (flags & 0x01)                 //If the measure is stable.
+  if (Balanza_flags & 0x01)                 //If the measure is stable.
   {
     Cero = ValorActual;
     Varianza_cero = getVarianza();
@@ -40,7 +40,7 @@ void setZero(void)
 
 void setReference(float Peso_de_referencia)
 {
-  if (flags & 0x01)                 //If the measure is stable.
+  if (Balanza_flags & 0x01)                 //If the measure is stable.
   {
     K = ReferenceValue/(float)(ValorActual - Cero);   //Determines the slope of the linear function that represent the load cell.
   }
@@ -72,11 +72,11 @@ void nuevaLectura(int32_t nuevo_valor)
 
     ValorActual = (nuevo_valor - Corrimiento);
 
-    flags &= 0b11111110;                    //Isn´t stable.
+    Balanza_flags &= 0b11111110;                    //Isn´t stable.
   }
   else
   {
-    flags |= 0b00000001;                    //Is stable.
+    Balanza_flags |= 0b00000001;                    //Is stable.
     Acumulador -= Historial[Indice];
     Acumulador += (nuevo_valor - Corrimiento);
     Historial[Indice] = (nuevo_valor - Corrimiento);
@@ -90,6 +90,8 @@ void nuevaLectura(int32_t nuevo_valor)
   Varianza = getVarianza();                 //Refresh the variance info.
 
   Peso = (ValorActual - Cero)(float) * K;   //Refresh the current weight value.
+
+  mVxV = ( adConv * 62500 ) / ( 128 * 65536 / 16 );
 }
 
 float calcularVarianza(void)
@@ -108,20 +110,23 @@ void calcularCorrimiento(void)
 
 void Balanza_poll(void)
 {
-  
+  if (Balanza_flags & 1)            //If the measure is stable.
+  {
+    if (((ValorActual - Cero) & 0x00FFFFFF) <= Varianza_cero)   //If the measure can considerate near to zero.
+    {
+      Peso = 0;
+      Balanza_flags |= 2;
 
+      cero();                       //Executes the zero event.
+    }
+    else                            //If another value different to zero.
+    {
+      estable();                    //Executes the stable event.
+    }
+  }
 
-
-	// if (ADS123xFlag_adc)...
-    ADS123xFlag_adc = 0;
-    balanzaActive = 0;
-    adConv = ADS123xAdc;
-    adVal = ADS123xAdc;
-
-    adVal = (adConv - Ord) * Num;
-    adVal = adVal / Den;
-
-    mVxV = ( adConv * 62500 ) / ( 128 * 65536 / 16 );
-
-    return;
+  if (Peso >= Capacidad)            //If the measure is greater that the maximun capacity of the load cell.
+  {
+    capacidadMaximaSuperada();      //Execute the overload event.
+  }
 }

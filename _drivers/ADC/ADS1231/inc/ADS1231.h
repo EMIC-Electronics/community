@@ -22,6 +22,8 @@
 #define DynaOn_() PORT_ADS1231_ON_Vcc=0
 #define DynaOff_() PORT_ADS1231_ON_Vcc=1
 
+extern void nuevaLectura(int32_t nuevo_valor);
+
 void __attribute__((__interrupt__)) _INT1Interrupt( void );
 void init_ADS1231(void);
 void ADS1231_speed(uint8_t speed);

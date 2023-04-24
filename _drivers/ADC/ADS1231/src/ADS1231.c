@@ -9,7 +9,6 @@
   @version  20200604 v0.0.1   PL Initial release.
  ******************************************************************************/
 
-int32_t ADS123xAdc;
 uint8_t ADS123xFlag_adc=0;
 
 void __attribute__((__interrupt__)) _INT1Interrupt( void )
@@ -49,16 +48,12 @@ void __attribute__((__interrupt__)) _INT1Interrupt( void )
 	
 	}
 		
-		
-	ADS123xAdc = data32;
+	nuevaLectura(data32);
 	
+	ADS123xFlag_adc = 1;
 	
-		ADS123xFlag_adc = 1;
-        
-        
-        IFS1bits.INT1IF = 0; 
-        IEC1bits.INT1IE = 1;
-        
+	IFS1bits.INT1IF = 0; 
+	IEC1bits.INT1IE = 1;
 	
 	return;
 }	
