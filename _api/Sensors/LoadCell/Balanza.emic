@@ -52,6 +52,24 @@
 
 /*RFI JSon
 {
+	'Nombre': 'setCapacity',
+	'NombreToolBox': 'setCapacity',
+	'Tipo' : 'SistemFnc',
+	'title': 'Set the maximum value that can measures the load cell.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Capacidad_maxima',
+					'tooltip': 'Capacity',
+					'required': 'true"',
+					'type': 'float'},],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_capacity_function' originalclass='funcion' originalid='setCapacity' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.Capacity(<div type='float' title='Capacidad maxima' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
 	'Nombre': 'setmVxV',
 	'NombreToolBox': 'set_mVxV',
 	'Tipo' : 'SistemFnc',
@@ -62,8 +80,8 @@
 					'required': 'true"',
 					'type': 'float'},],
 	'InnerHTML':"
-		<div type='void' class='lineaDeCodigo' definir='use_reference_function' originalclass='funcion' originalid='setReference' draggable='true' ondragstart='drag_linea(event)'>
-			LoadCell.Reference(<div type='float' title='mVxV' class='parametroDiv'></div>)
+		<div type='void' class='lineaDeCodigo' definir='use_mVxV_function' originalclass='funcion' originalid='setmVxV' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.mVxV(<div type='float' title='mVxV' class='parametroDiv'></div>)
 		</div>"
 }
 */
