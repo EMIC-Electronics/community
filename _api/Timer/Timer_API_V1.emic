@@ -45,8 +45,8 @@
 					'required': 'true',
 					'type': 'char'}],
 	'InnerHTML':"
-		<div class='lineaDeCodigo' definir='use_setTime2_function'  originalclass='funcion' originalid='setTime2' draggable='true' ondragstart='drag_linea(event)'>
-			TIMER.setTimeOut2(<div title='Time in milliseconds' class='parametroDiv'></div>,<div title='T:timer, A:auto-reload' class='parametroDiv'></div>)
+		<div type='void' class='lineaDeCodigo' definir='use_setTime2_function'  originalclass='funcion' originalid='setTime2' draggable='true' ondragstart='drag_linea(event)'>
+			TIMER.setTimeOut2(<div type='uint32_t' title='Time in milliseconds' class='parametroDiv'></div>,<div type='char' title='T:timer, A:auto-reload' class='parametroDiv'></div>)
 		</div>"
 }
 */
@@ -68,8 +68,8 @@
 					'required': 'true',
 					'type': 'char'}],
 	'InnerHTML':"
-		<div class='lineaDeCodigo' definir='use_setTime3_function'  originalclass='funcion' originalid='setTime3' draggable='true' ondragstart='drag_linea(event)'>
-			TIMER.setTimeOut3(<div title='Time in milliseconds' class='parametroDiv'></div>,<div title='T:timer, A:auto-reload' class='parametroDiv'></div>)
+		<div type='void' class='lineaDeCodigo' definir='use_setTime3_function'  originalclass='funcion' originalid='setTime3' draggable='true' ondragstart='drag_linea(event)'>
+			TIMER.setTimeOut3(<div type='uint32_t' title='Time in milliseconds' class='parametroDiv'></div>,<div type='char' title='T:timer, A:auto-reload' class='parametroDiv'></div>)
 		</div>"
 }
 */
@@ -92,8 +92,8 @@
 					'required': 'true',
 					'type': 'char'}],
 	'InnerHTML':"
-		<div class='lineaDeCodigo' definir='use_setTime4_function'  originalclass='funcion' originalid='setTime4' draggable='true' ondragstart='drag_linea(event)'>
-			TIMER.setTimeOut4(<div title='Time in milliseconds' class='parametroDiv'></div>,<div title='T:timer, A:auto-reload' class='parametroDiv'></div>)
+		<div type='void' class='lineaDeCodigo' definir='use_setTime4_function'  originalclass='funcion' originalid='setTime4' draggable='true' ondragstart='drag_linea(event)'>
+			TIMER.setTimeOut4(<div type='uint32_t' title='Time in milliseconds' class='parametroDiv'></div>,<div type='char' title='T:timer, A:auto-reload' class='parametroDiv'></div>)
 		</div>"
 }
 */
@@ -115,8 +115,8 @@
 					'required': 'true',
 					'type': 'char'}],
 	'InnerHTML':"
-		<div class='lineaDeCodigo' definir='use_setTime5_function'  originalclass='funcion' originalid='setTime5' draggable='true' ondragstart='drag_linea(event)'>
-			TIMER.setTimeOut5(<div title='Time in milliseconds' class='parametroDiv'></div>,<div title='T:timer, A:auto-reload' class='parametroDiv'></div>)
+		<div type='void' class='lineaDeCodigo' definir='use_setTime5_function'  originalclass='funcion' originalid='setTime5' draggable='true' ondragstart='drag_linea(event)'>
+			TIMER.setTimeOut5(<div type='uint32_t' title='Time in milliseconds' class='parametroDiv'></div>,<div type='char' title='T:timer, A:auto-reload' class='parametroDiv'></div>)
 		</div>"
 }
 */
@@ -138,8 +138,8 @@
 					'required': 'true',
 					'type': 'char'}],
 	'InnerHTML':"
-		<div class='lineaDeCodigo' definir='use_setTime6_function'  originalclass='funcion' originalid='setTime6' draggable='true' ondragstart='drag_linea(event)'>
-			TIMER.setTimeOut6(<div title='Time in milliseconds' class='parametroDiv'></div>,<div title='T:timer, A:auto-reload' class='parametroDiv'></div>)
+		<div type='void' class='lineaDeCodigo' definir='use_setTime6_function'  originalclass='funcion' originalid='setTime6' draggable='true' ondragstart='drag_linea(event)'>
+			TIMER.setTimeOut6(<div type='uint32_t' title='Time in milliseconds' class='parametroDiv'></div>,<div type='char' title='T:timer, A:auto-reload' class='parametroDiv'></div>)
 		</div>"
 }
 */

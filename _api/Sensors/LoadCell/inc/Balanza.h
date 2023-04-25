@@ -63,10 +63,10 @@ void poll_Balanza(void);  //Iteration when the module logic is implemented.
 
 //Eventos
 
-extern void cero(void);                     //Is executed when the weight value return to zero.
-extern void estable(Void);                  //Is executed when the weight value is stable after a variation.
-extern void inestable(Void);                //Is executed when the weight value is unstable.
-extern void capacidadMaximaSuperada(void);  //Is executed when the weight value is greater than the maximum capacity of the load cell.
+extern void eZero(void);                     //Is executed when the weight value return to zero.
+extern void eStable(Void);                  //Is executed when the weight value is stable after a variation.
+extern void eUnstable(Void);                //Is executed when the weight value is unstable.
+extern void eOverLoad(void);  //Is executed when the weight value is greater than the maximum capacity of the load cell.
 
 //----------------------------------------------------
 

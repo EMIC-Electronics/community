@@ -40,9 +40,9 @@ void setZero(void)
 
 void setReference(float Peso_de_referencia)
 {
-  if (Balanza_flags & 0x01)                 //If the measure is stable.
+  if (Balanza_flags & 0x01)                               //If the measure is stable.
   {
-    K = ReferenceValue/(float)(ValorActual - Cero);   //Determines the slope of the linear function that represent the load cell.
+    K = Peso_de_referencia/(float)(ValorActual - Cero);   //Determines the slope of the linear function that represent the load cell.
   }
 }
 
@@ -59,7 +59,7 @@ void setmVxV(float mVxV)
 void nuevaLectura(int32_t nuevo_valor)
 {
 
-  if(((nuevo_valor - Corrimiento) - valorActual)&(0x00FFFFFF) >= Varianza * 5)      //If the dispertion of the value is grater.
+  if(((nuevo_valor - Corrimiento) - ValorActual)&(0x00FFFFFF) >= Varianza * 5)      //If the dispertion of the value is grater.
   {
     Acumulador = 0;                                                 //Replace all values for the new value.
     for (int i = 0; i < 31; i++)
@@ -89,9 +89,9 @@ void nuevaLectura(int32_t nuevo_valor)
 
   Varianza = getVarianza();                 //Refresh the variance info.
 
-  Peso = (ValorActual - Cero)(float) * K;   //Refresh the current weight value.
+  Peso = (float)(ValorActual - Cero) * K;   //Refresh the current weight value.
 
-  mVxV = ( adConv * 62500 ) / ( 128 * 65536 / 16 );
+  mVxV = ( ValorActual * 62500 ) / ( 128 * 65536 / 16 );
 }
 
 float getVarianza(void)
@@ -108,38 +108,38 @@ void calcularCorrimiento(void)
   
 }
 
-void Balanza_poll(void)
+void poll_Balanza(void)
 {
   if (Balanza_flags & 1)            //If the measure is stable.
   {
-    if ((((ValorActual - Cero) & 0x00FFFFFF) <= Varianza_cero) && !(Balanza_flgas & 0x08))   //If the measure can considerate near to zero.
+    if ((((ValorActual - Cero) & 0x00FFFFFF) <= Varianza_cero) && !(Balanza_flags & 0x08))   //If the measure can considerate near to zero.
     {
       Peso = 0;
       Balanza_flags |= 10;          //Zero and zero trigger.
       Balanza_flags &= 0xCB;        //Clears the triggers.
-      cero();                       //Executes the zero event.
+      eZero();                      //Executes the zero event.
     }
-    else if (!(Balanza_flgas & 0x04))                   //If another value different to zero.
+    else if (!(Balanza_flags & 0x04))                   //If another value different to zero.
     {
       Balanza_flags |= 0x04;        //Stable event trigger.
       Balanza_flags &= 0xC7;        //Clears the triggers.
-      estable();                    //Executes the stable event.
+      eStable();                    //Executes the stable event.
     }
   }
   else
   {
-    if (!(Balanza_flgas & 0x10))    //If the measure is unstable
+    if (!(Balanza_flags & 0x10))    //If the measure is unstable
     {
       Balanza_flags |= 0x10;        //Unstable event trigger.
       Balanza_flags &= 0xD3;        //Clears the triggers.
-      inestable();                  //Executes the unstable event.
+      eUnstable();                  //Executes the unstable event.
     }
   }
 
-  if ((Peso >= Capacidad) && !(Balanza_flgas & 0x20))   //If the measure is greater that the maximun capacity of the load cell.
+  if ((Peso >= Capacidad) && !(Balanza_flags & 0x20))   //If the measure is greater that the maximun capacity of the load cell.
   {
     Balanza_flags |= 0x20;          //Overload event trigger.
     Balanza_flags &= 0xE3;          //Clears the triggers.
-    capacidadMaximaSuperada();      //Execute the overload event.
+    eOverLoad();                    //Execute the overload event.
   }
 }

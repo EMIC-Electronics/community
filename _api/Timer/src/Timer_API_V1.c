@@ -37,53 +37,50 @@ void setTime1(uint32_t setPoint1_ms_local, char modo_timer1_local)
 #endif
 
 #ifdef use_setTime2_function
-void setTime2(void)
+void setTime2(uint32_t setPoint2_ms_local, char modo_timer2_local)
 {
-	setPoint2_ms = atoll(ptr_param[0]);
-	modo_timer2 = *ptr_param[1];
+	setPoint2_ms = setPoint2_ms_local;
+	modo_timer2 = modo_timer2_local;
 	time2_ms =  timeStamp;
 }
-doCMDf(setTime2)
 #endif
 
 #ifdef use_setTime3_function
-void setTime3(void)
+void setTime3(uint32_t setPoint3_ms_local, char modo_timer3_local)
 {
-	setPoint3_ms = atoll(ptr_param[0]);
-	modo_timer3 = *ptr_param[1];
+	setPoint3_ms = setPoint3_ms_local;
+	modo_timer3 = modo_timer3_local;
 	time3_ms =  timeStamp;
 }
-doCMDf(setTime3)
+
 #endif
 
 #ifdef use_setTime4_function
-void setTime4(void)
+void setTime4(uint32_t setPoint4_ms_local, char modo_timer4_local)
 {
-	setPoint4_ms = atoll(ptr_param[0]);
-	modo_timer4 = *ptr_param[1];
+	setPoint4_ms = setPoint4_ms_local;
+	modo_timer4 = modo_timer4_local;
 	time4_ms =  timeStamp;
 }
-doCMDf(setTime4)
+
 #endif
 
 #ifdef use_setTime5_function
-void setTime5(void)
+void setTime5(uint32_t setPoint5_ms_local, char modo_timer5_local)
 {
-	setPoint5_ms = atoll(ptr_param[0]);
-	modo_timer5 = *ptr_param[1];
+	setPoint5_ms = setPoint5_ms_local;
+	modo_timer5 = modo_timer5_local;
 	time5_ms =  timeStamp;
 }
-doCMDf(setTime5)
 #endif
 
 #ifdef use_setTime6_function
-void setTime6(void)
+void setTime6(uint32_t setPoint6_ms_local, char modo_timer6_local)
 {
-	setPoint6_ms = atoll(ptr_param[0]);
-	modo_timer6 = *ptr_param[1];
+	setPoint6_ms = setPoint6_ms_local;
+	modo_timer6 = modo_timer6_local;
 	time6_ms =  timeStamp;
 }
-doCMDf(setTime6)
 #endif
 
 
@@ -110,7 +107,7 @@ void TicPoll(void)
 				setPoint2_ms = 0;
 			else
 				time2_ms = timeStamp;
-			puts_f("#etOut2;\r"); //cuando tOut2 pasa a valer 0
+			etOut2();
 		}
 	#endif
 	#ifdef event_etOut3_active
@@ -120,7 +117,7 @@ void TicPoll(void)
 				setPoint3_ms = 0;
 			else
 				time3_ms = timeStamp;
-			puts_f("#etOut3;\r"); //cuando tOut3 pasa a valer 0
+			etOut3();
 		}
 	#endif
 	#ifdef event_etOut4_active
@@ -130,7 +127,7 @@ void TicPoll(void)
 				setPoint4_ms = 0;
 			else
 				time4_ms = timeStamp;
-			puts_f("#etOut4;\r"); //cuando tOut4 pasa a valer 0
+			etOut4();
 		}
 	#endif
 	#ifdef event_etOut5_active
@@ -140,7 +137,7 @@ void TicPoll(void)
 				setPoint5_ms = 0;
 			else
 				time5_ms = timeStamp;
-			puts_f("#etOut5;\r"); //cuando tOut5 pasa a valer 0
+			etOut5();
 		}
 	#endif	
 	#ifdef event_etOut6_active
@@ -150,7 +147,7 @@ void TicPoll(void)
 				setPoint6_ms = 0;
 			else
 				time6_ms = timeStamp;
-			puts_f("#etOut6;\r"); //cuando tOut6 pasa a valer 0
+			etOut6();
 		}
 	#endif
 }

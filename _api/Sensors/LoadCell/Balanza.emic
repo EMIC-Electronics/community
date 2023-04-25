@@ -45,7 +45,7 @@
 					'type': 'float'},],
 	'InnerHTML':"
 		<div type='void' class='lineaDeCodigo' definir='use_reference_function' originalclass='funcion' originalid='setReference' draggable='true' ondragstart='drag_linea(event)'>
-			LoadCell.Reference(<div type='float' title='Peso conocido' class='parametroDiv'></div>)
+			LoadCell.Reference(<div type='float' title='Peso_conocido' class='parametroDiv'></div>)
 		</div>"
 }
 */
@@ -63,7 +63,7 @@
 					'type': 'float'},],
 	'InnerHTML':"
 		<div type='void' class='lineaDeCodigo' definir='use_capacity_function' originalclass='funcion' originalid='setCapacity' draggable='true' ondragstart='drag_linea(event)'>
-			LoadCell.Capacity(<div type='float' title='Capacidad maxima' class='parametroDiv'></div>)
+			LoadCell.Capacity(<div type='float' title='Capacidad_maxima' class='parametroDiv'></div>)
 		</div>"
 }
 */
@@ -71,7 +71,7 @@
 /*RFI JSon
 {
 	'Nombre': 'setmVxV',
-	'NombreToolBox': 'set_mVxV',
+	'NombreToolBox': 'setmVxV',
 	'Tipo' : 'SistemFnc',
 	'title': 'Set the mVxV value for which the load cell was calibrated.',
 	'returnInfo': {'type':'','tooltip':'Nothing'},
