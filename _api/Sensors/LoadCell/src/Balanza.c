@@ -94,7 +94,7 @@ void nuevaLectura(int32_t nuevo_valor)
   mVxV = ( adConv * 62500 ) / ( 128 * 65536 / 16 );
 }
 
-float calcularVarianza(void)
+float getVarianza(void)
 {
   int64_t accum = 0;
   for (int i = 0; i < 32; i++)
@@ -112,21 +112,34 @@ void Balanza_poll(void)
 {
   if (Balanza_flags & 1)            //If the measure is stable.
   {
-    if (((ValorActual - Cero) & 0x00FFFFFF) <= Varianza_cero)   //If the measure can considerate near to zero.
+    if ((((ValorActual - Cero) & 0x00FFFFFF) <= Varianza_cero) && !(Balanza_flgas & 0x08))   //If the measure can considerate near to zero.
     {
       Peso = 0;
-      Balanza_flags |= 2;
-
+      Balanza_flags |= 10;          //Zero and zero trigger.
+      Balanza_flags &= 0xCB;        //Clears the triggers.
       cero();                       //Executes the zero event.
     }
-    else                            //If another value different to zero.
+    else if (!(Balanza_flgas & 0x04))                   //If another value different to zero.
     {
+      Balanza_flags |= 0x04;        //Stable event trigger.
+      Balanza_flags &= 0xC7;        //Clears the triggers.
       estable();                    //Executes the stable event.
     }
   }
-
-  if (Peso >= Capacidad)            //If the measure is greater that the maximun capacity of the load cell.
+  else
   {
+    if (!(Balanza_flgas & 0x10))    //If the measure is unstable
+    {
+      Balanza_flags |= 0x10;        //Unstable event trigger.
+      Balanza_flags &= 0xD3;        //Clears the triggers.
+      inestable();                  //Executes the unstable event.
+    }
+  }
+
+  if ((Peso >= Capacidad) && !(Balanza_flgas & 0x20))   //If the measure is greater that the maximun capacity of the load cell.
+  {
+    Balanza_flags |= 0x20;          //Overload event trigger.
+    Balanza_flags &= 0xE3;          //Clears the triggers.
     capacidadMaximaSuperada();      //Execute the overload event.
   }
 }

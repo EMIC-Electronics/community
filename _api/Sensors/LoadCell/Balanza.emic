@@ -102,6 +102,22 @@
 
 /*RFI JSon
 {
+	'Nombre': 'eUnstable',
+	'NombreToolBox': 'Unstable',
+	'Tipo' : 'SistemEvt',
+	'title': 'When the weight value is unstable.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.Unstable",
+		"definir":"event_eUnstable_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
 	'Nombre': 'eOverLoad',
 	'NombreToolBox': 'Overload',
 	'Tipo' : 'SistemEvt',

@@ -32,7 +32,10 @@ int8_t Balanza_flags = 0;
 /*
  * Bit 0: Stable. Indicates if the measure is stable.
  * Bit 1: Zero. Indicates if the measure is zero.
- * 
+ * Bit 2: Stable event trigger. Trigger that indicates that the event was excecuted.
+ * Bit 3: Zero event trigger. Trigger that indicates that the event was excecuted.
+ * Bit 4: Unstable event trigger. Trigger that indicates that the event was excecuted.
+ * Bit 5: Overload event trigger. Trigger that indicates that the event was excecuted.
  */
 
 //Funciones accesibles para el usuario
@@ -45,7 +48,7 @@ void setmVxV(float mVxV); //Sets the value of mVxV_cal.
 //Funciones no accesibles para el usuario
 
 void nuevaLectura(int32_t nuevo_valor); //Receives the new data from the sensor and applies the change in the weight value.
-void calcularVarianza(void);            //Calculates the variance of the data contains in the FIFO.
+float getVarianza(void);                //Calculates the variance of the data contains in the FIFO.
 void calcularCorrimiento(void);         //Determines the current values of Corrimiento.
 
 void init_Balanza(void);  //Initializes the correspondent variables for a correct work of the module.
@@ -62,6 +65,7 @@ void poll_Balanza(void);  //Iteration when the module logic is implemented.
 
 extern void cero(void);                     //Is executed when the weight value return to zero.
 extern void estable(Void);                  //Is executed when the weight value is stable after a variation.
+extern void inestable(Void);                //Is executed when the weight value is unstable.
 extern void capacidadMaximaSuperada(void);  //Is executed when the weight value is greater than the maximum capacity of the load cell.
 
 //----------------------------------------------------
