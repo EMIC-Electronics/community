@@ -180,24 +180,24 @@ section                    address   length (PC units)   length (bytes) (dec)
 -------                    -------   -----------------   --------------------
 .text                        0x200              0x27e2          0x3bd3  (15315)
 .const                      0x29e2                0x1a            0x27  (39)
-.text                       0x29fc              0x112e          0x19c5  (6597)
-.dinit                      0x3b2a                0x62            0x93  (147)
+.text                       0x29fc              0x1132          0x19cb  (6603)
+.dinit                      0x3b2e                0x62            0x93  (147)
 
-                 Total "program" memory used (bytes):         0x5652  (22098) 33%
+                 Total "program" memory used (bytes):         0x5658  (22104) 33%
 
 
 "data" Memory  [Origin = 0x800, Length = 0x2000]
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0            0x84  (132)
-.ndata                       0x884                   0             0x6  (6)
-.nbss                        0x88a                   0             0x2  (2)
-.bss                         0x88c                   0           0x80c  (2060)
-.data                       0x1098                   0            0x3c  (60)
-.bss                        0x10d4                   0             0x2  (2)
+.nbss                        0x800                   0            0x90  (144)
+.ndata                       0x890                   0             0x6  (6)
+.nbss                        0x896                   0             0x2  (2)
+.bss                         0x898                   0           0x80c  (2060)
+.data                       0x10a4                   0            0x3c  (60)
+.bss                        0x10e0                   0             0x2  (2)
 
-                 Total "data" memory used (bytes):          0x8d6  (2262) 27%
+                 Total "data" memory used (bytes):          0x8e2  (2274) 27%
 
 
 Dynamic Memory Usage
@@ -205,9 +205,9 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                       0x10d6                              0x172a  (5930)
+stack                       0x10e2                              0x171e  (5918)
 
-                 Maximum dynamic memory (bytes):         0x172a  (5930)
+                 Maximum dynamic memory (bytes):         0x171e  (5918)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
@@ -226,122 +226,126 @@ External Symbols in Data Memory (by address):
                     0x0814                  _UARTX1_cont_byte_BUFFER_HRD
                     0x0815                  _UARTX1_invertido
                     0x0816                  _UARTX1_flowControlVar
-                    0x0817                  _i2c_packet_id
-                    0x0818                  _i2c_rv_id
-                    0x081a                  _I2Ctic
-                    0x081c                  _punt_entr_I2C_IN
-                    0x081e                  _punt_sal_I2C_IN
-                    0x0820                  _cont_byte_I2C_IN
-                    0x0822                  _cont_byte_I2C_IN_FM
-                    0x0824                  _punt_entr_I2C_OUT
-                    0x0826                  _punt_sal_I2C_OUT
-                    0x0828                  _cont_byte_I2C_OUT
-                    0x082a                  _puntB_sal_I2C_OUT
-                    0x082c                  _cont_byte_I2C_OUT_FM
-                    0x082e                  _contB_byte_I2C_OUT
-                    0x0830                  _i2crfi_tout
-                    0x0834                  _i2crfi_tic
-                    0x0836                  _i2crfi_estado
-                    0x0837                  _i2crfi_estado_rcv
-                    0x0838                  _i2crfi_indice
-                    0x0839                  _I2CBusCol
-                    0x083a                  _i2crfi_config
-                    0x0842                  _blkLed1_timerOn
-                    0x0844                  _blkLed1_period
-                    0x0846                  _blkLed1_times
-                    0x0848                  _blkLed1_tStamp
-                    0x084c                  _time1_ms
-                    0x0850                  _time2_ms
-                    0x0854                  _time3_ms
-                    0x0858                  _time4_ms
-                    0x085c                  _time5_ms
-                    0x0860                  _time6_ms
-                    0x0864                  _setPoint1_ms
-                    0x0868                  _setPoint2_ms
-                    0x086c                  _setPoint3_ms
-                    0x0870                  _setPoint4_ms
-                    0x0874                  _setPoint5_ms
-                    0x0878                  _setPoint6_ms
-                    0x087c                  _modo_timer1
-                    0x087d                  _modo_timer2
-                    0x087e                  _modo_timer3
-                    0x087f                  _modo_timer4
-                    0x0880                  _modo_timer5
-                    0x0881                  _modo_timer6
-                    0x0882                  _stopflag
-                    0x0884                  _I2C_ID
-                    0x0886                  _UART1_punt_sal_aux
-                    0x0888                  _I2CXpunt_sal_aux
-                    0x088c                  _UARTX1_IN_fifo
-                    0x0a8c                  _UARTX1_OUT_fifo
-                    0x0c8c                  _fifo_I2C_IN
-                    0x0e92                  _fifo_I2C_OUT
-                    0x10d4                  ___errno_val
+                    0x0818                  _prueba_float
+                    0x081c                  _prueba_int64
+                    0x0824                  _i2c_packet_id
+                    0x0825                  _i2c_rv_id
+                    0x0826                  _I2Ctic
+                    0x0828                  _punt_entr_I2C_IN
+                    0x082a                  _punt_sal_I2C_IN
+                    0x082c                  _cont_byte_I2C_IN
+                    0x082e                  _cont_byte_I2C_IN_FM
+                    0x0830                  _punt_entr_I2C_OUT
+                    0x0832                  _punt_sal_I2C_OUT
+                    0x0834                  _cont_byte_I2C_OUT
+                    0x0836                  _puntB_sal_I2C_OUT
+                    0x0838                  _cont_byte_I2C_OUT_FM
+                    0x083a                  _contB_byte_I2C_OUT
+                    0x083c                  _i2crfi_tout
+                    0x0840                  _i2crfi_tic
+                    0x0842                  _i2crfi_estado
+                    0x0843                  _i2crfi_estado_rcv
+                    0x0844                  _i2crfi_indice
+                    0x0845                  _I2CBusCol
+                    0x0846                  _i2crfi_config
+                    0x084e                  _blkLed1_timerOn
+                    0x0850                  _blkLed1_period
+                    0x0852                  _blkLed1_times
+                    0x0854                  _blkLed1_tStamp
+                    0x0858                  _time1_ms
+                    0x085c                  _time2_ms
+                    0x0860                  _time3_ms
+                    0x0864                  _time4_ms
+                    0x0868                  _time5_ms
+                    0x086c                  _time6_ms
+                    0x0870                  _setPoint1_ms
+                    0x0874                  _setPoint2_ms
+                    0x0878                  _setPoint3_ms
+                    0x087c                  _setPoint4_ms
+                    0x0880                  _setPoint5_ms
+                    0x0884                  _setPoint6_ms
+                    0x0888                  _modo_timer1
+                    0x0889                  _modo_timer2
+                    0x088a                  _modo_timer3
+                    0x088b                  _modo_timer4
+                    0x088c                  _modo_timer5
+                    0x088d                  _modo_timer6
+                    0x088e                  _stopflag
+                    0x0890                  _I2C_ID
+                    0x0892                  _UART1_punt_sal_aux
+                    0x0894                  _I2CXpunt_sal_aux
+                    0x0898                  _UARTX1_IN_fifo
+                    0x0a98                  _UARTX1_OUT_fifo
+                    0x0c98                  _fifo_I2C_IN
+                    0x0e9e                  _fifo_I2C_OUT
+                    0x10e0                  ___errno_val
 
 External Symbols in Data Memory (by name):
 
-                    0x0839                  _I2CBusCol
-                    0x0888                  _I2CXpunt_sal_aux
-                    0x0884                  _I2C_ID
-                    0x081a                  _I2Ctic
-                    0x0886                  _UART1_punt_sal_aux
+                    0x0845                  _I2CBusCol
+                    0x0894                  _I2CXpunt_sal_aux
+                    0x0890                  _I2C_ID
+                    0x0826                  _I2Ctic
+                    0x0892                  _UART1_punt_sal_aux
                     0x080a                  _UARTX1_IN_cont_byte
-                    0x088c                  _UARTX1_IN_fifo
+                    0x0898                  _UARTX1_IN_fifo
                     0x080c                  _UARTX1_IN_n_frame
                     0x0806                  _UARTX1_IN_punt_entr
                     0x0808                  _UARTX1_IN_punt_sal
                     0x0812                  _UARTX1_OUT_cont_byte
-                    0x0a8c                  _UARTX1_OUT_fifo
+                    0x0a98                  _UARTX1_OUT_fifo
                     0x080e                  _UARTX1_OUT_punt_entr
                     0x0810                  _UARTX1_OUT_punt_sal
                     0x0804                  _UARTX1_bufferEmpty
                     0x0814                  _UARTX1_cont_byte_BUFFER_HRD
                     0x0816                  _UARTX1_flowControlVar
                     0x0815                  _UARTX1_invertido
-                    0x10d4                  ___errno_val
-                    0x0844                  _blkLed1_period
-                    0x0848                  _blkLed1_tStamp
-                    0x0842                  _blkLed1_timerOn
-                    0x0846                  _blkLed1_times
-                    0x082e                  _contB_byte_I2C_OUT
-                    0x0820                  _cont_byte_I2C_IN
-                    0x0822                  _cont_byte_I2C_IN_FM
-                    0x0828                  _cont_byte_I2C_OUT
-                    0x082c                  _cont_byte_I2C_OUT_FM
-                    0x0c8c                  _fifo_I2C_IN
-                    0x0e92                  _fifo_I2C_OUT
-                    0x0817                  _i2c_packet_id
-                    0x0818                  _i2c_rv_id
-                    0x083a                  _i2crfi_config
-                    0x0836                  _i2crfi_estado
-                    0x0837                  _i2crfi_estado_rcv
-                    0x0838                  _i2crfi_indice
-                    0x0834                  _i2crfi_tic
-                    0x0830                  _i2crfi_tout
-                    0x087c                  _modo_timer1
-                    0x087d                  _modo_timer2
-                    0x087e                  _modo_timer3
-                    0x087f                  _modo_timer4
-                    0x0880                  _modo_timer5
-                    0x0881                  _modo_timer6
-                    0x082a                  _puntB_sal_I2C_OUT
-                    0x081c                  _punt_entr_I2C_IN
-                    0x0824                  _punt_entr_I2C_OUT
-                    0x081e                  _punt_sal_I2C_IN
-                    0x0826                  _punt_sal_I2C_OUT
-                    0x0864                  _setPoint1_ms
-                    0x0868                  _setPoint2_ms
-                    0x086c                  _setPoint3_ms
-                    0x0870                  _setPoint4_ms
-                    0x0874                  _setPoint5_ms
-                    0x0878                  _setPoint6_ms
-                    0x0882                  _stopflag
-                    0x084c                  _time1_ms
-                    0x0850                  _time2_ms
-                    0x0854                  _time3_ms
-                    0x0858                  _time4_ms
-                    0x085c                  _time5_ms
-                    0x0860                  _time6_ms
+                    0x10e0                  ___errno_val
+                    0x0850                  _blkLed1_period
+                    0x0854                  _blkLed1_tStamp
+                    0x084e                  _blkLed1_timerOn
+                    0x0852                  _blkLed1_times
+                    0x083a                  _contB_byte_I2C_OUT
+                    0x082c                  _cont_byte_I2C_IN
+                    0x082e                  _cont_byte_I2C_IN_FM
+                    0x0834                  _cont_byte_I2C_OUT
+                    0x0838                  _cont_byte_I2C_OUT_FM
+                    0x0c98                  _fifo_I2C_IN
+                    0x0e9e                  _fifo_I2C_OUT
+                    0x0824                  _i2c_packet_id
+                    0x0825                  _i2c_rv_id
+                    0x0846                  _i2crfi_config
+                    0x0842                  _i2crfi_estado
+                    0x0843                  _i2crfi_estado_rcv
+                    0x0844                  _i2crfi_indice
+                    0x0840                  _i2crfi_tic
+                    0x083c                  _i2crfi_tout
+                    0x0888                  _modo_timer1
+                    0x0889                  _modo_timer2
+                    0x088a                  _modo_timer3
+                    0x088b                  _modo_timer4
+                    0x088c                  _modo_timer5
+                    0x088d                  _modo_timer6
+                    0x0818                  _prueba_float
+                    0x081c                  _prueba_int64
+                    0x0836                  _puntB_sal_I2C_OUT
+                    0x0828                  _punt_entr_I2C_IN
+                    0x0830                  _punt_entr_I2C_OUT
+                    0x082a                  _punt_sal_I2C_IN
+                    0x0832                  _punt_sal_I2C_OUT
+                    0x0870                  _setPoint1_ms
+                    0x0874                  _setPoint2_ms
+                    0x0878                  _setPoint3_ms
+                    0x087c                  _setPoint4_ms
+                    0x0880                  _setPoint5_ms
+                    0x0884                  _setPoint6_ms
+                    0x088e                  _stopflag
+                    0x0858                  _time1_ms
+                    0x085c                  _time2_ms
+                    0x0860                  _time3_ms
+                    0x0864                  _time4_ms
+                    0x0868                  _time5_ms
+                    0x086c                  _time6_ms
                     0x0800                  _timeStamp
 
 External Symbols in Program Memory (by address):
@@ -467,63 +471,63 @@ External Symbols in Program Memory (by address):
                   0x003092                  _Poll_USBDriver
                   0x003098                  _USB_Init
                   0x0030a0                  _pUSB
-                  0x00329a                  _Poll_USB
-                  0x0032a0                  _Init_I2C
-                  0x0033b8                  _CollisionReset_I2C
-                  0x0033d0                  _OverflowReset_I2C
-                  0x0033e8                  _IsI2cStart
-                  0x003408                  _IsI2cCollisionDetect
-                  0x003428                  _IsI2cStop
-                  0x003448                  _IsI2cReceiveBufferFull
-                  0x003468                  _IsI2cDataOrAddress
-                  0x003488                  _IsI2cReceiveOverflow
-                  0x0034a8                  _Start_I2C
-                  0x0034c0                  _Stop_I2C
-                  0x0034d8                  _Write_I2C
-                  0x00351c                  _Read_I2C
-                  0x00357e                  _I2cRfi_init
-                  0x0035bc                  _I2cRfi_Send
-                  0x0035e8                  _I2cRfi_PoolSend
-                  0x003616                  _ini_I2C_IN
-                  0x003624                  _ini_I2C_OUT
-                  0x003634                  _ini_I2C_OUT_FM
-                  0x00363c                  _reset_I2C_FRAME
-                  0x003648                  _ok_I2C_FRAME
-                  0x003654                  _push_I2C_IN
-                  0x003686                  _push_I2C_OUT
-                  0x0036b8                  _pI2C
-                  0x0038ba                  _pop_I2C_IN
-                  0x003934                  _pop_I2C_OUT
-                  0x00395a                  _pop_I2C_OUT_FM
-                  0x003986                  _poll_I2C
-                  0x003ada                  _initSystem
-                  0x003ae4                  _onReset
-                  0x003af2                  _eI2C
-                  0x003b10                  _main
+                  0x00329c                  _Poll_USB
+                  0x0032a2                  _Init_I2C
+                  0x0033ba                  _CollisionReset_I2C
+                  0x0033d2                  _OverflowReset_I2C
+                  0x0033ea                  _IsI2cStart
+                  0x00340a                  _IsI2cCollisionDetect
+                  0x00342a                  _IsI2cStop
+                  0x00344a                  _IsI2cReceiveBufferFull
+                  0x00346a                  _IsI2cDataOrAddress
+                  0x00348a                  _IsI2cReceiveOverflow
+                  0x0034aa                  _Start_I2C
+                  0x0034c2                  _Stop_I2C
+                  0x0034da                  _Write_I2C
+                  0x00351e                  _Read_I2C
+                  0x003580                  _I2cRfi_init
+                  0x0035be                  _I2cRfi_Send
+                  0x0035ea                  _I2cRfi_PoolSend
+                  0x003618                  _ini_I2C_IN
+                  0x003626                  _ini_I2C_OUT
+                  0x003636                  _ini_I2C_OUT_FM
+                  0x00363e                  _reset_I2C_FRAME
+                  0x00364a                  _ok_I2C_FRAME
+                  0x003656                  _push_I2C_IN
+                  0x003688                  _push_I2C_OUT
+                  0x0036ba                  _pI2C
+                  0x0038be                  _pop_I2C_IN
+                  0x003938                  _pop_I2C_OUT
+                  0x00395e                  _pop_I2C_OUT_FM
+                  0x00398a                  _poll_I2C
+                  0x003ade                  _initSystem
+                  0x003ae8                  _onReset
+                  0x003af6                  _eI2C
+                  0x003b14                  _main
 
 External Symbols in Program Memory (by name):
 
-                  0x0033b8                  _CollisionReset_I2C
+                  0x0033ba                  _CollisionReset_I2C
                   0x0029fc                  _EB_in_count
                   0x002a04                  _EB_out_count
-                  0x0035e8                  _I2cRfi_PoolSend
-                  0x0035bc                  _I2cRfi_Send
-                  0x00357e                  _I2cRfi_init
-                  0x0032a0                  _Init_I2C
+                  0x0035ea                  _I2cRfi_PoolSend
+                  0x0035be                  _I2cRfi_Send
+                  0x003580                  _I2cRfi_init
+                  0x0032a2                  _Init_I2C
                   0x00307a                  _Init_USBDriver
-                  0x003408                  _IsI2cCollisionDetect
-                  0x003468                  _IsI2cDataOrAddress
-                  0x003448                  _IsI2cReceiveBufferFull
-                  0x003488                  _IsI2cReceiveOverflow
-                  0x0033e8                  _IsI2cStart
-                  0x003428                  _IsI2cStop
-                  0x0033d0                  _OverflowReset_I2C
+                  0x00340a                  _IsI2cCollisionDetect
+                  0x00346a                  _IsI2cDataOrAddress
+                  0x00344a                  _IsI2cReceiveBufferFull
+                  0x00348a                  _IsI2cReceiveOverflow
+                  0x0033ea                  _IsI2cStart
+                  0x00342a                  _IsI2cStop
+                  0x0033d2                  _OverflowReset_I2C
                   0x002a80                  _Poll_LEDs
-                  0x00329a                  _Poll_USB
+                  0x00329c                  _Poll_USB
                   0x003092                  _Poll_USBDriver
-                  0x00351c                  _Read_I2C
-                  0x0034a8                  _Start_I2C
-                  0x0034c0                  _Stop_I2C
+                  0x00351e                  _Read_I2C
+                  0x0034aa                  _Start_I2C
+                  0x0034c2                  _Stop_I2C
                   0x002ae6                  _TicPoll
                   0x002c80                  _UARTX1_IN_count
                   0x002b38                  _UARTX1_IN_ini
@@ -541,7 +545,7 @@ External Symbols in Program Memory (by name):
                   0x002b1a                  _UARTX1_invertir
                   0x002aec                  _UARTX1_simplexMode
                   0x003098                  _USB_Init
-                  0x0034d8                  _Write_I2C
+                  0x0034da                  _Write_I2C
                   0x0004bc                  __DefaultInterrupt
                   0x0003ee                  __MI2C2Interrupt
                   0x000376                  __SI2C2Interrupt
@@ -621,32 +625,32 @@ External Symbols in Program Memory (by name):
                   0x000a20                  __unpackf
                   0x001eb0                  _atoi
                   0x002a56                  _blkLed1
-                  0x003af2                  _eI2C
+                  0x003af6                  _eI2C
                   0x0028e0                  _floorl
                   0x0029ec                  _getI2C
                   0x0029e2                  _getUart1
-                  0x003616                  _ini_I2C_IN
-                  0x003624                  _ini_I2C_OUT
-                  0x003634                  _ini_I2C_OUT_FM
-                  0x003ada                  _initSystem
+                  0x003618                  _ini_I2C_IN
+                  0x003626                  _ini_I2C_OUT
+                  0x003636                  _ini_I2C_OUT_FM
+                  0x003ade                  _initSystem
                   0x002a1c                  _init_led
                   0x002a0c                  _init_timer4
                   0x002ae0                  _init_timer_api
                   0x002a24                  _led1
-                  0x003b10                  _main
+                  0x003b14                  _main
                   0x000f7e                  _memcpy
                   0x000f8c                  _memset
-                  0x003648                  _ok_I2C_FRAME
-                  0x003ae4                  _onReset
-                  0x0036b8                  _pI2C
+                  0x00364a                  _ok_I2C_FRAME
+                  0x003ae8                  _onReset
+                  0x0036ba                  _pI2C
                   0x0030a0                  _pUSB
-                  0x003986                  _poll_I2C
-                  0x0038ba                  _pop_I2C_IN
-                  0x003934                  _pop_I2C_OUT
-                  0x00395a                  _pop_I2C_OUT_FM
-                  0x003654                  _push_I2C_IN
-                  0x003686                  _push_I2C_OUT
-                  0x00363c                  _reset_I2C_FRAME
+                  0x00398a                  _poll_I2C
+                  0x0038be                  _pop_I2C_IN
+                  0x003938                  _pop_I2C_OUT
+                  0x00395e                  _pop_I2C_OUT_FM
+                  0x003656                  _push_I2C_IN
+                  0x003688                  _push_I2C_OUT
+                  0x00363e                  _reset_I2C_FRAME
                   0x0029f2                  _setI2C
                   0x0029e8                  _setUart1
                   0x000b30                  _sprintf
@@ -933,36 +937,36 @@ __CONFIG1
 .comment
  *(.comment)
 
-.debug_info       0x000000       0x42c9
+.debug_info       0x000000       0x42ff
  *(.debug_info)
- .debug_info      0x000000       0x32f5 build/default/production/codigo.o
- .debug_info      0x0032f5         0x90 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.XX_o)
- .debug_info      0x003385         0x91 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.XX_o)
- .debug_info      0x003416         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
- .debug_info      0x0034a3         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(udivsi3.XX_o)
- .debug_info      0x003530         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
- .debug_info      0x0035cd         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.XX_o)
- .debug_info      0x00366a         0xa0 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
- .debug_info      0x00370a         0x9c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
- .debug_info      0x0037a6         0x9f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
- .debug_info      0x003845         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.XX_o)
- .debug_info      0x0038e2         0x9e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.XX_o)
- .debug_info      0x003980         0x91 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
- .debug_info      0x003a11         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
- .debug_info      0x003a9c         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(deqltle.XX_o)
- .debug_info      0x003b29         0x90 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.XX_o)
- .debug_info      0x003bb9         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixdfsi.XX_o)
- .debug_info      0x003c46         0x8c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.XX_o)
- .debug_info      0x003cd2         0xa9 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpadd.XX_o)
- .debug_info      0x003d7b         0xa9 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpdiv.XX_o)
- .debug_info      0x003e24         0xa9 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpmul.XX_o)
- .debug_info      0x003ecd         0xaa c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpsubs.XX_o)
- .debug_info      0x003f77         0x8e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dcompare.XX_o)
- .debug_info      0x004005         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dtype.XX_o)
- .debug_info      0x004090         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dunpack.XX_o)
- .debug_info      0x00411d         0x8e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dunpack2.XX_o)
- .debug_info      0x0041ab         0x93 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpropagateNaN.XX_o)
- .debug_info      0x00423e         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dgtge.XX_o)
+ .debug_info      0x000000       0x332b build/default/production/codigo.o
+ .debug_info      0x00332b         0x90 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.XX_o)
+ .debug_info      0x0033bb         0x91 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.XX_o)
+ .debug_info      0x00344c         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
+ .debug_info      0x0034d9         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(udivsi3.XX_o)
+ .debug_info      0x003566         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
+ .debug_info      0x003603         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.XX_o)
+ .debug_info      0x0036a0         0xa0 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
+ .debug_info      0x003740         0x9c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(typefx.XX_o)
+ .debug_info      0x0037dc         0x9f c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(propnanfx.XX_o)
+ .debug_info      0x00387b         0x9d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(spackfx.XX_o)
+ .debug_info      0x003918         0x9e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackfx.XX_o)
+ .debug_info      0x0039b6         0x91 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
+ .debug_info      0x003a47         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
+ .debug_info      0x003ad2         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(deqltle.XX_o)
+ .debug_info      0x003b5f         0x90 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(extendsfdf.XX_o)
+ .debug_info      0x003bef         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixdfsi.XX_o)
+ .debug_info      0x003c7c         0x8c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsi3.XX_o)
+ .debug_info      0x003d08         0xa9 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpadd.XX_o)
+ .debug_info      0x003db1         0xa9 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpdiv.XX_o)
+ .debug_info      0x003e5a         0xa9 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpmul.XX_o)
+ .debug_info      0x003f03         0xaa c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpsubs.XX_o)
+ .debug_info      0x003fad         0x8e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dcompare.XX_o)
+ .debug_info      0x00403b         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dtype.XX_o)
+ .debug_info      0x0040c6         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dunpack.XX_o)
+ .debug_info      0x004153         0x8e c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dunpack2.XX_o)
+ .debug_info      0x0041e1         0x93 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpropagateNaN.XX_o)
+ .debug_info      0x004274         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dgtge.XX_o)
  *(.gnu.linkonce.wi.*)
 
 .debug_abbrev     0x000000        0x4ae
@@ -1028,9 +1032,9 @@ __CONFIG1
  .debug_line      0x0011e9         0x49 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dpropagateNaN.XX_o)
  .debug_line      0x001232         0x38 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dgtge.XX_o)
 
-.debug_frame      0x000000        0x7c2
+.debug_frame      0x000000        0x7bc
  *(.debug_frame)
- .debug_frame     0x000000        0x7c2 build/default/production/codigo.o
+ .debug_frame     0x000000        0x7bc build/default/production/codigo.o
 
 .debug_str        0x000000        0x37a
  *(.debug_str)
@@ -1043,10 +1047,10 @@ __CONFIG1
  *(.debug_macinfo)
 
 .debug_pubnames
-                  0x000000        0x91a
+                  0x000000        0x93c
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000        0x91a build/default/production/codigo.o
+                  0x000000        0x93c build/default/production/codigo.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1817,8 +1821,8 @@ __xc_reference_data
                   0x0029e4          0xe c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__io_fmt_needed.XX_lo)
                   0x0029e4                  ___io_fmt_needed
 
-.nbss               0x0800         0x84
- .nbss              0x0800         0x84 build/default/production/codigo.o
+.nbss               0x0800         0x90
+ .nbss              0x0800         0x90 build/default/production/codigo.o
                     0x0800                  _timeStamp
                     0x0804                  _UARTX1_bufferEmpty
                     0x0806                  _UARTX1_IN_punt_entr
@@ -1831,75 +1835,77 @@ __xc_reference_data
                     0x0814                  _UARTX1_cont_byte_BUFFER_HRD
                     0x0815                  _UARTX1_invertido
                     0x0816                  _UARTX1_flowControlVar
-                    0x0817                  _i2c_packet_id
-                    0x0818                  _i2c_rv_id
-                    0x081a                  _I2Ctic
-                    0x081c                  _punt_entr_I2C_IN
-                    0x081e                  _punt_sal_I2C_IN
-                    0x0820                  _cont_byte_I2C_IN
-                    0x0822                  _cont_byte_I2C_IN_FM
-                    0x0824                  _punt_entr_I2C_OUT
-                    0x0826                  _punt_sal_I2C_OUT
-                    0x0828                  _cont_byte_I2C_OUT
-                    0x082a                  _puntB_sal_I2C_OUT
-                    0x082c                  _cont_byte_I2C_OUT_FM
-                    0x082e                  _contB_byte_I2C_OUT
-                    0x0830                  _i2crfi_tout
-                    0x0834                  _i2crfi_tic
-                    0x0836                  _i2crfi_estado
-                    0x0837                  _i2crfi_estado_rcv
-                    0x0838                  _i2crfi_indice
-                    0x0839                  _I2CBusCol
-                    0x083a                  _i2crfi_config
-                    0x0842                  _blkLed1_timerOn
-                    0x0844                  _blkLed1_period
-                    0x0846                  _blkLed1_times
-                    0x0848                  _blkLed1_tStamp
-                    0x084c                  _time1_ms
-                    0x0850                  _time2_ms
-                    0x0854                  _time3_ms
-                    0x0858                  _time4_ms
-                    0x085c                  _time5_ms
-                    0x0860                  _time6_ms
-                    0x0864                  _setPoint1_ms
-                    0x0868                  _setPoint2_ms
-                    0x086c                  _setPoint3_ms
-                    0x0870                  _setPoint4_ms
-                    0x0874                  _setPoint5_ms
-                    0x0878                  _setPoint6_ms
-                    0x087c                  _modo_timer1
-                    0x087d                  _modo_timer2
-                    0x087e                  _modo_timer3
-                    0x087f                  _modo_timer4
-                    0x0880                  _modo_timer5
-                    0x0881                  _modo_timer6
-                    0x0882                  _stopflag
+                    0x0818                  _prueba_float
+                    0x081c                  _prueba_int64
+                    0x0824                  _i2c_packet_id
+                    0x0825                  _i2c_rv_id
+                    0x0826                  _I2Ctic
+                    0x0828                  _punt_entr_I2C_IN
+                    0x082a                  _punt_sal_I2C_IN
+                    0x082c                  _cont_byte_I2C_IN
+                    0x082e                  _cont_byte_I2C_IN_FM
+                    0x0830                  _punt_entr_I2C_OUT
+                    0x0832                  _punt_sal_I2C_OUT
+                    0x0834                  _cont_byte_I2C_OUT
+                    0x0836                  _puntB_sal_I2C_OUT
+                    0x0838                  _cont_byte_I2C_OUT_FM
+                    0x083a                  _contB_byte_I2C_OUT
+                    0x083c                  _i2crfi_tout
+                    0x0840                  _i2crfi_tic
+                    0x0842                  _i2crfi_estado
+                    0x0843                  _i2crfi_estado_rcv
+                    0x0844                  _i2crfi_indice
+                    0x0845                  _I2CBusCol
+                    0x0846                  _i2crfi_config
+                    0x084e                  _blkLed1_timerOn
+                    0x0850                  _blkLed1_period
+                    0x0852                  _blkLed1_times
+                    0x0854                  _blkLed1_tStamp
+                    0x0858                  _time1_ms
+                    0x085c                  _time2_ms
+                    0x0860                  _time3_ms
+                    0x0864                  _time4_ms
+                    0x0868                  _time5_ms
+                    0x086c                  _time6_ms
+                    0x0870                  _setPoint1_ms
+                    0x0874                  _setPoint2_ms
+                    0x0878                  _setPoint3_ms
+                    0x087c                  _setPoint4_ms
+                    0x0880                  _setPoint5_ms
+                    0x0884                  _setPoint6_ms
+                    0x0888                  _modo_timer1
+                    0x0889                  _modo_timer2
+                    0x088a                  _modo_timer3
+                    0x088b                  _modo_timer4
+                    0x088c                  _modo_timer5
+                    0x088d                  _modo_timer6
+                    0x088e                  _stopflag
 
-.ndata              0x0884          0x6
- .ndata             0x0884          0x6 build/default/production/codigo.o
-                    0x0884                  _I2C_ID
-                    0x0886                  _UART1_punt_sal_aux
-                    0x0888                  _I2CXpunt_sal_aux
+.ndata              0x0890          0x6
+ .ndata             0x0890          0x6 build/default/production/codigo.o
+                    0x0890                  _I2C_ID
+                    0x0892                  _UART1_punt_sal_aux
+                    0x0894                  _I2CXpunt_sal_aux
 
-.nbss               0x088a          0x2
- .nbss              0x088a          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(errno.XX_o)
-                    0x088a                  _errno
+.nbss               0x0896          0x2
+ .nbss              0x0896          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(errno.XX_o)
+                    0x0896                  _errno
 
-.bss                0x088c        0x80c
- .bss               0x088c        0x80c build/default/production/codigo.o
-                    0x088c                  _UARTX1_IN_fifo
-                    0x0a8c                  _UARTX1_OUT_fifo
-                    0x0c8c                  _fifo_I2C_IN
-                    0x0e92                  _fifo_I2C_OUT
+.bss                0x0898        0x80c
+ .bss               0x0898        0x80c build/default/production/codigo.o
+                    0x0898                  _UARTX1_IN_fifo
+                    0x0a98                  _UARTX1_OUT_fifo
+                    0x0c98                  _fifo_I2C_IN
+                    0x0e9e                  _fifo_I2C_OUT
 
-.data               0x1098         0x3c
- .data              0x1098         0x1c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__printf_core.XX_o)
- .data              0x10b4         0x10 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__fmt_a.XX_o)
- .data              0x10c4         0x10 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__fmt_fp.XX_o)
+.data               0x10a4         0x3c
+ .data              0x10a4         0x1c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__printf_core.XX_o)
+ .data              0x10c0         0x10 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__fmt_a.XX_o)
+ .data              0x10d0         0x10 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__fmt_fp.XX_o)
 
-.bss                0x10d4          0x2
- .bss               0x10d4          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__errno_location.XX_lo)
-                    0x10d4                  ___errno_val
+.bss                0x10e0          0x2
+ .bss               0x10e0          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__errno_location.XX_lo)
+                    0x10e0                  ___errno_val
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
@@ -1940,8 +1946,8 @@ __xc_reference_data
                     0xa9ec                  _getI2C
                     0xa9f2                  _setI2C
 
-.text             0x0029fc       0x112e
- .text            0x0029fc       0x112e build/default/production/codigo.o
+.text             0x0029fc       0x1132
+ .text            0x0029fc       0x1132 build/default/production/codigo.o
                   0x0029fc                  _EB_in_count
                   0x002a04                  _EB_out_count
                   0x002a0c                  _init_timer4
@@ -1970,39 +1976,39 @@ __xc_reference_data
                   0x003092                  _Poll_USBDriver
                   0x003098                  _USB_Init
                   0x0030a0                  _pUSB
-                  0x00329a                  _Poll_USB
-                  0x0032a0                  _Init_I2C
-                  0x0033b8                  _CollisionReset_I2C
-                  0x0033d0                  _OverflowReset_I2C
-                  0x0033e8                  _IsI2cStart
-                  0x003408                  _IsI2cCollisionDetect
-                  0x003428                  _IsI2cStop
-                  0x003448                  _IsI2cReceiveBufferFull
-                  0x003468                  _IsI2cDataOrAddress
-                  0x003488                  _IsI2cReceiveOverflow
-                  0x0034a8                  _Start_I2C
-                  0x0034c0                  _Stop_I2C
-                  0x0034d8                  _Write_I2C
-                  0x00351c                  _Read_I2C
-                  0x00357e                  _I2cRfi_init
-                  0x0035bc                  _I2cRfi_Send
-                  0x0035e8                  _I2cRfi_PoolSend
-                  0x003616                  _ini_I2C_IN
-                  0x003624                  _ini_I2C_OUT
-                  0x003634                  _ini_I2C_OUT_FM
-                  0x00363c                  _reset_I2C_FRAME
-                  0x003648                  _ok_I2C_FRAME
-                  0x003654                  _push_I2C_IN
-                  0x003686                  _push_I2C_OUT
-                  0x0036b8                  _pI2C
-                  0x0038ba                  _pop_I2C_IN
-                  0x003934                  _pop_I2C_OUT
-                  0x00395a                  _pop_I2C_OUT_FM
-                  0x003986                  _poll_I2C
-                  0x003ada                  _initSystem
-                  0x003ae4                  _onReset
-                  0x003af2                  _eI2C
-                  0x003b10                  _main
+                  0x00329c                  _Poll_USB
+                  0x0032a2                  _Init_I2C
+                  0x0033ba                  _CollisionReset_I2C
+                  0x0033d2                  _OverflowReset_I2C
+                  0x0033ea                  _IsI2cStart
+                  0x00340a                  _IsI2cCollisionDetect
+                  0x00342a                  _IsI2cStop
+                  0x00344a                  _IsI2cReceiveBufferFull
+                  0x00346a                  _IsI2cDataOrAddress
+                  0x00348a                  _IsI2cReceiveOverflow
+                  0x0034aa                  _Start_I2C
+                  0x0034c2                  _Stop_I2C
+                  0x0034da                  _Write_I2C
+                  0x00351e                  _Read_I2C
+                  0x003580                  _I2cRfi_init
+                  0x0035be                  _I2cRfi_Send
+                  0x0035ea                  _I2cRfi_PoolSend
+                  0x003618                  _ini_I2C_IN
+                  0x003626                  _ini_I2C_OUT
+                  0x003636                  _ini_I2C_OUT_FM
+                  0x00363e                  _reset_I2C_FRAME
+                  0x00364a                  _ok_I2C_FRAME
+                  0x003656                  _push_I2C_IN
+                  0x003688                  _push_I2C_OUT
+                  0x0036ba                  _pI2C
+                  0x0038be                  _pop_I2C_IN
+                  0x003938                  _pop_I2C_OUT
+                  0x00395e                  _pop_I2C_OUT_FM
+                  0x00398a                  _poll_I2C
+                  0x003ade                  _initSystem
+                  0x003ae8                  _onReset
+                  0x003af6                  _eI2C
+                  0x003b14                  _main
 
-.dinit            0x003b2a         0x62
- .dinit           0x003b2a         0x62 data_init
+.dinit            0x003b2e         0x62
+ .dinit           0x003b2e         0x62 data_init

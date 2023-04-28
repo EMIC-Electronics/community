@@ -2,8 +2,3 @@ void onReset();
 void etOut1();
 void etOut2();
 void etOut3();
-void etOut4();
-void eZero();
-void eStable();
-void eUnstable();
-void eOverLoad();

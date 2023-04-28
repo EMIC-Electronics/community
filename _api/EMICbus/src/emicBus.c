@@ -135,6 +135,7 @@ void pI2C(char* format,...)
 	char auxStr[20];
 	int okFormat = 0;
     push_I2C_OUT(tipoTrama_mensaje);
+
  	for (; *format > 0; format++)
 	{
 		if ( *format == '%' )
@@ -169,19 +170,22 @@ void pI2C(char* format,...)
 						sprintf(auxStr,strFormat,*(uint64_t*)auxPtr);
 						okFormat = 1;
 						break;
+
 				}
 				
 			}
 			str = auxStr;
-			while (*auxStr)
+			while (*str)
 			{
 				push_I2C_OUT( *str++);
 			}
 			break;
+			
+			
 		}
 		else if ( *format == '$' )
 		{
-			char* str;
+			char* str; 
 			streamIn_t* dataIn;
 			format++;
 			switch (*format)
@@ -203,14 +207,15 @@ void pI2C(char* format,...)
 				default:
 					push_I2C_OUT(*format);
 					break;
+
 			}
 		}
-		else 
+		else
 		{
 			push_I2C_OUT(*format);
 		}
 	}
-    push_I2C_OUT(0);
+	push_I2C_OUT(0);
 	va_end(arg);
 }
 

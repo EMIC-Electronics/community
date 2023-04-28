@@ -132,7 +132,7 @@ void pI2C(char* format,...)
 				}
 			}
 			str = auxStr;
-			while (*auxStr)
+			while (*str)
 			{
 				push_I2C_OUT( *str++);
 			}
@@ -140,7 +140,7 @@ void pI2C(char* format,...)
 		}
 		else if ( *format == '$' )
 		{
-			char* str;
+			char* str; 
 			streamIn_t* dataIn;
 			format++;
 			switch (*format)
@@ -164,12 +164,12 @@ void pI2C(char* format,...)
 					break;
 			}
 		}
-		else 
+		else
 		{
 			push_I2C_OUT(*format);
 		}
 	}
-    push_I2C_OUT(0);
+	push_I2C_OUT(0);
 	va_end(arg);
 }
 uint16_t I2CXpunt_sal_aux = 0xffff;// ffff es un valor para saber que esta sin usar

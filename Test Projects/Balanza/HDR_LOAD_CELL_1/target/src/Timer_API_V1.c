@@ -37,12 +37,6 @@ void setTime3(uint32_t setPoint3_ms_local, char modo_timer3_local)
 	modo_timer3 = modo_timer3_local;
 	time3_ms =  timeStamp;
 }
-void setTime4(uint32_t setPoint4_ms_local, char modo_timer4_local)
-{
-	setPoint4_ms = setPoint4_ms_local;
-	modo_timer4 = modo_timer4_local;
-	time4_ms =  timeStamp;
-}
 void TicPoll(void)
 {
 		if ( setPoint1_ms > 0 &&  timeStamp > time1_ms + setPoint1_ms)
@@ -72,13 +66,5 @@ void TicPoll(void)
 			else
 				time3_ms = timeStamp;
 			etOut3();
-		}
-		if ( setPoint4_ms > 0 &&  timeStamp > time4_ms + setPoint4_ms)
-		{	
-			if(modo_timer4 == 'T')
-				setPoint4_ms = 0;
-			else
-				time4_ms = timeStamp;
-			etOut4();
 		}
 }

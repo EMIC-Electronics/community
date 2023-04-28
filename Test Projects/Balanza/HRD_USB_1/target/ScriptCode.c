@@ -5,8 +5,8 @@ char* onReset_EVENT(){
 }
 char* eI2C_EVENT(char *TAG,char *Message){
 	initLevelsFunctions();
-	pUSB_toStr(2,%A,%B);
 	led1_toStr(2,"2");
+	pUSB_toStr(2,%A,%B);
 	resetLevelsFunctions();
 }
 

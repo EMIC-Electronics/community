@@ -23,12 +23,12 @@ float Varianza_cero;      //Is the simple variance of the measures in the cero p
 int32_t Corrimiento;      //Offset due to the deformation of the load cell.
 int32_t Historial[32];    //Circular FIFO used to eliminate the noise of the load cell measure.
 int32_t ValorActual;      //Is the media of all values contains in the FIFO.
-float Varianza;           //Is the simple variance of the values contains in the FIFO.
+float Varianza;           /**< Is the simple variance of the values contains in the FIFO. */
 int64_t Acumulador;       //Is the sumatory of all values contains in the FIFO.
 
 int8_t Indice = 0;        //Position of the new value of the FIFO.
 
-int8_t Balanza_flags = 0;         
+int8_t Balanza_flags;  
 /*
  * Bit 0: Stable. Indicates if the measure is stable.
  * Bit 1: Zero. Indicates if the measure is zero.
@@ -63,11 +63,18 @@ void poll_Balanza(void);  //Iteration when the module logic is implemented.
 
 //Eventos
 
-extern void eZero(void);                     //Is executed when the weight value return to zero.
+#ifdef vent_eZero_active
+extern void eZero(void);                    //Is executed when the weight value return to zero.
+#endif
+#ifdef vent_eStable_active
 extern void eStable(Void);                  //Is executed when the weight value is stable after a variation.
+#endif
+#ifdef vent_eUnstable_active
 extern void eUnstable(Void);                //Is executed when the weight value is unstable.
-extern void eOverLoad(void);  //Is executed when the weight value is greater than the maximum capacity of the load cell.
-
+#endif
+#ifdef vent_eOverload_active
+extern void eOverLoad(void);                //Is executed when the weight value is greater than the maximum capacity of the load cell.
+#endif
 //----------------------------------------------------
 
 

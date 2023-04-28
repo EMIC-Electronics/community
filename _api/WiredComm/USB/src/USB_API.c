@@ -67,7 +67,7 @@ void pUSB(char* format,...)
 				
 			}
 			str = auxStr;
-			while (*auxStr)
+			while (*str)
 			{
 				UARTX_{puerto}__OUT_push( *str++);
 			}
