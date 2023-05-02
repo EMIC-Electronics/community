@@ -19,7 +19,7 @@ float mVxV_cal;         /**< mVxV value given in the specs of load cell. */
 //Variables no accesibles para el usuario.
 float K;                  //Slope of the linear function which describes the load cell.
 int32_t Cero;             //Intercept of the linear function which describes the load cell.
-float Varianza_cero;      //Is the simple variance of the measures in the cero point.
+float Desviacion_cero;    //Is the simple variance of the measures in the cero point.
 int32_t Corrimiento;      //Offset due to the deformation of the load cell.
 int32_t Historial[32];    //Circular FIFO used to eliminate the noise of the load cell measure.
 int32_t ValorActual;      //Is the media of all values contains in the FIFO.
