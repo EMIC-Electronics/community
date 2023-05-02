@@ -150,6 +150,22 @@
 }
 */
 
+/*RFI JSon
+{
+	'Nombre': 'eError',
+	'NombreToolBox': 'Error',
+	'Tipo' : 'SistemEvt',
+	'title': 'When an error occurs while the load cell calibration.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.Error",
+		"definir":"event_eError_active",
+		"parametros": []
+		}'
+}
+*/
+
 #newRFIcode(_drivers\ADC\ADS1231\ADS1231.emic)
 
 #setFile codigo.c

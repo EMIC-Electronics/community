@@ -36,6 +36,12 @@ void setZero(void)
     Cero = ValorActual;
     Varianza_cero = getVarianza();
   }
+  else
+  {
+    #ifdef event_eError_active
+    void eError();
+    #endif
+  }
 }
 
 void setReference(float Peso_de_referencia)
@@ -44,6 +50,12 @@ void setReference(float Peso_de_referencia)
   {
     if (ValorActual - Cero != 0)
       K = Peso_de_referencia/(float)(ValorActual - Cero);   //Determines the slope of the linear function that represent the load cell.
+  }
+  else
+  {
+    #ifdef event_eError_active
+    void eError();
+    #endif
   }
 }
 
@@ -92,7 +104,7 @@ float getVarianza(void)
   for (int i = 0; i < 32; i++)
     accum += (Historial[i] - ValorActual)^2;
   
-  return (float)accum/(float)31;
+  return sqrt((float)accum/(float)31);
 }
 
 void calcularCorrimiento(void)
@@ -102,7 +114,6 @@ void calcularCorrimiento(void)
 
 void poll_Balanza(void)
 {
-  
   if (Balanza_flags & 1)            //If the measure is stable.
   {
     if ((((ValorActual - Cero) & 0x00FFFFFF) <= 100) && !(Balanza_flags & 0x08))   //If the measure can considerate near to zero.
@@ -110,7 +121,7 @@ void poll_Balanza(void)
       Peso = 0;
       Balanza_flags |= 10;          //Zero and zero trigger.
       Balanza_flags &= 0xCB;        //Clears the triggers.
-      #ifdef vent_eZero_active
+      #ifdef event_eZero_active
       eZero();                      //Executes the zero event.
       #endif
     }
@@ -118,7 +129,7 @@ void poll_Balanza(void)
     {
       Balanza_flags |= 0x04;        //Stable event trigger.
       Balanza_flags &= 0xC7;        //Clears the triggers.
-      #ifdef vent_eStable_active
+      #ifdef event_eStable_active
       eStable();                    //Executes the stable event.
       #endif
     }
@@ -129,7 +140,7 @@ void poll_Balanza(void)
     {
       Balanza_flags |= 0x10;        //Unstable event trigger.
       Balanza_flags &= 0xD3;        //Clears the triggers.
-      #ifdef vent_eUnstable_active
+      #ifdef event_eUnstable_active
       eUnstable();                  //Executes the unstable event.
       #endif
     }
@@ -139,7 +150,7 @@ void poll_Balanza(void)
   {
     Balanza_flags |= 0x20;          //Overload event trigger.
     Balanza_flags &= 0xE3;          //Clears the triggers.
-    #ifdef vent_eOverload_active
+    #ifdef event_eOverload_active
     eOverLoad();                    //Execute the overload event.
     #endif
   }

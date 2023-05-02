@@ -36,6 +36,8 @@ int8_t Balanza_flags;
  * Bit 3: Zero event trigger. Trigger that indicates that the event was excecuted.
  * Bit 4: Unstable event trigger. Trigger that indicates that the event was excecuted.
  * Bit 5: Overload event trigger. Trigger that indicates that the event was excecuted.
+ * Bit 6: Set zero point. This flag indicates that the user want to set the current stable value as zero.
+ * Bit 7: Set reference point. This flag indicates that the user want to set the current stable value as the reference.
  */
 
 //Funciones accesibles para el usuario
@@ -63,17 +65,20 @@ void poll_Balanza(void);  //Iteration when the module logic is implemented.
 
 //Eventos
 
-#ifdef vent_eZero_active
+#ifdef event_eZero_active
 extern void eZero(void);                    //Is executed when the weight value return to zero.
 #endif
-#ifdef vent_eStable_active
+#ifdef event_eStable_active
 extern void eStable(Void);                  //Is executed when the weight value is stable after a variation.
 #endif
-#ifdef vent_eUnstable_active
+#ifdef event_eUnstable_active
 extern void eUnstable(Void);                //Is executed when the weight value is unstable.
 #endif
-#ifdef vent_eOverload_active
+#ifdef event_eOverload_active
 extern void eOverLoad(void);                //Is executed when the weight value is greater than the maximum capacity of the load cell.
+#endif
+#ifdef event_eError_active
+extern void eError(void);                   //Is executed when an error occurs in the calibration of the load cell.
 #endif
 //----------------------------------------------------
 
