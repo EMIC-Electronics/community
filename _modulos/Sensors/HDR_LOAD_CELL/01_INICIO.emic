@@ -6,7 +6,7 @@
 //------------- Driver Config -----------------------
 #newRFIcode(_api\Indicators\LEDs\led.emic)
 #newRFIcode(_api\Timer\Timer_API_V1.emic)
-#newRFIcode(_api\Sensors\LoadCell\Balanza.emic)
+#newRFIcode(_api\Sensors\LoadCell\v0.2\Balanza.emic)
 #newRFIcode(_api\EMICbus\emicBus.emic)
 
 //---------------------------------------------------
