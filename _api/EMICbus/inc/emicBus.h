@@ -58,9 +58,6 @@ char I2C_ID = _I2C_ID;
 char I2C_ID = 0x64;
 #endif
 
-float prueba_float;  /**< Current weight value. */
-int64_t prueba_int64; /**< Current weight value. */
-
 uint8_t i2c_packet_id = 0;
 uint8_t i2c_rv_id = 0;
 

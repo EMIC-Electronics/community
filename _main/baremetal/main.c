@@ -3,6 +3,8 @@
 #include "userFncFile.c"  //No RFI scan
 #newRFIcode(_hal/.{UC_FAMILY}./system/init.emic)
 
+char presist_ persistEnd;
+
 int main(void)
 {
 	#newRFIcode(temp/EMICinits.c,)

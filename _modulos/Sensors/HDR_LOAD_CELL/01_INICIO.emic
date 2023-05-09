@@ -8,6 +8,7 @@
 #newRFIcode(_api\Timer\Timer_API_V1.emic)
 #newRFIcode(_api\Sensors\LoadCell\v0.2\Balanza.emic)
 #newRFIcode(_api\EMICbus\emicBus.emic)
+#newRFIcode(_api\System\System.emic)
 
 //---------------------------------------------------
 #include "_main/baremetal/main.emic"

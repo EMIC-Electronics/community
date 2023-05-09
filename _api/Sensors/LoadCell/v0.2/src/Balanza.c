@@ -118,7 +118,7 @@ void poll_Balanza(void)
   {
     if (!(Balanza_flags & 0x04))
     {
-      if ((((ValorActual - Cero) & 0x00FFFFFF) <= (int32_t)(3*Desviacion_cero)))   //If the measure can considerate near to zero.
+      if ((((ValorActual - Cero) & 0x00FFFFFF) <= (int32_t)(5*Desviacion_cero)))   //If the measure can considerate near to zero.
       {
         Peso = 0;
         #ifdef event_eZero_active
