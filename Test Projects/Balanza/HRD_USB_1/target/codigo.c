@@ -6,6 +6,8 @@
 #define USBprot "EMIC_message"
 #define nombreModulo "HRD_USB"
 #include "inc\HRD_USB V1.1.h"
+#define presist_ __attribute__((section(".presist")))
+char presist_ persistInit;
 #include "inc/gpio.h"
 #define _PIC_pinMap_EMIC_
 #include "inc/pinMap.h"
@@ -31,6 +33,7 @@
 #include "userFncFile.c"  //No RFI scan
 #define _INIT_EMIC
 #include "inc\init.h"
+char presist_ persistEnd;
 int main(void)
 {
 	init_timer4();

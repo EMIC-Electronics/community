@@ -4,10 +4,15 @@ Tool Name:
   c:\program files\microchip\xc16\v2.00\bin\bin\..\bin/elf-ld.exe
 
 Command:
+  -TC:\\Users\\penta\\AppData\\Local\\Temp\\tmp00004a04.00 \
+  -TC:\\Users\\penta\\AppData\\Local\\Temp\\tmp00004a04.01 \
+  -TC:\\Users\\penta\\AppData\\Local\\Temp\\tmp00004a04.02 \
+  -TC:\\Users\\penta\\AppData\\Local\\Temp\\tmp00004a04.03 \
+  -TC:\\Users\\penta\\AppData\\Local\\Temp\\tmp00004a04.04 \
   -p24FJ64GA002 \
   --mdfp=C:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC24F-GA-GB_DFP/1.8.217/xc16 \
   -o \
-  dist/default/production/target.production.elf \
+  dist/default/debug/target.debug.elf \
   -Lc:/program files/microchip/xc16/v2.00/bin/bin/.. \
   -LC:/Program Files/Microchip/MPLABX/v6.05/packs/Microchip/PIC24F-GA-GB_DFP/1.8.217/xc16/bin/../support/PIC24F/gld \
   -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../lib \
@@ -24,9 +29,11 @@ Command:
   -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33E/gld \
   -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../lib/dsPIC33F \
   -Lc:/program files/microchip/xc16/v2.00/bin/bin/../../support/dsPIC33F/gld \
-  build/default/production/codigo.o \
+  build/default/debug/codigo.o \
   --defsym=__MPLAB_BUILD=1 \
-  -Tp24FJ64GA002.gld.00 \
+  --defsym=__MPLAB_DEBUG=1 \
+  --defsym=__DEBUG=1 \
+  -Tp24FJ64GA002.gld.05 \
   --stack=16 \
   --check-sections \
   --data-init \
@@ -38,10 +45,10 @@ Command:
   --stackguard=16 \
   --no-force-link \
   --smart-io \
-  -Map=dist/default/production/target.production.map \
+  -Map=dist/default/debug/target.debug.map \
   --report-mem \
   --memorysummary \
-  dist/default/production/memoryfile.xml \
+  dist/default/debug/memoryfile.xml \
   -start-group \
   --library=c99-pic30-elf \
   --library=m-elf \
@@ -57,31 +64,31 @@ c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(data_
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt_start_mode_normal.Meo)
                               (__crt_start_mode_normal)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(delay32.Meo)
-                              build/default/production/codigo.o (___delay32)
+                              build/default/debug/codigo.o (___delay32)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.XX_o)
-                              build/default/production/codigo.o (___gesf2)
+                              build/default/debug/codigo.o (___gesf2)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
-                              build/default/production/codigo.o (_(float, int, long long, short, float, short, int))
+                              build/default/debug/codigo.o (_(float, int, long long, short, float, short, int))
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfdi.XX_o)
-                              build/default/production/codigo.o (___fixunssfdi)
+                              build/default/debug/codigo.o (___fixunssfdi)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfsi.XX_o)
-                              build/default/production/codigo.o (___fixunssfsi)
+                              build/default/debug/codigo.o (___fixunssfsi)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatsisf.XX_o)
-                              build/default/production/codigo.o (___floatsisf)
+                              build/default/debug/codigo.o (___floatsisf)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o)
-                              build/default/production/codigo.o (___floatundisf)
+                              build/default/debug/codigo.o (___floatundisf)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatunsisf.XX_o)
-                              build/default/production/codigo.o (___floatunsisf)
+                              build/default/debug/codigo.o (___floatunsisf)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fpack.XX_o)
                               c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(floatundisf.XX_o) (__fpack)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack.XX_o)
                               c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o) (__funpack)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o)
-                              build/default/production/codigo.o (___addsf3)
+                              build/default/debug/codigo.o (___addsf3)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(divsf3x.XX_o)
-                              build/default/production/codigo.o (___divsf3)
+                              build/default/debug/codigo.o (___divsf3)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(mulsf3x.XX_o)
-                              build/default/production/codigo.o (___mulsf3)
+                              build/default/debug/codigo.o (___mulsf3)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(dnrmpackfx.XX_o)
                               c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(addsf3x.XX_o) (__dnrmpackf)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(unpackdnrmfx.XX_o)
@@ -103,11 +110,11 @@ c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(float
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(funpack2.XX_o)
                               c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fcompare.XX_o) (__funpack2)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libm-elf.a(sqrtf.XX_o)
-                              build/default/production/codigo.o (_sqrtf)
+                              build/default/debug/codigo.o (_sqrtf)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__errno_location.XX_o)
                               c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libm-elf.a(sqrtf.XX_o) (___errno_val)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(sprintf.XX_o)
-                              build/default/production/codigo.o (_sprintf)
+                              build/default/debug/codigo.o (_sprintf)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(vsprintf.XX_o)
                               c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(sprintf.XX_o) (_vsprintf)
 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(vsnprintf.XX_o)
@@ -212,15 +219,20 @@ myFlashSpace                0x5000               0x400           0x600  (1536)
 
 section                    address      alignment gaps    total length  (dec)
 -------                    -------      --------------    -------------------
-.nbss                        0x800                   0            0x90  (144)
-.presist                     0x890                   0            0x1c  (28)
-.ndata                       0x8ac                   0             0x4  (4)
-.nbss                        0x8b0                   0             0x2  (2)
-.bss                         0x8b2                   0           0x48c  (1164)
-.data                        0xd3e                   0            0x40  (64)
-.bss                         0xd7e                   0             0x2  (2)
+reserve_data_0x800           0x800                0x20            0x20  (32)
+reserve_data_0x820           0x820                 0x2             0x2  (2)
+reserve_data_0x822           0x822                 0x2             0x2  (2)
+reserve_data_0x824           0x824                 0x2             0x2  (2)
+reserve_data_0x826           0x826                0x2a            0x2a  (42)
+.nbss                        0x850                   0            0xa8  (168)
+.ndata                       0x8f8                   0             0x4  (4)
+.presist                     0x8fc                   0             0x2  (2)
+.nbss                        0x8fe                   0             0x2  (2)
+.bss                         0x900                   0           0x48c  (1164)
+.data                        0xd8c                   0            0x40  (64)
+.bss                         0xdcc                   0             0x2  (2)
 
-                 Total "data" memory used (bytes):          0x580  (1408) 17%
+                 Total "data" memory used (bytes):          0x5ce  (1486) 18%
 
 
 Dynamic Memory Usage
@@ -228,156 +240,156 @@ Dynamic Memory Usage
 region                     address                      maximum length  (dec)
 ------                     -------                      ---------------------
 heap                             0                                   0  (0)
-stack                        0xd80                              0x1a80  (6784)
+stack                        0xdce                              0x1a32  (6706)
 
-                 Maximum dynamic memory (bytes):         0x1a80  (6784)
+                 Maximum dynamic memory (bytes):         0x1a32  (6706)
 
 Info: Project is using a large data memory model when small data memory model is sufficient.
 
 
 External Symbols in Data Memory (by address):
 
-                    0x0800                  _timeStamp
-                    0x0804                  _Peso
-                    0x0808                  _mVxV
-                    0x080c                  _ValorActual
-                    0x0810                  _Varianza
-                    0x0814                  _Acumulador
-                    0x081c                  _Indice
-                    0x081d                  _Balanza_flags
-                    0x081e                  _i2c_packet_id
-                    0x081f                  _i2c_rv_id
-                    0x0820                  _I2Ctic
-                    0x0822                  _punt_entr_I2C_IN
-                    0x0824                  _punt_sal_I2C_IN
-                    0x0826                  _cont_byte_I2C_IN
-                    0x0828                  _cont_byte_I2C_IN_FM
-                    0x082a                  _punt_entr_I2C_OUT
-                    0x082c                  _punt_sal_I2C_OUT
-                    0x082e                  _cont_byte_I2C_OUT
-                    0x0830                  _puntB_sal_I2C_OUT
-                    0x0832                  _cont_byte_I2C_OUT_FM
-                    0x0834                  _contB_byte_I2C_OUT
-                    0x0836                  _i2crfi_tout
-                    0x083a                  _i2crfi_tic
-                    0x083c                  _i2crfi_estado
-                    0x083d                  _i2crfi_estado_rcv
-                    0x083e                  _i2crfi_indice
-                    0x083f                  _I2CBusCol
-                    0x0840                  _i2crfi_config
-                    0x0848                  _blkLed1_timerOn
-                    0x084a                  _blkLed1_period
-                    0x084c                  _blkLed1_times
-                    0x084e                  _blkLed1_tStamp
-                    0x0852                  _time1_ms
-                    0x0856                  _time2_ms
-                    0x085a                  _time3_ms
-                    0x085e                  _time4_ms
-                    0x0862                  _time5_ms
-                    0x0866                  _time6_ms
-                    0x086a                  _setPoint1_ms
-                    0x086e                  _setPoint2_ms
-                    0x0872                  _setPoint3_ms
-                    0x0876                  _setPoint4_ms
-                    0x087a                  _setPoint5_ms
-                    0x087e                  _setPoint6_ms
-                    0x0882                  _modo_timer1
-                    0x0883                  _modo_timer2
-                    0x0884                  _modo_timer3
-                    0x0885                  _modo_timer4
-                    0x0886                  _modo_timer5
-                    0x0887                  _modo_timer6
-                    0x0888                  _ADS123xFlag_adc
-                    0x0889                  _stopflag
-                    0x088a                  _offsetPutc3B
-                    0x088c                  _offset
-                    0x0890                  _persistInit
-                    0x0892                  _Capacidad
-                    0x0896                  _mVxV_cal
-                    0x089a                  _K
-                    0x089e                  _Cero
-                    0x08a2                  _Desviacion_cero
-                    0x08a6                  _Corrimiento
-                    0x08aa                  _persistEnd
-                    0x08ac                  _I2C_ID
-                    0x08ae                  _I2CXpunt_sal_aux
-                    0x08b2                  _Historial
-                    0x0932                  _fifo_I2C_IN
-                    0x0b38                  _fifo_I2C_OUT
-                    0x0d7a                  _bufferPutc3B
-                    0x0d7e                  ___errno_val
+                    0x0850                  _timeStamp
+                    0x0854                  _Peso
+                    0x0858                  _Capacidad
+                    0x085c                  _mVxV
+                    0x0860                  _mVxV_cal
+                    0x0864                  _K
+                    0x0868                  _Cero
+                    0x086c                  _Desviacion_cero
+                    0x0870                  _Corrimiento
+                    0x0874                  _ValorActual
+                    0x0878                  _Varianza
+                    0x087c                  _Acumulador
+                    0x0884                  _Indice
+                    0x0885                  _Balanza_flags
+                    0x0886                  _i2c_packet_id
+                    0x0887                  _i2c_rv_id
+                    0x0888                  _I2Ctic
+                    0x088a                  _punt_entr_I2C_IN
+                    0x088c                  _punt_sal_I2C_IN
+                    0x088e                  _cont_byte_I2C_IN
+                    0x0890                  _cont_byte_I2C_IN_FM
+                    0x0892                  _punt_entr_I2C_OUT
+                    0x0894                  _punt_sal_I2C_OUT
+                    0x0896                  _cont_byte_I2C_OUT
+                    0x0898                  _puntB_sal_I2C_OUT
+                    0x089a                  _cont_byte_I2C_OUT_FM
+                    0x089c                  _contB_byte_I2C_OUT
+                    0x089e                  _i2crfi_tout
+                    0x08a2                  _i2crfi_tic
+                    0x08a4                  _i2crfi_estado
+                    0x08a5                  _i2crfi_estado_rcv
+                    0x08a6                  _i2crfi_indice
+                    0x08a7                  _I2CBusCol
+                    0x08a8                  _i2crfi_config
+                    0x08b0                  _blkLed1_timerOn
+                    0x08b2                  _blkLed1_period
+                    0x08b4                  _blkLed1_times
+                    0x08b6                  _blkLed1_tStamp
+                    0x08ba                  _time1_ms
+                    0x08be                  _time2_ms
+                    0x08c2                  _time3_ms
+                    0x08c6                  _time4_ms
+                    0x08ca                  _time5_ms
+                    0x08ce                  _time6_ms
+                    0x08d2                  _setPoint1_ms
+                    0x08d6                  _setPoint2_ms
+                    0x08da                  _setPoint3_ms
+                    0x08de                  _setPoint4_ms
+                    0x08e2                  _setPoint5_ms
+                    0x08e6                  _setPoint6_ms
+                    0x08ea                  _modo_timer1
+                    0x08eb                  _modo_timer2
+                    0x08ec                  _modo_timer3
+                    0x08ed                  _modo_timer4
+                    0x08ee                  _modo_timer5
+                    0x08ef                  _modo_timer6
+                    0x08f0                  _ADS123xFlag_adc
+                    0x08f1                  _stopflag
+                    0x08f2                  _offsetPutc3B
+                    0x08f4                  _offset
+                    0x08f8                  _I2C_ID
+                    0x08fa                  _I2CXpunt_sal_aux
+                    0x08fc                  _persistInit
+                    0x08fd                  _persistEnd
+                    0x0900                  _Historial
+                    0x0980                  _fifo_I2C_IN
+                    0x0b86                  _fifo_I2C_OUT
+                    0x0dc8                  _bufferPutc3B
+                    0x0dcc                  ___errno_val
 
 External Symbols in Data Memory (by name):
 
-                    0x0888                  _ADS123xFlag_adc
-                    0x0814                  _Acumulador
-                    0x081d                  _Balanza_flags
-                    0x0892                  _Capacidad
-                    0x089e                  _Cero
-                    0x08a6                  _Corrimiento
-                    0x08a2                  _Desviacion_cero
-                    0x08b2                  _Historial
-                    0x083f                  _I2CBusCol
-                    0x08ae                  _I2CXpunt_sal_aux
-                    0x08ac                  _I2C_ID
-                    0x0820                  _I2Ctic
-                    0x081c                  _Indice
-                    0x089a                  _K
-                    0x0804                  _Peso
-                    0x080c                  _ValorActual
-                    0x0810                  _Varianza
-                    0x0d7e                  ___errno_val
-                    0x084a                  _blkLed1_period
-                    0x084e                  _blkLed1_tStamp
-                    0x0848                  _blkLed1_timerOn
-                    0x084c                  _blkLed1_times
-                    0x0d7a                  _bufferPutc3B
-                    0x0834                  _contB_byte_I2C_OUT
-                    0x0826                  _cont_byte_I2C_IN
-                    0x0828                  _cont_byte_I2C_IN_FM
-                    0x082e                  _cont_byte_I2C_OUT
-                    0x0832                  _cont_byte_I2C_OUT_FM
-                    0x0932                  _fifo_I2C_IN
-                    0x0b38                  _fifo_I2C_OUT
-                    0x081e                  _i2c_packet_id
-                    0x081f                  _i2c_rv_id
-                    0x0840                  _i2crfi_config
-                    0x083c                  _i2crfi_estado
-                    0x083d                  _i2crfi_estado_rcv
-                    0x083e                  _i2crfi_indice
-                    0x083a                  _i2crfi_tic
-                    0x0836                  _i2crfi_tout
-                    0x0808                  _mVxV
-                    0x0896                  _mVxV_cal
-                    0x0882                  _modo_timer1
-                    0x0883                  _modo_timer2
-                    0x0884                  _modo_timer3
-                    0x0885                  _modo_timer4
-                    0x0886                  _modo_timer5
-                    0x0887                  _modo_timer6
-                    0x088c                  _offset
-                    0x088a                  _offsetPutc3B
-                    0x08aa                  _persistEnd
-                    0x0890                  _persistInit
-                    0x0830                  _puntB_sal_I2C_OUT
-                    0x0822                  _punt_entr_I2C_IN
-                    0x082a                  _punt_entr_I2C_OUT
-                    0x0824                  _punt_sal_I2C_IN
-                    0x082c                  _punt_sal_I2C_OUT
-                    0x086a                  _setPoint1_ms
-                    0x086e                  _setPoint2_ms
-                    0x0872                  _setPoint3_ms
-                    0x0876                  _setPoint4_ms
-                    0x087a                  _setPoint5_ms
-                    0x087e                  _setPoint6_ms
-                    0x0889                  _stopflag
-                    0x0852                  _time1_ms
-                    0x0856                  _time2_ms
-                    0x085a                  _time3_ms
-                    0x085e                  _time4_ms
-                    0x0862                  _time5_ms
-                    0x0866                  _time6_ms
-                    0x0800                  _timeStamp
+                    0x08f0                  _ADS123xFlag_adc
+                    0x087c                  _Acumulador
+                    0x0885                  _Balanza_flags
+                    0x0858                  _Capacidad
+                    0x0868                  _Cero
+                    0x0870                  _Corrimiento
+                    0x086c                  _Desviacion_cero
+                    0x0900                  _Historial
+                    0x08a7                  _I2CBusCol
+                    0x08fa                  _I2CXpunt_sal_aux
+                    0x08f8                  _I2C_ID
+                    0x0888                  _I2Ctic
+                    0x0884                  _Indice
+                    0x0864                  _K
+                    0x0854                  _Peso
+                    0x0874                  _ValorActual
+                    0x0878                  _Varianza
+                    0x0dcc                  ___errno_val
+                    0x08b2                  _blkLed1_period
+                    0x08b6                  _blkLed1_tStamp
+                    0x08b0                  _blkLed1_timerOn
+                    0x08b4                  _blkLed1_times
+                    0x0dc8                  _bufferPutc3B
+                    0x089c                  _contB_byte_I2C_OUT
+                    0x088e                  _cont_byte_I2C_IN
+                    0x0890                  _cont_byte_I2C_IN_FM
+                    0x0896                  _cont_byte_I2C_OUT
+                    0x089a                  _cont_byte_I2C_OUT_FM
+                    0x0980                  _fifo_I2C_IN
+                    0x0b86                  _fifo_I2C_OUT
+                    0x0886                  _i2c_packet_id
+                    0x0887                  _i2c_rv_id
+                    0x08a8                  _i2crfi_config
+                    0x08a4                  _i2crfi_estado
+                    0x08a5                  _i2crfi_estado_rcv
+                    0x08a6                  _i2crfi_indice
+                    0x08a2                  _i2crfi_tic
+                    0x089e                  _i2crfi_tout
+                    0x085c                  _mVxV
+                    0x0860                  _mVxV_cal
+                    0x08ea                  _modo_timer1
+                    0x08eb                  _modo_timer2
+                    0x08ec                  _modo_timer3
+                    0x08ed                  _modo_timer4
+                    0x08ee                  _modo_timer5
+                    0x08ef                  _modo_timer6
+                    0x08f4                  _offset
+                    0x08f2                  _offsetPutc3B
+                    0x08fd                  _persistEnd
+                    0x08fc                  _persistInit
+                    0x0898                  _puntB_sal_I2C_OUT
+                    0x088a                  _punt_entr_I2C_IN
+                    0x0892                  _punt_entr_I2C_OUT
+                    0x088c                  _punt_sal_I2C_IN
+                    0x0894                  _punt_sal_I2C_OUT
+                    0x08d2                  _setPoint1_ms
+                    0x08d6                  _setPoint2_ms
+                    0x08da                  _setPoint3_ms
+                    0x08de                  _setPoint4_ms
+                    0x08e2                  _setPoint5_ms
+                    0x08e6                  _setPoint6_ms
+                    0x08f1                  _stopflag
+                    0x08ba                  _time1_ms
+                    0x08be                  _time2_ms
+                    0x08c2                  _time3_ms
+                    0x08c6                  _time4_ms
+                    0x08ca                  _time5_ms
+                    0x08ce                  _time6_ms
+                    0x0850                  _timeStamp
 
 External Symbols in Program Memory (by address):
 
@@ -736,8 +748,35 @@ CONFIG1          0x00abfe           0x000002
 
 Linker script and memory map
 
-LOAD build/default/production/codigo.o
+
+reserve_data_0x800
+                    0x0800         0x20
+                    0x0820                  . = 0x20
+ *fill*             0x0800         0x2000
+
+reserve_data_0x820
+                    0x0820          0x2
+                    0x0822                  . = 0x2
+ *fill*             0x0820          0x200
+
+reserve_data_0x822
+                    0x0822          0x2
+                    0x0824                  . = 0x2
+ *fill*             0x0822          0x200
+
+reserve_data_0x824
+                    0x0824          0x2
+                    0x0826                  . = 0x2
+ *fill*             0x0824          0x200
+
+reserve_data_0x826
+                    0x0826         0x2a
+                    0x0850                  . = 0x2a
+ *fill*             0x0826         0x2a00
+LOAD build/default/debug/codigo.o
                     0x0001                  __MPLAB_BUILD = 0x1
+                    0x0001                  __MPLAB_DEBUG = 0x1
+                    0x0001                  __DEBUG = 0x1
 LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib/PIC24F\libpPIC24Fxxx-elf.a
 LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
                     0xabfc                  __CONFIG2 = 0xabfc
@@ -768,7 +807,7 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libfx-elf.a
  *(.user_init)
  *(.handle)
  *(.isr*)
- .isr.text        0x0002d4        0x230 build/default/production/codigo.o
+ .isr.text        0x0002d4        0x230 build/default/debug/codigo.o
                   0x0002d4                  __T4Interrupt
                   0x0002f4                  __INT1Interrupt
                   0x0003be                  __SI2C2Interrupt
@@ -1022,7 +1061,7 @@ __CONFIG1
 
 .debug_info       0x000000       0x4532
  *(.debug_info)
- .debug_info      0x000000       0x30ca build/default/production/codigo.o
+ .debug_info      0x000000       0x30ca build/default/debug/codigo.o
  .debug_info      0x0030ca         0x8b c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.XX_o)
  .debug_info      0x003155         0x8d c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
  .debug_info      0x0031e2         0x90 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfdi.XX_o)
@@ -1062,7 +1101,7 @@ __CONFIG1
 
 .debug_abbrev     0x000000        0x54e
  *(.debug_abbrev)
- .debug_abbrev    0x000000        0x292 build/default/production/codigo.o
+ .debug_abbrev    0x000000        0x292 build/default/debug/codigo.o
  .debug_abbrev    0x000292         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.XX_o)
  .debug_abbrev    0x0002a6         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
  .debug_abbrev    0x0002ba         0x14 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfdi.XX_o)
@@ -1101,7 +1140,7 @@ __CONFIG1
 
 .debug_line       0x000000       0x1524
  *(.debug_line)
- .debug_line      0x000000        0x53a build/default/production/codigo.o
+ .debug_line      0x000000        0x53a build/default/debug/codigo.o
  .debug_line      0x00053a         0x35 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.XX_o)
  .debug_line      0x00056f         0x56 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixsfsi.XX_o)
  .debug_line      0x0005c5         0x59 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fixunssfdi.XX_o)
@@ -1141,11 +1180,11 @@ __CONFIG1
 
 .debug_frame      0x000000        0x7ea
  *(.debug_frame)
- .debug_frame     0x000000        0x7ea build/default/production/codigo.o
+ .debug_frame     0x000000        0x7ea build/default/debug/codigo.o
 
 .debug_str        0x000000        0x381
  *(.debug_str)
- .debug_str       0x000000        0x381 build/default/production/codigo.o
+ .debug_str       0x000000        0x381 build/default/debug/codigo.o
 
 .debug_loc
  *(.debug_loc)
@@ -1157,7 +1196,7 @@ __CONFIG1
                   0x000000        0x8da
  *(.debug_pubnames)
  .debug_pubnames
-                  0x000000        0x8da build/default/production/codigo.o
+                  0x000000        0x8da build/default/debug/codigo.o
 
 .debug_ranges
  *(.debug_ranges)
@@ -1165,7 +1204,7 @@ __CONFIG1
 .debug_aranges    0x000000        0x360
  *(.debug_aranges)
  .debug_aranges
-                  0x000000         0x18 build/default/production/codigo.o
+                  0x000000         0x18 build/default/debug/codigo.o
  .debug_aranges
                   0x000018         0x18 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(fgtge.XX_o)
  .debug_aranges
@@ -1820,7 +1859,7 @@ LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a
 LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libm-elf.a
 LOAD c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a
 END GROUP
-OUTPUT(dist/default/production/target.production.elf elf32-pic30)
+OUTPUT(dist/default/debug/target.debug.elf elf32-pic30)
 LOAD jump_table
 LOAD default_isr
 LOAD data_init
@@ -1828,12 +1867,12 @@ LOAD data_init
 .debug_pubtypes
                   0x000360        0x2db
  .debug_pubtypes
-                  0x000360        0x2db build/default/production/codigo.o
+                  0x000360        0x2db build/default/debug/codigo.o
 
 __c30_signature
                   0x00063b        0x162
  __c30_signature
-                  0x00063b          0x6 build/default/production/codigo.o
+                  0x00063b          0x6 build/default/debug/codigo.o
  __c30_signature
                   0x000641          0x6 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(crt0_standard.o)
  __c30_signature
@@ -1960,138 +1999,138 @@ __xc_reference_data
                   0x002d7e          0xe c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__io_fmt_needed.XX_lo)
                   0x002d7e                  ___io_fmt_needed
 
-.nbss               0x0800         0x90
- .nbss              0x0800         0x90 build/default/production/codigo.o
-                    0x0800                  _timeStamp
-                    0x0804                  _Peso
-                    0x0808                  _mVxV
-                    0x080c                  _ValorActual
-                    0x0810                  _Varianza
-                    0x0814                  _Acumulador
-                    0x081c                  _Indice
-                    0x081d                  _Balanza_flags
-                    0x081e                  _i2c_packet_id
-                    0x081f                  _i2c_rv_id
-                    0x0820                  _I2Ctic
-                    0x0822                  _punt_entr_I2C_IN
-                    0x0824                  _punt_sal_I2C_IN
-                    0x0826                  _cont_byte_I2C_IN
-                    0x0828                  _cont_byte_I2C_IN_FM
-                    0x082a                  _punt_entr_I2C_OUT
-                    0x082c                  _punt_sal_I2C_OUT
-                    0x082e                  _cont_byte_I2C_OUT
-                    0x0830                  _puntB_sal_I2C_OUT
-                    0x0832                  _cont_byte_I2C_OUT_FM
-                    0x0834                  _contB_byte_I2C_OUT
-                    0x0836                  _i2crfi_tout
-                    0x083a                  _i2crfi_tic
-                    0x083c                  _i2crfi_estado
-                    0x083d                  _i2crfi_estado_rcv
-                    0x083e                  _i2crfi_indice
-                    0x083f                  _I2CBusCol
-                    0x0840                  _i2crfi_config
-                    0x0848                  _blkLed1_timerOn
-                    0x084a                  _blkLed1_period
-                    0x084c                  _blkLed1_times
-                    0x084e                  _blkLed1_tStamp
-                    0x0852                  _time1_ms
-                    0x0856                  _time2_ms
-                    0x085a                  _time3_ms
-                    0x085e                  _time4_ms
-                    0x0862                  _time5_ms
-                    0x0866                  _time6_ms
-                    0x086a                  _setPoint1_ms
-                    0x086e                  _setPoint2_ms
-                    0x0872                  _setPoint3_ms
-                    0x0876                  _setPoint4_ms
-                    0x087a                  _setPoint5_ms
-                    0x087e                  _setPoint6_ms
-                    0x0882                  _modo_timer1
-                    0x0883                  _modo_timer2
-                    0x0884                  _modo_timer3
-                    0x0885                  _modo_timer4
-                    0x0886                  _modo_timer5
-                    0x0887                  _modo_timer6
-                    0x0888                  _ADS123xFlag_adc
-                    0x0889                  _stopflag
-                    0x088a                  _offsetPutc3B
-                    0x088c                  _offset
+.nbss               0x0850         0xa8
+ .nbss              0x0850         0xa8 build/default/debug/codigo.o
+                    0x0850                  _timeStamp
+                    0x0854                  _Peso
+                    0x0858                  _Capacidad
+                    0x085c                  _mVxV
+                    0x0860                  _mVxV_cal
+                    0x0864                  _K
+                    0x0868                  _Cero
+                    0x086c                  _Desviacion_cero
+                    0x0870                  _Corrimiento
+                    0x0874                  _ValorActual
+                    0x0878                  _Varianza
+                    0x087c                  _Acumulador
+                    0x0884                  _Indice
+                    0x0885                  _Balanza_flags
+                    0x0886                  _i2c_packet_id
+                    0x0887                  _i2c_rv_id
+                    0x0888                  _I2Ctic
+                    0x088a                  _punt_entr_I2C_IN
+                    0x088c                  _punt_sal_I2C_IN
+                    0x088e                  _cont_byte_I2C_IN
+                    0x0890                  _cont_byte_I2C_IN_FM
+                    0x0892                  _punt_entr_I2C_OUT
+                    0x0894                  _punt_sal_I2C_OUT
+                    0x0896                  _cont_byte_I2C_OUT
+                    0x0898                  _puntB_sal_I2C_OUT
+                    0x089a                  _cont_byte_I2C_OUT_FM
+                    0x089c                  _contB_byte_I2C_OUT
+                    0x089e                  _i2crfi_tout
+                    0x08a2                  _i2crfi_tic
+                    0x08a4                  _i2crfi_estado
+                    0x08a5                  _i2crfi_estado_rcv
+                    0x08a6                  _i2crfi_indice
+                    0x08a7                  _I2CBusCol
+                    0x08a8                  _i2crfi_config
+                    0x08b0                  _blkLed1_timerOn
+                    0x08b2                  _blkLed1_period
+                    0x08b4                  _blkLed1_times
+                    0x08b6                  _blkLed1_tStamp
+                    0x08ba                  _time1_ms
+                    0x08be                  _time2_ms
+                    0x08c2                  _time3_ms
+                    0x08c6                  _time4_ms
+                    0x08ca                  _time5_ms
+                    0x08ce                  _time6_ms
+                    0x08d2                  _setPoint1_ms
+                    0x08d6                  _setPoint2_ms
+                    0x08da                  _setPoint3_ms
+                    0x08de                  _setPoint4_ms
+                    0x08e2                  _setPoint5_ms
+                    0x08e6                  _setPoint6_ms
+                    0x08ea                  _modo_timer1
+                    0x08eb                  _modo_timer2
+                    0x08ec                  _modo_timer3
+                    0x08ed                  _modo_timer4
+                    0x08ee                  _modo_timer5
+                    0x08ef                  _modo_timer6
+                    0x08f0                  _ADS123xFlag_adc
+                    0x08f1                  _stopflag
+                    0x08f2                  _offsetPutc3B
+                    0x08f4                  _offset
 
-.presist            0x0890         0x1c
- .presist           0x0890         0x1c build/default/production/codigo.o
-                    0x0890                  _persistInit
-                    0x0892                  _Capacidad
-                    0x0896                  _mVxV_cal
-                    0x089a                  _K
-                    0x089e                  _Cero
-                    0x08a2                  _Desviacion_cero
-                    0x08a6                  _Corrimiento
-                    0x08aa                  _persistEnd
+.ndata              0x08f8          0x4
+ .ndata             0x08f8          0x4 build/default/debug/codigo.o
+                    0x08f8                  _I2C_ID
+                    0x08fa                  _I2CXpunt_sal_aux
 
-.ndata              0x08ac          0x4
- .ndata             0x08ac          0x4 build/default/production/codigo.o
-                    0x08ac                  _I2C_ID
-                    0x08ae                  _I2CXpunt_sal_aux
+.presist            0x08fc          0x2
+ .presist           0x08fc          0x2 build/default/debug/codigo.o
+                    0x08fc                  _persistInit
+                    0x08fd                  _persistEnd
 
-.nbss               0x08b0          0x2
- .nbss              0x08b0          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(errno.XX_o)
-                    0x08b0                  _errno
+.nbss               0x08fe          0x2
+ .nbss              0x08fe          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-pic30-elf.a(errno.XX_o)
+                    0x08fe                  _errno
 
-.bss                0x08b2        0x48c
- .bss               0x08b2        0x48c build/default/production/codigo.o
-                    0x08b2                  _Historial
-                    0x0932                  _fifo_I2C_IN
-                    0x0b38                  _fifo_I2C_OUT
+.bss                0x0900        0x48c
+ .bss               0x0900        0x48c build/default/debug/codigo.o
+                    0x0900                  _Historial
+                    0x0980                  _fifo_I2C_IN
+                    0x0b86                  _fifo_I2C_OUT
 
-.data               0x0d3e         0x40
- .data              0x0d3e         0x1c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__printf_core.XX_o)
- .data              0x0d5a         0x10 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__fmt_a.XX_o)
- .data              0x0d6a         0x10 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__fmt_fp.XX_o)
- .data              0x0d7a          0x4 build/default/production/codigo.o
-                    0x0d7a                  _bufferPutc3B
+.data               0x0d8c         0x40
+ .data              0x0d8c         0x1c c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__printf_core.XX_o)
+ .data              0x0da8         0x10 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__fmt_a.XX_o)
+ .data              0x0db8         0x10 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__fmt_fp.XX_o)
+ .data              0x0dc8          0x4 build/default/debug/codigo.o
+                    0x0dc8                  _bufferPutc3B
 
-.bss                0x0d7e          0x2
- .bss               0x0d7e          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__errno_location.XX_o)
-                    0x0d7e                  ___errno_val
+.bss                0x0dcc          0x2
+ .bss               0x0dcc          0x2 c:/program files/microchip/xc16/v2.00/bin/bin/../../lib\libc99-elf.a(__errno_location.XX_o)
+                    0x0dcc                  ___errno_val
 
 myFlashSpace      0x005000        0x400
- myFlashSpace     0x005000        0x400 build/default/production/codigo.o
+ myFlashSpace     0x005000        0x400 build/default/debug/codigo.o
                   0x005000                  _myFlashMemory
 
 .config_JTAGEN    0x00abfe          0x2
  .config_JTAGEN
-                  0x00abfe          0x2 build/default/production/codigo.o
+                  0x00abfe          0x2 build/default/debug/codigo.o
 
 .config_IESO      0x00abfc          0x2
- .config_IESO     0x00abfc          0x2 build/default/production/codigo.o
+ .config_IESO     0x00abfc          0x2 build/default/debug/codigo.o
 
 .ivt._T4Interrupt
                   0x00004a          0x2
  .ivt._T4Interrupt
-                  0x00004a          0x2 build/default/production/codigo.o
+                  0x00004a          0x2 build/default/debug/codigo.o
 
 .ivt._INT1Interrupt
                   0x00003c          0x2
  .ivt._INT1Interrupt
-                  0x00003c          0x2 build/default/production/codigo.o
+                  0x00003c          0x2 build/default/debug/codigo.o
 
 .ivt._SI2C2Interrupt
                   0x000076          0x2
  .ivt._SI2C2Interrupt
-                  0x000076          0x2 build/default/production/codigo.o
+                  0x000076          0x2 build/default/debug/codigo.o
 
 .ivt._MI2C2Interrupt
                   0x000078          0x2
  .ivt._MI2C2Interrupt
-                  0x000078          0x2 build/default/production/codigo.o
+                  0x000078          0x2 build/default/debug/codigo.o
 
 .const              0xad7c         0x20 load address 0x002d7c  
- .const             0xad7c         0x20 build/default/production/codigo.o
+ .const             0xad7c         0x20 build/default/debug/codigo.o
                     0xad7c                  _getI2C
                     0xad82                  _setI2C
 
 .text             0x002d9c        0xff4
- .text            0x002d9c        0xff4 build/default/production/codigo.o
+ .text            0x002d9c        0xff4 build/default/debug/codigo.o
                   0x002d9c                  _EB_in_count
                   0x002da4                  _EB_out_count
                   0x002dac                  _init_timer4

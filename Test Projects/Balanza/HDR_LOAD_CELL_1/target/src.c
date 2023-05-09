@@ -5,4 +5,5 @@
 #include "src\balanza.c"
 #include "src\I2C_master.c"
 #include "src\emicBus.c"
+#include "src\system.c"
 #include "src\init.c"

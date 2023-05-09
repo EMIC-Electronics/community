@@ -16,7 +16,11 @@ void setZero(void)
   if (Balanza_flags & 0x01)                 //If the measure is stable.
   {
     Cero = ValorActual;
-    Varianza_cero = getVarianza();
+    Desviacion_cero = sqrt(getVarianza());
+  }
+  else
+  {
+    void eError();
   }
 }
 void setReference(float Peso_de_referencia)
@@ -25,6 +29,10 @@ void setReference(float Peso_de_referencia)
   {
     if (ValorActual - Cero != 0)
       K = Peso_de_referencia/(float)(ValorActual - Cero);   //Determines the slope of the linear function that represent the load cell.
+  }
+  else
+  {
+    void eError();
   }
 }
 void setCapacity(float Capacity)
@@ -45,7 +53,7 @@ void nuevaLectura(int32_t nuevo_valor)
   ValorActual = Acumulador/32;              //Obtains the media of the values contains in the FIFO.
   Peso = (float)(ValorActual - Cero) * K;   //Refresh the current weight value.
   Varianza = getVarianza();                 //Refresh the variance info.
-  if( Varianza >= 100)                      //If the dispertion of the value is grater. (Empiric)
+  if( Varianza >= 2)                        //If the dispertion of the value is grater. (Empiric)
   {
     Balanza_flags &= 0b11111110;                    //Isn´t stable.
   }
@@ -57,28 +65,29 @@ void nuevaLectura(int32_t nuevo_valor)
 }
 float getVarianza(void)
 {
-  int64_t accum = 0;
+  uint64_t accum = 0;
   for (int i = 0; i < 32; i++)
-    accum += (Historial[i] - ValorActual)^2;
-  return (float)accum/(float)31;
+    accum += pow((Historial[i] - ValorActual),2);
+  return ((float)accum/(float)31);
 }
 void calcularCorrimiento(void)
 {
 }
 void poll_Balanza(void)
 {
-  if (Balanza_flags & 1)            //If the measure is stable.
+  if ((Balanza_flags & 1))            //If the measure is stable.
   {
-    if ((((ValorActual - Cero) & 0x00FFFFFF) <= 100) && !(Balanza_flags & 0x08))   //If the measure can considerate near to zero.
+    if (!(Balanza_flags & 0x04))
     {
-      Peso = 0;
-      Balanza_flags |= 10;          //Zero and zero trigger.
-      Balanza_flags &= 0xCB;        //Clears the triggers.
-    }
-    else if (!(Balanza_flags & 0x04))                   //If another value different to zero.
-    {
-      Balanza_flags |= 0x04;        //Stable event trigger.
-      Balanza_flags &= 0xC7;        //Clears the triggers.
+      if ((((ValorActual - Cero) & 0x00FFFFFF) <= (int32_t)(5*Desviacion_cero)))   //If the measure can considerate near to zero.
+      {
+        Peso = 0;
+      }
+      else
+      {
+      }
+      Balanza_flags |= 0x0C;        //Stable event trigger.
+      Balanza_flags &= 0xCF;        //Clears the triggers.
     }
   }
   else

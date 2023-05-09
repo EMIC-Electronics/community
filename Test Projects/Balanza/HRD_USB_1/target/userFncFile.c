@@ -5,7 +5,7 @@ void onReset()
 
 void eI2C(char* TAG,const streamIn_t* const Message)
 {
-	led1(2);
 	pUSB("$s\t$r",TAG,Message);
+	led1(2);
 }
 

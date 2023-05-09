@@ -1,19 +1,29 @@
 #define event_OnReset_active
 #define use_blkLed1_function
 #define use_pullLeds_function
-#define use_setTime1_function
+#define useDoIfV1
+#define use_load_function
+#define use_setTime3_function
 #define use_capacity_function
-#define use_mVxV_function
+#define use_setTime1_function
 #define event_etOut1_active
+#define use_blkLed1_function
+#define use_pullLeds_function
 #define use_zero_function
-#define use_LED1_function
 #define use_setTime2_function
 #define event_etOut2_active
+#define use_blkLed1_function
+#define use_pullLeds_function
 #define use_reference_function
-#define use_setTime3_function
+#define use_save_function
 #define event_etOut3_active
+#define event_eError_active
+#define use_blkLed1_function
+#define use_pullLeds_function
 #define nombreModulo "HRD_Balanza"
 #include "inc\HRD_Celda_V1.h"
+#define presist_ __attribute__((section(".presist")))
+char presist_ persistInit;
 #include "inc/gpio.h"
 #define _PIC_pinMap_EMIC_
 #include "inc/pinMap.h"
@@ -28,6 +38,8 @@
 #include "inc/stream.h"
 #include "inc\I2C_master.h"
 #include "inc\emicBus.h"
+#define __SYSTEM_EMIC__
+#include "inc\system.h"
 #include <stdint.h>
 #include <string.h>
 #include <stdlib.h>
@@ -37,6 +49,7 @@
 #include "userFncFile.c"  //No RFI scan
 #define _INIT_EMIC
 #include "inc\init.h"
+char presist_ persistEnd;
 int main(void)
 {
 	init_timer4();
