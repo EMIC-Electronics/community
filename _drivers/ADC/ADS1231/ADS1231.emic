@@ -1,0 +1,7 @@
+#setFile codigo.c
+	##include(inc\ADS1231.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\ADS1231.c)
+#unSetFile

@@ -15,23 +15,23 @@ void setTime1(uint32_t, char);
 
 
 #ifdef use_setTime2_function
-void setTime2(void);
+void setTime2(uint32_t, char);
 #endif
 
 #ifdef use_setTime3_function
-void setTime3(void);
+void setTime3(uint32_t, char);
 #endif
 
 #ifdef use_setTime4_function
-void setTime4(void);
+void setTime4(uint32_t, char);
 #endif
 
 #ifdef use_setTime5_function
-void setTime5(void);
+void setTime5(uint32_t, char);
 #endif
 
 #ifdef use_setTime6_function
-void setTime6(void);
+void setTime6(uint32_t, char);
 #endif
 
 void TicPoll(void);

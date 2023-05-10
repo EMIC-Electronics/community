@@ -1,0 +1,1 @@
+{ "_id" : null, "nombre" : "HRD_USB_1", "modulo" : "HRD_USB", "pcbName" : "null", "location" : "_USER/DEV/_modulos/Wired_Communication/HRD_USB", "autorName" : "tomas.pentacolo@emic.io", "i2cId" : 2, "repo" : "https://github.com/EMIC-Electronics/community.git", "idConnection" : "" }
