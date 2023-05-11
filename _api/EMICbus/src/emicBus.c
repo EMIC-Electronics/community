@@ -9,6 +9,7 @@
   @version  20200810 v0.0.1   IS Initial release.
  ******************************************************************************/
 
+#newRFIcode(_util/Stream/stream.emic)
 
 void I2cRfi_init()
 {
@@ -127,19 +128,13 @@ void push_I2C_OUT(char dato)
 
 void pI2C(char* format,...)
 {
-	
-	
 	va_list arg;
     va_start(arg, format);
 	int i;
 	char strFormat[10];
 	char auxStr[20];
 	int okFormat = 0;
-
-	if (*format >= ' ')
-	{
 		push_I2C_OUT(tipoTrama_mensaje);
-	}
 
  	for (; *format > 0; format++)
 	{
@@ -222,8 +217,6 @@ void pI2C(char* format,...)
 	}
 	push_I2C_OUT(0);
 	va_end(arg);
-	
-
 }
 
 
