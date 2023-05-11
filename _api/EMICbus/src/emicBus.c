@@ -185,6 +185,52 @@ void pI2C(char* format,...)
 		}
 		else if ( *format == '$' )
 		{
+			char* str;
+			okFormat = 0;
+			char* auxPtr;
+			for (i = 0; !okFormat; format++, i++)
+			{
+				strFormat[i] = *format;
+			
+				switch (*format)
+				{
+					case 'f':
+						i++;
+						strFormat[i] = 0;
+						auxPtr = va_arg(arg, float*);
+						sprintf(auxStr,strFormat,*(float*)auxPtr);
+						okFormat = 1;
+						break;
+					case 'd':
+						i++;
+						strFormat[i] = 0;
+						auxPtr = va_arg(arg,int64_t*);
+						sprintf(auxStr,strFormat,*(int64_t*)auxPtr);
+						okFormat = 1;
+						break;
+					case 'u':
+						i++;
+						strFormat[i] = 0;
+						auxPtr = va_arg(arg,uint64_t*);
+						sprintf(auxStr,strFormat,*(uint64_t*)auxPtr);
+						okFormat = 1;
+						break;
+
+				}
+				
+			}
+			str = auxStr;
+			while (*str)
+			{
+				push_I2C_OUT( *str++);
+			}
+			break;
+			
+			
+		}
+		else if ( *format == '$' )
+		{
+			char* str; 
 			char* str; 
 			streamIn_t* dataIn;
 			format++;
@@ -208,6 +254,7 @@ void pI2C(char* format,...)
 					push_I2C_OUT(*format);
 					break;
 
+
 			}
 		}
 		else
@@ -215,6 +262,7 @@ void pI2C(char* format,...)
 			push_I2C_OUT(*format);
 		}
 	}
+	push_I2C_OUT(0);
 	push_I2C_OUT(0);
 	va_end(arg);
 }
