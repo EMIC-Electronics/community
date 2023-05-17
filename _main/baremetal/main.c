@@ -1,6 +1,8 @@
 #include "userFncFile.h"  //No RFI scan
+#include "userVars.h"  //No RFI scan
 #include "src.c"  //No RFI scan
 #include "userFncFile.c"  //No RFI scan
+
 #newRFIcode(_hal/.{UC_FAMILY}./system/init.emic)
 
 char presist_ persistEnd;

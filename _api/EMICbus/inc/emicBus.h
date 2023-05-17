@@ -55,7 +55,7 @@ enum
 #ifdef _I2C_ID
 char I2C_ID = _I2C_ID;
 #else
-char I2C_ID = 0x64;
+#error _I2C_ID no definido
 #endif
 
 uint8_t i2c_packet_id = 0;
