@@ -1,4 +1,4 @@
-#ifdef __XC16__
+#ifdef __XC16__ //No RFI Scan
 
 float ato_float(char* number)
 {
@@ -20,32 +20,32 @@ void uint16_t_to_ascii(char* string, uint16_t number)
     sprintf(string, "%u", number);                  //16bits are standart data type           
 }
 
-void uint32_t_to_ascii(char* string, uint8_t number)
+void uint32_t_to_ascii(char* string, uint32_t number)
 {
     sprintf(string, "%lu", number);                 //32bits are long data type   
 }
 
-void uint64_t_to_ascii(char* string, uint8_t number)
+void uint64_t_to_ascii(char* string, uint64_t number)
 {
     sprintf(string, "%llu", number);                 //64bits are long long data type   
 }
 
-void int8_t_to_ascii(char* string, uint8_t number)
+void int8_t_to_ascii(char* string, int8_t number)
 {
     sprintf(string, "%hd", number);                 //8bits are short data type   
 }
 
-void int16_t_to_ascii(char* string, uint16_t number)
+void int16_t_to_ascii(char* string, int16_t number)
 {
     sprintf(string, "%d", number);                  //16bits are standart data type           
 }
 
-void int32_t_to_ascii(char* string, uint8_t number)
+void int32_t_to_ascii(char* string, int32_t number)
 {
     sprintf(string, "%ld", number);                 //32bits are long data type   
 }
 
-void int64_t_to_ascii(char* string, uint8_t number)
+void int64_t_to_ascii(char* string, int64_t number)
 {
     sprintf(string, "%lld", number);                 //64bits are long long data type   
 }
@@ -97,29 +97,32 @@ uint64_t ato_uint64(char* string)
         }   
         if (i == string)
         {
-            (*i == '-')?return (uint64_t) -conversion: return (uint64_t) conversion;
+            if(*i == '-')
+                return (uint64_t) - conversion;
+            else
+                return (uint64_t) conversion;
         }
     }   
     return 0;
 
 }
 
-int8_t ato_uint8(char* string)
+int8_t ato_int8(char* string)
 {
     return (int8_t)atoi(string);
 }
 
-int16_t ato_uint16(char* string)
+int16_t ato_int16(char* string)
 {
     return atoi(string);
 }
 
-int32_t ato_uint32(char* string)
+int32_t ato_int32(char* string)
 {
     return atol(string);
 }
 
-int64_t ato_uint64(char* string)
+int64_t ato_int64(char* string)
 {
     int64_t conversion = 0;
     //Clear empties spaces
@@ -152,11 +155,14 @@ int64_t ato_uint64(char* string)
 
         if (i == string)
         {
-            (*i == '-')?return (int64_t) -conversion: return (int64_t) conversion;
+            if(*i == '-')
+                return (int64_t) - conversion;
+            else
+                return (int64_t) conversion;
         }
     }
 
     return 0;
 }
 
-#endif
+#endif  //No RFI Scan
