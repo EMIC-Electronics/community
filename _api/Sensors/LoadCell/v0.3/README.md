@@ -53,7 +53,7 @@ Nombre | Tipo | Descripción
  
 - `void nuevaLectura(int32 nuevo_valor)`: Se encarga de obtener el nuevo valor medido por el sensor y lo refleja en el Peso, para esto elimina el ultimo valor del Historial e ingresa el nuevo valor, pero en vez de volver a sumar todos los datos, resta del acumulador el valor eliminado y suma el valor nuevo.
 - `float getVarianza(void)`: Este método se encarga de calcular y devolver la varianza de todos los valores contenidos dentro del Historial.
-- `void calcularCorrimiento(void) -` *`nonImplemented`*: Este método calcula el corrimiento que se produce en las mediciones producto de la deformación de la balanza.
+- `void calcularCorrimiento(void) - `*`nonImplemented`*: Este método calcula el corrimiento que se produce en las mediciones producto de la deformación de la balanza.
 - `void actualizarPesos(void)`: Se ejecuta desde el metodo nuevaLectura, una vez calculados los pesos este metodo los convierte a strings respetando el formato establecido.
 - `void balanza_poll(void)`: Este método se encarga del control básico del módulo, así como la invocación a los diferentes eventos.
 - `void balanza_init(void)`: Inicializa los valores necesarios para el correcto funcionamiento del módulo.
