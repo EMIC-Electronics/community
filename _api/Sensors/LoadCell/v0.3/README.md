@@ -28,7 +28,7 @@ Nombre | Tipo | Descripción
 "Desviacion_cero" (*unused*) | `float` | Es la varianza de los datos con los que se calculó la ordenada al origen, esto sirve para eliminar el efecto del ruido en las mediciones.
 "Tara" | `int32_t` | Medicion promedio con la cual se establece el peso de tara.
 "Desviacion_tara" | `float` | Es la varianza de los datos con los que se calculó la tara, esto sirve para eliminar el efecto del ruido en las mediciones y determinar cuando el sistema esta midiendo cero.
-"Corrimiento" | `int32_t` | Contiene el offset actual que se produce por la deformación de la balanza.
+"Corrimiento" (*unused*) | `int32_t` | Contiene el offset actual que se produce por la deformación de la balanza.
 "Historial" | `int32_t[32]` | Cola circular utilizada para filtrar el ruido en las mediciones. 
 "ValorActual" | `int32_t` | Es la media de todos los valores contenidos dentro del Historial.
 "Varianza" | `float` | Es la varianza de los datos dentro del Historial, se utiliza para detectar variaciones abruptas.
