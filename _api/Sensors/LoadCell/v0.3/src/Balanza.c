@@ -24,6 +24,9 @@ void init_Balanza(void)
   Varianza = 0;
 
   Acumulador = 0;
+  digitos = 4;
+  decimales = 2;
+  relleno = '0';
 }
 
 void setZero(void)

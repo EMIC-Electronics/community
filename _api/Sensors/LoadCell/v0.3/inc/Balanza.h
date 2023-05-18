@@ -35,9 +35,9 @@ int64_t Acumulador;                 //Is the sumatory of all values contains in 
 
 int8_t Indice = 0;                  //Position of the new value of the FIFO.
 
-uint8_t presist_ digitos = 4;
-uint8_t presist_ decimales = 2;
-char presist_ relleno = '0';
+uint8_t presist_ digitos;
+uint8_t presist_ decimales;
+char presist_ relleno;
 
 
 int8_t Balanza_flags;  
