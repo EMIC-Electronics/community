@@ -231,7 +231,6 @@ void pI2C(char* format,...)
 		else if ( *format == '$' )
 		{
 			char* str; 
-			char* str; 
 			streamIn_t* dataIn;
 			format++;
 			switch (*format)
