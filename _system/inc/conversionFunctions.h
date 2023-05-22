@@ -1,4 +1,5 @@
-
+#ifndef __CONVERSIONFUNCTIONS_H__
+#define __CONVERSIONFUNCTIONS_H__
 inline float ato_float(char* number);                           //string to float
 inline double ato_double(char* number);                         //string to double
 
@@ -19,3 +20,5 @@ inline int8_t ato_int8(char* string);                           //string to int8
 inline int16_t ato_int16(char* string);                         //string to int16_t
 inline int32_t ato_int32(char* string);                         //string to int32_t
 inline int64_t ato_int64(char* string);                         //string to int64_t
+
+#endif //__CONVERSIONFUNCTIONS_H__

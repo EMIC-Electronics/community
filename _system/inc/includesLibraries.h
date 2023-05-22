@@ -24,3 +24,7 @@
 #ifdef useclearBlankSpacesV1
 #newRFIcode(_util\Strings\clearBlankSpaces.emic)
 #endif
+
+#ifdef useindexV1
+#newRFIcode(_util\Strings\index.emic)
+#endif

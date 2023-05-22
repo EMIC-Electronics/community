@@ -1,3 +1,4 @@
+#define __PIC16__	//XC16
 //--------------------------------[XC16] 
 // CONFIG2
 #pragma config POSCMOD = NONE 		// Primary Oscillator Select (Primary oscillator disabled)

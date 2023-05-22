@@ -1,1 +1,0 @@
-blkLed1 3?if :load 0[ do: setTime3 2 ][ else: setCapacity 1setTime1 2 ]?blkLed1 3setZero 0setTime2 2blkLed1 3setReference 1save 0setTime3 2pI2C 2blkLed1 3pI2C 2
