@@ -1,0 +1,6 @@
+#ifndef _PIC_pinMap_EMIC_
+#define _PIC_pinMap_EMIC_
+    #setFile codigo.c
+        ##include(inc/pinMap.h)
+    #unSetFile
+#endif

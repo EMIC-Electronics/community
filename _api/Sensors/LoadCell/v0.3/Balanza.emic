@@ -1,0 +1,220 @@
+//RFI TAG:driverName=Balanza
+
+/*****************************************************************************
+
+  @file     Balanza.emic
+
+  @brief    Balanza interface
+
+  @author   Tomas Pentacolo
+
+  @date     17/05/2023
+
+  @version  v0.0.3 
+
+ ******************************************************************************/
+
+
+
+/*RFI JSon
+{
+	'Nombre': 'setZero',
+	'NombreToolBox': 'setZero',
+	'Tipo' : 'SistemFnc',
+	'title': 'Sets current value as zero.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+
+	'InnerHTML':"
+		<div class='lineaDeCodigo' definir='use_zero_function' originalclass='funcion' type='void' originalid='setZero' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.Zero()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'setReference',
+	'NombreToolBox': 'setReference',
+	'Tipo' : 'SistemFnc',
+	'title': 'Sets current value as equal to the reference.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Peso_conocido',
+					'tooltip': 'Reference weight',
+					'required': 'true"',
+					'type': 'float'},],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_reference_function' originalclass='funcion' originalid='setReference' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.Reference(<div type='float' title='Peso_conocido' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'setTara',
+	'NombreToolBox': 'setTara',
+	'Tipo' : 'SistemFnc',
+	'title': 'Sets current value as tara.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_tara_function' originalclass='funcion' originalid='setTara' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.Tara()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'setCapacity',
+	'NombreToolBox': 'setCapacity',
+	'Tipo' : 'SistemFnc',
+	'title': 'Sets the maximum value that can measures the load cell.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Capacidad_maxima',
+					'tooltip': 'Capacity',
+					'required': 'true"',
+					'type': 'float'},],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_capacity_function' originalclass='funcion' originalid='setCapacity' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.Capacity(<div type='float' title='Capacidad_maxima' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'setmVxV',
+	'NombreToolBox': 'setmVxV',
+	'Tipo' : 'SistemFnc',
+	'title': 'Sets the mVxV value for which the load cell was calibrated.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'mVxV',
+					'tooltip': 'mVxV, given in the load cell specs.',
+					'required': 'true"',
+					'type': 'float'},],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_mVxV_function' originalclass='funcion' originalid='setmVxV' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.mVxV(<div type='float' title='mVxV' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'setFormat',
+	'NombreToolBox': 'setFormat',
+	'Tipo' : 'SistemFnc',
+	'title': 'Sets the format in which the weights will be represented.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Digits',
+					'tooltip': 'Quantity of integer digits.',
+					'required': 'true"',
+					'type': 'uint8_t'},
+					{'name': 'Decimals',
+					'tooltip': 'Quantity of decimals digits.',
+					'required': 'true"',
+					'type': 'uint8_t'},
+					{'name': 'Fill_with',
+					'tooltip': 'Character used to fill the blank spaces.',
+					'required': 'true"',
+					'type': 'char'}],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_Format_function' originalclass='funcion' originalid='setFormat' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.Format(<div type='uint8_t' title='Digits' class='parametroDiv'></div>,
+							<div type='uint8_t' title='Decimals' class='parametroDiv'></div>,
+							<div type='char' title='Fill_with' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eZero',
+	'NombreToolBox': 'Zero',
+	'Tipo' : 'SistemEvt',
+	'title': 'When the weight value return to zero.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.Zero",
+		"definir":"event_eZero_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eStable',
+	'NombreToolBox': 'Stable',
+	'Tipo' : 'SistemEvt',
+	'title': 'When the weight value is stable.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.Stable",
+		"definir":"event_eStable_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eUnstable',
+	'NombreToolBox': 'Unstable',
+	'Tipo' : 'SistemEvt',
+	'title': 'When the weight value is unstable.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.Unstable",
+		"definir":"event_eUnstable_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eOverLoad',
+	'NombreToolBox': 'Overload',
+	'Tipo' : 'SistemEvt',
+	'title': 'When the weight value is greater than load cell capacity.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.Overload",
+		"definir":"event_eOverload_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eError',
+	'NombreToolBox': 'Error',
+	'Tipo' : 'SistemEvt',
+	'title': 'When an error occurs while the load cell calibration.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.Balanza.Error",
+		"definir":"event_eError_active",
+		"parametros": []
+		}'
+}
+*/
+
+#newRFIcode(_drivers\ADC\ADS1231\ADS1231.emic)
+
+#setFile codigo.c
+	##include(inc\balanza.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\balanza.c)
+#unSetFile

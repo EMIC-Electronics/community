@@ -1,0 +1,7 @@
+#setFile codigo.c
+	##include(inc\_{pcb}_.h)
+#unSetFile
+
+//Define la primera posicion de la memoria persistente
+#define presist_ __attribute__((section(".presist")))
+char presist_ persistInit;

@@ -1,0 +1,8 @@
+#ifndef _STREAM_EMIC
+#define _STREAM_EMIC
+
+#setFile codigo.c
+    ##include(inc/stream.h)
+#unSetFile
+
+#endif
