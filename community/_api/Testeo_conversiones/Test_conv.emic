@@ -1,0 +1,10 @@
+//RFI TAG:driverName=Prueba_conversiones
+
+#ifndef __TEST_CONV_EMIC__
+#define __TEST_CONV_EMIC__
+
+#setFile codigo.c
+	##include(inc\Test_conv.h)
+#unSetFile
+
+#endif //__TEST_CONV_EMIC__

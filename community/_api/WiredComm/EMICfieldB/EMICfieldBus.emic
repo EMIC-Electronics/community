@@ -1,0 +1,55 @@
+//RFI TAG:alias=useEMICfield_V1
+//RFI TAG:driverDefineList=EMIC Field Bus
+//RFI TAG:driverName=EMIC Field Bus
+
+/*RFI JSon
+{
+	'Nombre': 'emicFBp',
+	'NombreToolBox': 'Send',
+	'Tipo' : 'SistemFnc',
+	'title': 'EMIC field BUS send data',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Tag',
+					'tooltip': 'Tag to identify the message',
+					'required': 'true"',
+					'type': 'str'},
+					{'name': 'Msg',
+					'tooltip': 'String to send',
+					'required': 'true',
+					'type': 'str'}
+					],
+
+	'InnerHTML':"
+		<div type='printf' class='lineaDeCodigo' originalclass='funcion' originalid='emicFBp' draggable='true' ondragstart='drag_linea(event)'>
+			EmicFieldBus.send(<div type='concat' title='Tag to identify the message' class='parametroDiv'></div><div class='hideParam' type='text' value='h'></div>,<div type='concat' title='String to send' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eRS485',
+	'NombreToolBox': 'reception',
+	'Tipo' : 'SistemEvt',
+	'title': 'When it receives a string from RS485 port',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.RS485.Reception",
+		"definir":"event_eRS485_active",
+		"parametros": [{"type":"char*","value":"TAG","title":"Tag to identify the message"},{"type":"const-streamIn_t*-const","value":"Message","title":"message payload"}]
+		}'
+}
+*/
+#newRFIcode(_hal\.{UC_FAMILY}.\_hard\Uart\uart.emic,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=0x0A)
+
+#setFile codigo.c
+	##include(inc\EmicFieldBus.h,puerto=_{puerto}_,nombre=,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=0x0A)
+#unSetFile
+
+#setFile src.c
+	##include(src\EmicFieldBus.c,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=0x0A)
+#unSetFile
+
+/*==================[end of file]============================================*/
+#endif

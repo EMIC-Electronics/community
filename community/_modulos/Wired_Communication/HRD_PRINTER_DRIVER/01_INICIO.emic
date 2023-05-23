@@ -1,0 +1,21 @@
+#define nombreModulo "HRD_PRINTER_DRIVER"
+
+//--------------Hardware Config---------------------
+#newRFIcode(_placas\pcb.emic,pcb=HRD_PRINTER_DRIVER V1.1)
+
+//------------- Driver Config -----------------------
+
+#newRFIcode(_API\LEDs\led.emic)
+#newRFIcode(_API\Tic\tic_V1.emic)
+#newRFIcode(_API\I2Crfi\I2CxBufferC.V3.emic)
+
+#newRFIcode(_API\PrinterDriver\printerdriver.emic,puerto=1,nombre=A,baud=9600,bufferIn=32,bufferOut=3000,frameLf='\n')
+
+//#useDriver useSystem(nombre=)
+//#useDriver usePrinterDriver(puerto=1,nombre=A,baud=9600,bufferIn=32,bufferOut=3000,frameLf='\n')
+//---------------------------------------------------
+
+//---------------------------------------------------
+#include "_os\interprete_V1\includesLibraries.h"
+#include "_os\interprete_V1\mainSuper_XC.emic"
+#include "_os\interprete_V1\main.c"

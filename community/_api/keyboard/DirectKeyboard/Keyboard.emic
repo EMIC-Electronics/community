@@ -1,0 +1,27 @@
+//RFI TAG:driverName=Keyboard
+
+/*RFI JSon
+{
+  'Nombre': 'eKeyPress',
+  'NombreToolBox': 'keyPress',
+  'Tipo' : 'SistemEvt',
+  'title': 'when a key is press',
+  'returnInfo': {'type':'','tooltip':'Nothing'},
+  'parameters': [],
+  'instancia':'{
+    "NombreWorkBox": "Event.Keyboard.keyPress",
+    "definir":"event_eKeyPress_active",
+    "parametros": [{"value":"key","title":"code of the key that was pressed","type":"uint8_t"}]
+    }'
+}
+*/
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/GPIO/gpio.emic)
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/PinMap/pinMap.emic)
+
+#setFile codigo.c
+	##include(inc/key.h)
+#unSetFile
+
+#setFile src.c
+	##include(src/key.c)
+#unSetFile

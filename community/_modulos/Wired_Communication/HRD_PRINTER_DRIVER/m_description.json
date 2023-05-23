@@ -1,0 +1,70 @@
+{
+"type":"gcc",
+"toolTip":"Communication with Serial port to Printer",
+"description":"Communication module with Printer. It is used to connect the created device to a Host PC and it has a direct connection to the EMIC bus.",
+"Sizes":"TBD",
+"ImageFile":"blz1.gif",
+"IconFile":"TBD",
+"Mounting":"Holder Riel DIN",
+"Table":[ 
+	{
+		"Name": "VccMax",
+		"Value": "5.5V"
+	},
+	{
+		"Name":"VccMin",
+		"Value":"4.8V"
+	},
+	{
+		"Name":"IccMax",
+		"Value":"50mA"
+	}
+	],
+
+"HardwareDescription":[ 
+	{
+		"PinName": "J1,J2",
+		"PinType": "I2C",
+		"PinDescription": "EMIC connector",
+	},
+	{
+		"PinName": "LED1",
+		"PinType": "out1",
+		"PinDescription": "General purpose led",
+	},
+	{
+		"PinName": "LED2",
+		"PinType": "out2",
+		"PinDescription": "General purpose led",
+	},
+	{
+		"PinName": "LED3",
+		"PinType": "out3",
+		"PinDescription": "General purpose led",
+	},
+	{
+		"PinName": "J9",
+		"PinType": "DB9",
+		"PinDescription": "Connector DB9 male to Printer Driver",
+	},
+	
+],
+"Simulation":"DRN1285.dll",
+"features":[
+				"Emic bus compatible.",
+				"Size:7x2cm",
+				"Mounting type Holder Riel DIN.",
+				"Temperature range -25ºC a 80ºC.",
+				],
+"applications":["Data logger.",
+				"IoT.",
+				"Debuggin.",
+				"Power Supply.",
+				],
+"keyWord":[
+			"gas",
+			"CO",
+			"NOx",
+			"industrial"
+			]
+}

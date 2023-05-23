@@ -1,0 +1,15 @@
+#define nombreModulo "HRD_RS485"
+
+//--------------Hardware Config---------------------
+#include "_placas\HRD_RS485 V1.0.h"
+
+//------------- Driver Config -----------------------
+#useDriver useSystem(nombre=)
+#useDriver useLedsV2(nombre=)
+#useDriver useRS485_V2(puerto=1,nombre=,baud=9600,bufferIn=512,bufferOut=512)
+#useDriver useTIC(nombre=)
+#useDriver useEMICbusV3(nombre=)
+
+//---------------------------------------------------
+#include "_sistemaRFI\mainSuper_XC.h"
+#include "_sistemaRFI\mainSuper_XC.c"
