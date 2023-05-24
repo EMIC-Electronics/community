@@ -135,7 +135,10 @@ void pI2C(char* format,...)
 	char strFormat[10];
 	char auxStr[20];
 	int okFormat = 0;
+	if (*format > ' ')
+	{
 		push_I2C_OUT(tipoTrama_mensaje);
+	}
 
  	for (; *format > 0; format++)
 	{
