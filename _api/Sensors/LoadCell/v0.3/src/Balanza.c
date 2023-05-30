@@ -108,23 +108,26 @@ void actualizarPesos(void)
   i = Peso_neto;
   do
   {
-    if (*i == 0)
+    if (*i == '0')
       *i = relleno;
-  } while (*i <= 0x30);
+    i++;
+  } while (*i == 0x30);
 
   i = Peso_bruto;
   do
   {
-    if (*i == 0)
+    if (*i == '0')
       *i = relleno;
-  } while (*i <= 0x30);
+    i++;
+  } while (*i == 0x30);
 
 i = Peso_tara;
   do
   {
-    if (*i == 0)
+    if (*i == '0')
       *i = relleno;
-  } while (*i <= 0x30);
+    i++;
+  } while (*i == 0x30);
 }
 
 void nuevaLectura(int32_t nuevo_valor)
@@ -141,6 +144,8 @@ void nuevaLectura(int32_t nuevo_valor)
   
   Peso = (float)((ValorActual - Cero) * K) - Peso_tara_f;   //Refresh the current weight value.
   Peso_bruto_f = (float)(ValorActual - Cero) * K;
+
+  actualizarPesos();                        //Converts the weights values to string.
 
   Varianza = getVarianza();                 //Refresh the variance info.
 
