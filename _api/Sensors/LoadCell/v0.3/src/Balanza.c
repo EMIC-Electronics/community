@@ -151,11 +151,11 @@ void nuevaLectura(int32_t nuevo_valor)
 
   if( Varianza >= 2)                        //If the dispertion of the value is grater. (Empiric)
   {
-    Balanza_flags &= 0b11111110;                    //Isn´t stable.
+    Balanza_flags &= 0b11111110;            //Isn't stable.
   }
   else
   {
-    Balanza_flags |= 0b00000001;                    //Is stable.
+    Balanza_flags |= 0b00000001;            //Is stable.
   }
 
   mVxV = ( ValorActual * 62500 ) / ( 128 * 65536 / 16 );
