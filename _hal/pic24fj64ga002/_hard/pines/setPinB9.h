@@ -6,4 +6,3 @@
 #define RPIN__{name}_		9
 #define CN__{name}_		21
 #define HAL_PinMap__{name}_(cfg_type)
-#define InSelectReg__{name}_

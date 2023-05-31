@@ -4,7 +4,7 @@
 #define ODC__{name}_	_ODA0
 
 #define PIN__{name}_ 	_RA0
-#define InSelectReg__{name}_ _CH0SA = 0
+
 
 #define CN__{name}_		2
 #define AD1PCFG__{name}_		_PCFG0

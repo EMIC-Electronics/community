@@ -39,47 +39,15 @@
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB4.h,name=RS485_TX)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB5.h,name=RS485_RX)
 
-#ifdef Use_TXRX
-#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB6.h,name=.{RX}.)
-#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB7.h,name=.{TX}.)
-#endif
-#ifdef Use_SDASCL
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB8.h,name=.{SCL1}.)
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB9.h,name=.{SDA1}.)
-#endif
-#ifdef Use_INT
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB10.h,name=.{INT0}.)
-#endif
-#ifdef Use_PWM
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB11.h,name=.{PWM}.)
-#endif
-#ifdef Use_Analog
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB12.h,name=.{AN9}.)
-#endif
-#ifdef Use_Reset
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB13.h,name=.{RST}.)
-#endif
-#ifdef Use_CS
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB14.h,name=.{CS}.)
-#endif
-#ifdef Use_SCK
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB15.h,name=.{SCK}.)
-#endif
-#ifdef Use_MISO
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB0.h,name=.{MISO}.)
-#endif
-#ifdef Use_MOSI
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB1.h,name=.{MOSI}.)
-#endif
-#ifdef Use_I2C
-	#define setI2cPullUp CNPU1bits.CN7PUE = 1; CNPU1bits.CN6PUE = 1
-#endif
+//#define S_I2C2 
 
-	//#define S_I2C2 
+//#include "myId.h"
 
-	//#include "myId.h"
+//#define setPullUpRX1 CNPU1bits.CN13PUE = 1
+//#define setOpenCollectorUpRX 
 
-	//#define setPullUpRX1 CNPU1bits.CN13PUE = 1
-	//#define setOpenCollectorUpRX 
+
+
+//#define setI2cPullUp CNPU1bits.CN7PUE = 1; CNPU1bits.CN6PUE = 1
 
 #define nombrePCB "RFIM0042"

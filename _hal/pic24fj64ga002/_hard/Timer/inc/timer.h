@@ -38,14 +38,12 @@
 /*==================[external data declaration]==============================*/
 
 uint32_t timeStamp = 0;
-uint32_t _systemUs = 0;
-uint32_t timer_lastTime = 0;
+
 
 void init_timer4();
 #setFile temp/EMICinits.c
 	init_timer4();
 #unSetFile
-uint32_t getSystemUs(void);
 
 void __attribute__((__interrupt__)) _T4Interrupt( void );	
 

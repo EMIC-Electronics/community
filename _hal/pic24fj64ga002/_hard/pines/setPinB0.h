@@ -2,7 +2,7 @@
 #define PIN__{name}_ 	_RB0
 #define LAT__{name}_ 	_LATB0
 #define ODC__{name}_	_ODB0
-#define InSelectReg__{name}_ _CH0SA = 2
+
 
 #define RPOUT__{name}_		RPOR0bits.RP0R
 #define RPIN__{name}_		0

@@ -5,5 +5,5 @@
 #define RPOUT__{name}_		RPOR3bits.RP7R
 #define RPIN__{name}_		7
 #define CN__{name}_		24
-#define InSelectReg__{name}_
+
 #define HAL_PinMap__{name}_(cfg_type)
