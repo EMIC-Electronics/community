@@ -54,8 +54,10 @@ void I2cRfi_Send()
 void I2cRfi_PoolSend(){
 	if (i2crfi_tic == 0)
 	{
-		if (cont_byte_I2C_OUT_FM && (!IsI2cStart(i2crfi_config)) && (i2crfi_tic == 0)  )
+		if (cont_byte_I2C_OUT_FM && (!IsI2cStart(i2crfi_config)))
+		{
 			I2cRfi_Send();
+		}
 	}
 	else
 		i2crfi_tic--;
@@ -434,22 +436,23 @@ void ISR_I2C1_MASTER_CALLBACK(void)
 				d =  pop_I2C_OUT();
 				if (d == 0)
 				{
-					i2crfi_estado = I2C_ESTADO_END;
+					//i2crfi_estado = I2C_ESTADO_END;
+					i2crfi_estado = I2C_ESTADO_IDLE;
+					stopflag = 1;
+					Stop_I2C(i2crfi_config);
 				}
 				Write_I2C(d,i2crfi_config);
 				i2crfi_tout=timeStamp;
 			}				
 		}
-
+		/*
 		else if (i2crfi_estado == I2C_ESTADO_END)
 		{
 			i2crfi_estado = I2C_ESTADO_IDLE;
 			stopflag=1;
 			Stop_I2C(i2crfi_config);
 		}
-		else  if (i2crfi_estado == 3)
-		{
-
-		}	
+		*/
+		
 	}		
 }	

@@ -1,6 +1,6 @@
 void init_led (void)
 {
-	//gpio_init();
+
 #ifdef PIN_Led1
 
 	HAL_PinMap_Led1(PinMap_DIGITAL);
@@ -29,10 +29,10 @@ void led1(led_status_t status)
 	switch (status)
 	{
 		case LED_STATUS_OFF:
-			HAL_GPIO_PinSet(Led1, GPIO_HIGH);
+			HAL_GPIO_PinSet(Led1, GPIO_LOW);
 			break;
 		case LED_STATUS_ON:
-			HAL_GPIO_PinSet(Led1, GPIO_LOW);
+			HAL_GPIO_PinSet(Led1, GPIO_HIGH);
 			break;
 		case LED_STATUS_TOGGLE:
 			if (HAL_GPIO_PinGet(Led1)){
@@ -54,10 +54,10 @@ void led2(led_status_t status)
 	switch (status)
 	{
 	case LED_STATUS_OFF:
-		HAL_GPIO_PinSet(Led2, GPIO_HIGH);
+		HAL_GPIO_PinSet(Led2, GPIO_LOW);
 		break;
 	case LED_STATUS_ON:
-		HAL_GPIO_PinSet(Led2, GPIO_LOW);
+		HAL_GPIO_PinSet(Led2, GPIO_HIGH);
 		break;
 	case LED_STATUS_TOGGLE:
 		if (HAL_GPIO_PinGet(Led2)){
@@ -79,10 +79,10 @@ void led3(led_status_t status)
 	switch (status)
 	{
 	case LED_STATUS_OFF:
-		HAL_GPIO_PinSet(Led3, GPIO_HIGH);
+		HAL_GPIO_PinSet(Led3, GPIO_LOW);
 		break;
 	case LED_STATUS_ON:
-		HAL_GPIO_PinSet(Led3, GPIO_LOW);
+		HAL_GPIO_PinSet(Led3, GPIO_HIGH);
 		break;
 	case LED_STATUS_TOGGLE:
 		if (HAL_GPIO_PinGet(Led3)){
@@ -104,10 +104,10 @@ void led4(led_status_t status)
 	switch (status)
 	{
 	case LED_STATUS_OFF:
-		HAL_GPIO_PinSet(Led4, GPIO_HIGH);
+		HAL_GPIO_PinSet(Led4, GPIO_LOW);
 		break;
 	case LED_STATUS_ON:
-		HAL_GPIO_PinSet(Led4, GPIO_LOW);
+		HAL_GPIO_PinSet(Led4, GPIO_HIGH);
 		break;
 	case LED_STATUS_TOGGLE:
 		if (HAL_GPIO_PinGet(Led4)){

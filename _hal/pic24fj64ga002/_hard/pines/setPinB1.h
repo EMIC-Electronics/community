@@ -7,3 +7,4 @@
 #define CN__{name}_		5
 #define AD1PCFG__{name}_		_PCFG3
 #define HAL_PinMap__{name}_(cfg_type) AD1PCFG__{name}_ = cfg_type
+#define InSelectReg__{name}_ _CH0SA = 3

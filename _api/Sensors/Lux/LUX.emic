@@ -1,0 +1,8 @@
+#ifndef LUX_EMIC_
+#define LUX_EMIC_
+
+#newRFIcode(_drivers/Sensors/_{driver}_/_{driver}_.emic)
+
+#setFile codigo.c
+	##include(inc\LUX.h)
+#unSetFile
