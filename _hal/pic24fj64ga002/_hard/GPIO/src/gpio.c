@@ -66,8 +66,7 @@ uint16_t gpio_anRead(uint8_t buffer)
 			break;
 		}
 	}
-	else
-	{
-		return 0xFFFF;
-	}
+
+return 0xFFFF;
+
 }
