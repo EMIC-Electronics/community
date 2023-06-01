@@ -34,7 +34,7 @@
 }
 */
 
-/*RFI JSon
+/*xRFI JSon
 {
 	'Nombre': 'pBlth',
 	'NombreToolBox': 'send',
@@ -60,20 +60,23 @@
 }
 */
 
-/*RFI JSon
-{
-	'Nombre': 'eBT_p',
-	'NombreToolBox': 'reception_TAG',
-	'Tipo' : 'SistemEvt',
-	'title': 'When it receives a string through the bluetooth',
-	'FunctionReturn': "",
-	'FunctioNParametros': '',
-	'instancia':'{
-		"NombreWorkBox": "Event.Bluetooth.Reception_TAG",
-		"definir":"event_eBT_p_active",
-		"parametros": [{"value":"Tag","title":"Tag to identify the message (vew EMIC_scripting_manual)"}]
-		}'
-}
+/**
+* @fn printf pBlth(concat tag,concat msg);
+* @alias Send
+* @brief Send a message through the Bluetooth connection
+* @return Nothing
+* @param tag Etiqueta que identifica el mensaje
+* @param msg Contenido del mensaje
+*/
+
+/**
+* @fn extern void eBlth(char* tag,const streamIn_t* const msg);
+* @define use_eBlth_event
+* @alias Reception
+* @brief When it receives a string through the Bluetooth
+* @return Nothing
+* @param tag Tag to identify the message
+* @param msg message payload
 */
 
 #newRFIcode(_hal\.{UC_FAMILY}.\_hard\Uart\uart.emic,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
