@@ -19,10 +19,15 @@
 
 //Definiciones e implementaciones
 
+#define RPOUT_U_{puerto}__TX	RPOUT_Bluetooth_TX
+#define RPIN_U_{puerto}__RX		RPIN_Bluetooth_RX
 
-#define bluetooth_out_push		&UARTX_{puerto}__OUT_push()
-#define bluetooth_in_pop		&UARTX_{puerto}__IN_pop()
-#define bluetooth_in_count		&UARTX_{puerto}__IN_count()
+#define RPIN_U_{puerto}__CTS 	RPIN_Bluetooth_CTS
+#define RPOUT_U_{puerto}__RTS	RPOUT_Bluetooth_RTS
+
+#define bluetooth_out_push		&UARTX_{puerto}__OUT_push
+#define bluetooth_in_pop		&UARTX_{puerto}__IN_pop
+#define bluetooth_in_count		&UARTX_{puerto}__IN_count
 
 #define bluetooth_in_fifo		UARTX_{puerto}__IN_fifo
 #define bluetooth_out_fifo		UARTX_{puerto}__OUT_fifo
@@ -44,7 +49,7 @@ void poll_Bluetooth(void);
 
 //Funciones accesibles al usuario.
 
-void pBlth(void);
+void pBlth(char* format,...);
 
 //Eventos accesibles al usuario.
 
