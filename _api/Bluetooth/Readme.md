@@ -11,10 +11,10 @@ The interface has one method used to send data via Bluetooth and one event that 
 # Changelog
 ## Version 1.0.0 - Initial Release:
 ### Description
-For this initial version, we started from what was available in the previous version of the EMIC system (Interpreted repository), then we adapted the code to be compatible with the new version and the use of current resources, while maintaining consistency with other communication systems such as USB or the EMIC Bus.
+For this initial version, we started from what was available in the previous version of the EMIC system (repository `Interpreted`), then we adapted the code to be compatible with the new version and the use of current resources, while maintaining consistency with other communication systems such as USB or the EMIC Bus.
 
 ### Changes
-- The use of the interpreted and its resources (ptr_param, n_parama, etc.) has been removed.
+- The use of the interpreter and its resources (ptr_param, n_parama, etc.) has been removed.
 - The mechanism to send hexadecimal values has been removed. This data format is now compatible with the use of StreamIn and StreamOut structures.
 - The method gBlth, which was used to read messages from Bluetooth, has been deleted.
 - The method pBlth now utilizes Stream structures to process data for sending.
