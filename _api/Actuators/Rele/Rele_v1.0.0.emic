@@ -57,10 +57,10 @@
 #newRFIcode(_hard/GPIO/GPIO_V1.emic)
 
 #setFile codigo.c
-	##include(inc\Rele_v0.0.1.h)
+	##include(inc\Rele_v1.0.0.h)
 #unSetFile
 
 #setFile src.c
-	##include(src\Rele_v0.0.1.c)
+	##include(src\Rele_v1.0.0.c)
 #unSetFile
 
