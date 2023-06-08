@@ -8,6 +8,19 @@ There are two methods: one to set the status of the first relay and the second o
 - `void relay2(uint8_t statusRelay2)`: This method is responsible for set the status of the second relay.
   
 # Changelog
+
+## Version 1.0.1:
+### Description
+Several minor errors from the initial release have been fixed in this version.
+
+### Fixes.
+- There was an error in the module file `01_INICIO.emic` where the path to the PCB file was incorrect.
+- The name of the function `Relay2` was displayed incorrectly in the script. It was shown as `Relay.relay1` instead of `Relay.relay2`.
+
+### Files Modifies
+- Rele_v1.0.1.emic (Previous version: 1.0.0)
+- 01_INICIO.emic (From Relay module)
+
 ## Version 1.0.0 - Initial Release:
 ### Description
 For this initial version, we started from what was available in the previous version of the EMIC system (repository `Interpreted`), then we adapted the code to be compatible with the new version and the use of current resources.

@@ -9,9 +9,6 @@
 
   @version  1.0.0 - Initial release.
  ******************************************************************************/
-
-//RFI TAG:alias=useRelesV1,10
-//RFI TAG:driverDefineList=RELAY
 //RFI TAG:driverName=RELAY
 
 #ifdef PORT_Rele1
@@ -48,13 +45,11 @@
 					'type': 'uint8_t'}],
 	'InnerHTML':"
 		<div class='lineaDeCodigo' definir='use_Rele2_function' originalclass='funcion' type='void' originalid='relay2' draggable='true' ondragstart='drag_linea(event)'>
-			Relay.relay1(<div title='1-on 0-off 2-toggle' class='parametroDiv'></div>)
+			Relay.relay2(<div title='1-on 0-off 2-toggle' class='parametroDiv'></div>)
 		</div>"
 }
 */
 #endif
-
-#newRFIcode(_hard/GPIO/GPIO_V1.emic)
 
 #setFile codigo.c
 	##include(inc\Rele_v1.0.0.h)
