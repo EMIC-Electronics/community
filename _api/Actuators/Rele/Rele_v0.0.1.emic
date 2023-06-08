@@ -1,0 +1,66 @@
+/*****************************************************************************
+  @file     Rele.emic
+
+  @brief    API Library to use RELE
+
+  @author   Pentacolo Tomas
+
+  @date     08/06/2023
+
+  @version  1.0.0 - Initial release.
+ ******************************************************************************/
+
+//RFI TAG:alias=useRelesV1,10
+//RFI TAG:driverDefineList=RELAY
+//RFI TAG:driverName=RELAY
+
+#ifdef PORT_Rele1
+/*RFI JSon
+{
+	'Nombre': 'relay1',
+	'NombreToolBox': 'realy1',
+	'Tipo' : 'SistemFnc',
+	'title': 'Modifies Relay 1 state (1-on 0-off 2-toggle)',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'stateRelay1',
+					'tooltip': '1-on, 0-off, 2-toggle',
+					'required': 'true"',
+					'type': 'uint8_t'}],
+	'InnerHTML':"
+		<div class='lineaDeCodigo' definir='use_Rele1_function' originalclass='funcion' type='void' originalid='relay1' draggable='true' ondragstart='drag_linea(event)'>
+			Relay.relay1(<div title='1-on 0-off 2-toggle' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+#endif
+
+#ifdef PORT_Rele2
+/*RFI JSon
+{
+    'Nombre': 'relay2',
+	'NombreToolBox': 'relay2',
+	'Tipo' : 'SistemFnc',
+	'title': 'Modifies Relay 2 state (1-on 0-off 2-toggle)',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'stateRelay2',
+					'tooltip': '1-on, 0-off, 2-toggle',
+					'required': 'true"',
+					'type': 'uint8_t'}],
+	'InnerHTML':"
+		<div class='lineaDeCodigo' definir='use_Rele2_function' originalclass='funcion' type='void' originalid='relay2' draggable='true' ondragstart='drag_linea(event)'>
+			Relay.relay1(<div title='1-on 0-off 2-toggle' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+#endif
+
+#newRFIcode(_hard/GPIO/GPIO_V1.emic)
+
+#setFile codigo.c
+	##include(inc\Rele_v0.0.1.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\Rele_v0.0.1.c)
+#unSetFile
+

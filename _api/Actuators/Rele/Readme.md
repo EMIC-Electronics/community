@@ -1,0 +1,18 @@
+# Relay 
+## Description
+This API contains all the functions necessary to control the module with two relays.
+There are two methods: one to set the status of the first relay and the second one to set the status of the second relay.
+
+## Details
+- `void relay1(uint8_t statusRelay1)`: This method is responsible for set the status of the first relay.
+- `void relay2(uint8_t statusRelay2)`: This method is responsible for set the status of the second relay.
+  
+# Changelog
+## Version 1.0.0 - Initial Release:
+### Description
+For this initial version, we started from what was available in the previous version of the EMIC system (repository `Interpreted`), then we adapted the code to be compatible with the new version and the use of current resources.
+
+### Changes
+- The use of the interpreter and its resources (ptr_param, n_parama, etc.) has been removed.
+- The pin definitions in the PCB file have been adapted to the new GPIO format.
+- The toggle action is indicated by '2' instead of 'T' in the scripts.
