@@ -1,0 +1,15 @@
+#define nombreModulo "HRD_X2_RELAY"
+#addToMacro(UC_FAMILY,pic24fj64ga002)
+
+//--------------Hardware Config---------------------
+#include "_placas\HRD_uC2Relay_V2.0.h"
+
+//------------- Driver Config -----------------------
+#newRFIcode(_api\Indicators\LEDs\led.emic)
+#newRFIcode(_api\Actuators\Rele\Rele_v1.0.0.emic)
+#newRFIcode(_api\Timer\Timer_API_V1.emic)
+#newRFIcode(_api\EMICbus\emicBus.emic)
+#newRFIcode(_api\System\System.emic)
+
+//---------------------------------------------------
+#include "_main/baremetal/main.emic"
