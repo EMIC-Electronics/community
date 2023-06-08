@@ -108,7 +108,6 @@ void pBlth(char* format,...)
 						sprintf(auxStr,strFormat,*(uint64_t*)auxPtr);
 						okFormat = 1;
 						break;
-
 				}
 				
 			}
