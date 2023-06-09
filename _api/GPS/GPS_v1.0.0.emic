@@ -1,0 +1,65 @@
+//RFI TAG:driverName=GPS
+
+/*****************************************************************************
+
+  @file     GPS.emic
+
+  @brief    API for GPS modules.
+
+  @author   Tomas Pentacolo
+
+  @date     09/06/2023
+
+  @version  v1.0.0 - Initial release.
+  
+*******************************************************************************/
+
+#ifndef __GPS_EMIC__
+#define __GPS_EMIC__
+
+/*RFI JSon
+{
+	'Nombre': 'GPS_config_power_mode',
+	'NombreToolBox': 'GPS_Power_Mode',
+	'Tipo' : 'SistemFnc',
+	'title': 'Use to config the GPS power mode.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Mode',
+                    'tooltip': 'Power mode - 0: Sleep mode - 1: Low power mode - 2: Full power mode',
+                    'required': 'true',
+                    'type': 'uint8_t'}],
+
+	'InnerHTML':"
+		<div class='lineaDeCodigo' definir='use_GPS_PM' originalclass='funcion' type='void' originalid='GPS_config_power_mode' draggable='true' ondragstart='drag_linea(event)'>
+			GPS.PowerMode(<div title='Power mode - 0: Sleep mode - 1: Low power mode - 2: Full power mode' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eGPS',
+	'NombreToolBox': 'First_valid_data_received',
+	'Tipo' : 'SistemEvt',
+	'title': 'When it receives the first valid data from GPS module.',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.GPS.FirstReception",
+		"definir":"event_eGPS_active",
+		"parametros": []
+		}'
+}
+*/
+
+#newRFIcode(_drivers/GPS/AT6558/AT6558_v1.0.0.emic, puerto=_{puerto}_,nombre=_{nombre}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+
+#setFile codigo.c
+    ##include(inc\GPS_v1.0.0.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\GPS_v1.0.0.c)
+#unSetFile
+
+#endif //__GPS_EMIC__
