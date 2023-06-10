@@ -17,6 +17,9 @@ char Peso_tara[16];                 /**< Current tare value. */
 float presist_ Capacidad;           /**< Maximun weight for which the load cell is lineal. */
 float mVxV;                         /**< Ratio between the output voltage and the calibrated weight with a source of 1[V]. */
 float presist_ mVxV_cal;            /**< mVxV value given in the specs of load cell. */
+int32_t filterOut;                  /**< filter out. */
+int32_t filterThreshold;            /**< filter theshold. */
+
 
 //Variables no accesibles para el usuario.
 float Peso;                         //Current net weight value.
@@ -39,6 +42,8 @@ uint8_t presist_ digitos;
 uint8_t presist_ decimales;
 char presist_ relleno;
 
+static int32_t corrimiento = 0;
+static int32_t pesoEstable = 0;
 
 int8_t Balanza_flags;  
 /*

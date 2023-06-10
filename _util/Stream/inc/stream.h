@@ -27,4 +27,7 @@ typedef struct streamOut_S
     void (*put)(unsigned char);
 } streamOut_t;
 
+
+float streamIn_t_ptr_to_float(streamIn_t*);
+
 #endif
