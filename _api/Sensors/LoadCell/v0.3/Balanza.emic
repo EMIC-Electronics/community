@@ -67,6 +67,51 @@
 
 /*RFI JSon
 {
+	'Nombre': 'getPeso',
+	'NombreToolBox': 'getPeso',
+	'Tipo' : 'SistemFnc',
+	'title': 'Gets current value of net weight.',
+	'returnInfo': {'type':'char*','tooltip':'Current net weight.'},
+	'parameters': [],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_tara_function' originalclass='funcion' originalid='getPeso' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.getPeso()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'getPesoBruto',
+	'NombreToolBox': 'getPesoBruto',
+	'Tipo' : 'SistemFnc',
+	'title': 'Gets current value of gross weight.',
+	'returnInfo': {'type':'char*','tooltip':'Current gross weight.'},
+	'parameters': [],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_tara_function' originalclass='funcion' originalid='getPesoBruto' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.getPesoBruto()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'getTara',
+	'NombreToolBox': 'getTara',
+	'Tipo' : 'SistemFnc',
+	'title': 'Gets current value of tare.',
+	'returnInfo': {'type':'char*','tooltip':'Current tare weight.'},
+	'parameters': [],
+	'InnerHTML':"
+		<div type='void' class='lineaDeCodigo' definir='use_tara_function' originalclass='funcion' originalid='getTara' draggable='true' ondragstart='drag_linea(event)'>
+			LoadCell.getTara()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
 	'Nombre': 'setCapacity',
 	'NombreToolBox': 'setCapacity',
 	'Tipo' : 'SistemFnc',

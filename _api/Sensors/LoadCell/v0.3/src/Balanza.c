@@ -35,6 +35,9 @@ void init_Balanza(void)
   K = 1.0;
   Cero = 0;
   Capacidad = 99999999999;
+
+  formato[2] = digitos - 0x30;
+  formato[4] = decimales - 0x30;
 }
 
 void setZero(void)
@@ -43,9 +46,8 @@ void setZero(void)
   {
     
     Cero = pesoEstable + Cero;
-    //Tara = 0;
-    //Desviacion_cero = sqrt(getVarianza());
-    //Desviacion_tara = Desviacion_cero;
+    Tara = Cero;
+    Desviacion_tara = getDevStd();
   }
   else
   {
@@ -59,7 +61,7 @@ void setReference(float Peso_de_referencia)
 {
   if (Balanza_flags & 0x01)                               //If the measure is stable.
   {
-    if (ValorActual - Cero != 0)
+    if (pesoEstable - Cero != 0)
     {
         K = Peso_de_referencia/(float)(pesoEstable - Cero);   //Determines the slope of the linear function that represent the load cell.
     }
@@ -76,8 +78,8 @@ void setTara(void)
 {
   if (Balanza_flags & 0x01)                 //If the measure is stable.
   {
-    Tara = ValorActual;
-    Desviacion_tara = sqrt(getVarianza());
+    Tara = pesoEstable;
+    Desviacion_tara = getDevStd();
     Peso_tara_f = (float) (Tara - Cero) * K;
   }
   else
@@ -103,42 +105,8 @@ void setFormat(uint8_t digits, uint8_t decimals, char fill_with)
   digitos = digits;
   decimales = decimals;
   relleno = fill_with;
-}
-
-void actualizarPesos(void)
-{
-  char format[7] = "%0W.Df";
-  char* i;
-  format[2] = (digitos >= 0x30 && digitos <= 0x39)?digitos+0x30:'4';
-  format[4] = (decimales >= 0x30 && decimales <= 0x39)?decimales+0x30:'2';
-  
-  sprintf(Peso_neto, format, Peso);
-  sprintf(Peso_bruto, format, Peso_bruto_f);
-  sprintf(Peso_tara, format, Peso_tara_f);
-  
-  i = Peso_neto;
-  do
-  {
-    if (*i == '0')
-      *i = relleno;
-    i++;
-  } while (*i == 0x30);
-
-  i = Peso_bruto;
-  do
-  {
-    if (*i == '0')
-      *i = relleno;
-    i++;
-  } while (*i == 0x30);
-
-i = Peso_tara;
-  do
-  {
-    if (*i == '0')
-      *i = relleno;
-    i++;
-  } while (*i == 0x30);
+  formato[2] = (digitos >= 0x30 && digitos <= 0x39)?digitos+0x30:'4';
+  formato[4] = (decimales >= 0x30 && decimales <= 0x39)?decimales+0x30:'2';
 }
 
 void nuevaLectura(int32_t adcValue)
@@ -210,13 +178,13 @@ void nuevaLectura(int32_t adcValue)
 
 }
 
-float getVarianza(void)
+float getDevStd(void)
 {
   uint64_t accum = 0;
   for (int i = 0; i < 32; i++)
     accum += pow((Historial[i] - ValorActual),2);
   
-  return ((float)accum/(float)31);
+  return sqrt((float)accum/(float)31);
 }
 
 void calcularCorrimiento(void)
@@ -224,40 +192,76 @@ void calcularCorrimiento(void)
   
 }
 
-void poll_Balanza(void)
+char* getPeso(void)
 {
-    //TODO: llevar la conversion a string a una funcion getPeso
   static float PesoNetoBkp = -999999999999.0;
-  static float PesoBrutoBkp = -999999999999.0;
-  static float PesoTaraBkp = -999999999999.0;
 
   if (Peso != PesoNetoBkp)
   {
-    sprintf(Peso_neto,"%6.2f", Peso);
+    sprintf(Peso_neto, formato, Peso);
+  
+    i = Peso_neto;
+    do
+    {
+      if (*i == '0')
+        *i = relleno;
+      i++;
+    } while (*i == 0x30);
   }
+}
 
+char* getPesoBruto(void)
+{
+  static float PesoBrutoBkp = -999999999999.0;
+  
   if (Peso_bruto_f != PesoBrutoBkp)
   {
-    sprintf(Peso_bruto, "%6.2f", Peso_bruto_f);
+    sprintf(Peso_bruto, formato, Peso_bruto_f);
+  
+    i = Peso_bruto;
+    do
+    {
+      if (*i == '0')
+        *i = relleno;
+      i++;
+    } while (*i == 0x30);
   }
+}
+
+char* getTara(void)
+{
+  static float PesoTaraBkp = -999999999999.0;
+
   if (Peso_tara_f != PesoTaraBkp)
   {
-    sprintf(Peso_tara, "%6.2f", Peso_tara_f);
-  }
+    sprintf(Peso_tara, formato, Peso_tara_f);
 
+    i = Peso_tara;
+    do
+    {
+      if (*i == '0')
+        *i = relleno;
+      i++;
+    } while (*i == 0x30);
+  }
+}
+
+void poll_Balanza(void)
+{
+    //TODO: llevar la conversion a string a una funcion getPeso
 
   if ((Balanza_flags & 1))            //If the measure is stable.
   {
     if (!(Balanza_flags & 0x04))
     {
-      /*if ((((ValorActual - Tara) & 0x00FFFFFF) <= (int32_t)(5*Desviacion_tara)))   //If the measure can considerate near to zero.
+      if ((((pesoEstable - Tara) & 0x00FFFFFF) <= (int32_t)(3*Desviacion_tara)))   //If the measure can considerate near to zero.
       {
         Peso = 0;
         #ifdef event_eZero_active
         eZero();                      //Executes the zero event.
         #endif
       }
-      else*/
+      else
       {
         #ifdef event_eStable_active
         eStable();                    //Executes the stable event.
