@@ -467,9 +467,10 @@ loraE5_awake()
     //TODO: mandar un caracter por el puerto serie
 }
 
-void Poll_loraE5(void)
+uint8_t Poll_loraE5(void)
 {
     static uint8_t section = 0;
+    static uint8_t status = 0;  //TODO:definir un enum con distintos estados
 
     if (lw_timeout == 1 && ( timeStamp - lw_sendTimeStamp >= lw_poll_timeout) )
     {
@@ -636,6 +637,7 @@ void Poll_loraE5(void)
                 break;
 				
 			case LW_CONNECTED:
+                status = 1;
 				if ( lw_dataOutLen > 0)
 				{
 					lorawan_sendPacket();
@@ -651,6 +653,7 @@ void Poll_loraE5(void)
 
         }  
     }
+    return status;
 }
 
 /** @} doxygen end group definition */

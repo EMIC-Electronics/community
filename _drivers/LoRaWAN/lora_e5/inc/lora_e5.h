@@ -245,7 +245,7 @@ void loraE5_updateState(char * answer);
 /**
  * @brief      { function_description }
  */
-void Poll_loraE5(void);
+uint8_t Poll_loraE5(void);
 
 /**
  * @brief      Sends a command.

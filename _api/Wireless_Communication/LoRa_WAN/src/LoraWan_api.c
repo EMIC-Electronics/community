@@ -279,13 +279,15 @@ void beaconLW(int16_t periodicity,char* dataRatePinSlot,char* pSFreq,char* dataR
 void Poll_LoRaWAN(void)
 {
     static uint8_t event_connected_flag = 0;
-    
-    if(lorawan_connection_state == 1)
+    uint8_t status;
+    status = Poll_loraE5();
+
+    if(status == 1)
     {
         if(event_connected_flag == 0)
         {
             event_connected_flag = 1;
-    #ifdef event_eLoRaWANcon_active
+    #ifdef event_eLWcon_active
             //puts_f("#eLWcon;\r");
             eLWcon();
             //gpio_pinSet(PORT_Led1, GPIO_TOGGLE);

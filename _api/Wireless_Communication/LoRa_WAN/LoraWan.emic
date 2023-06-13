@@ -115,20 +115,6 @@
 }
 */
 
-/*xRFI JSon
-{
-    'Nombre': 'connLW',
-    'NombreToolBox': 'connect',
-    'Tipo' : 'SistemFnc',
-    'title': 'Connects the LoRaWAN with the seated parameters',
-    'returnInfo': {},
-    'parameters': [],
-    'InnerHTML':"
-        <div class='lineaDeCodigo' originalclass='funcion' originalid='connLW' draggable='true' ondragstart='drag_linea(event)'>
-            LORAWAN.connect()
-        </div>"
-}
-*/
 
 /**
 * @fn void connLW();
@@ -243,25 +229,18 @@
 }
 */
 
-/*xRFI JSon
-{
-    'Nombre': 'pLoRaWAN',
-    'NombreToolBox': 'send',
-    'Tipo' : 'SistemFnc',
-    'title': 'Send a string to LoRaWAN',
-    'returnInfo': {'type':'','tooltip':'Nothing'},
-    'parameters': [
-                    {'name': 'Msg',
-                    'tooltip': 'String to send',
-                    'required': 'true',
-                    'type': 'str'}
-                  ],
-    'InnerHTML':"
-        <div class='lineaDeCodigo' originalclass='funcion' originalid='pLoRaWAN' draggable='true' ondragstart='drag_linea(event)'>
-            LORAWAN.send(<div class='parametroDiv'></div>)
-        </div>"
-}
+
+/**
+* @fn printf pLoRaWAN(concat tag,concat msg);
+* @alias Send
+* @brief Send a EMIC message through the LoRaWAN
+* @return Nothing
+* @param tag Etiqueta que identifica el mensaje
+* @param msg Contenido del mensaje
 */
+
+
+
 
 /*RxFI JSon
 {
@@ -309,6 +288,14 @@
         }'
 }
 */
+
+/**
+* @fn extern void eLWcon();
+* @alias connected
+* @brief Used to make modem awake from sleep mode
+* @return Nothing
+*/
+
 
 /*xRFI JSon
 {
