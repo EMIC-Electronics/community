@@ -14,7 +14,20 @@
 
  ******************************************************************************/
 
-
+/*RFI JSon
+{
+	'Nombre': 'FilterLength',
+	'Tipo' : 'Configurator',
+	'subtype' : 'int',
+	'title': 'LoadCell filter settings',
+	"InnerHTML":"
+	<fieldset>
+		<legend>Filter length: </legend>
+		<input type='number' required name='FilterLength' id='FilterLength' min='8' max='256' value='32'></div>
+	</fieldset>
+	"
+}
+*/
 
 /*RFI JSon
 {

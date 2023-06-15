@@ -10,6 +10,8 @@
   @version  v0.0.3 
  ******************************************************************************/
 
+#define HistoryLength FilterLength
+
 //Variables accesibles para el usuario.
 float presist_ Capacidad;           /**< Maximun weight for which the load cell is lineal. */
 float mVxV;                         /**< Ratio between the output voltage and the calibrated weight with a source of 1[V]. */
@@ -30,7 +32,7 @@ float presist_ Desviacion_cero;     //Is the simple variance of the measures in 
 int32_t presist_ Tara;              //Auxiliar term that modify the linear function which describes the load cell.
 float presist_ Desviacion_tara;     //Is the simple variance of the measures in the tare point.
 int32_t presist_ Corrimiento;       //Offset due to the deformation of the load cell.
-int32_t Historial[32];              //Circular FIFO used to eliminate the noise of the load cell measure.
+int32_t Historial[HistoryLength];              //Circular FIFO used to eliminate the noise of the load cell measure.
 int32_t ValorActual;                //Is the media of all values contains in the FIFO.
 float Varianza;                     // Is the simple variance of the values contains in the FIFO.
 int64_t Acumulador;                 //Is the sumatory of all values contains in the FIFO.
@@ -72,7 +74,7 @@ char* getTara(void);                          //Gets the current value of the ta
 //Funciones no accesibles para el usuario
 
 void nuevaLectura(int32_t nuevo_valor); //Receives the new data from the sensor and applies the change in the weight value.
-float getgetDevStd(void);               //Calculates the variance of the data contains in the FIFO.
+float getDevStd(void);               //Calculates the variance of the data contains in the FIFO.
 void calcularCorrimiento(void);         //Determines the current values of Corrimiento.
 
 void init_Balanza(void);  //Initializes the correspondent variables for a correct work of the module.

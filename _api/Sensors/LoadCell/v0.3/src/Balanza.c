@@ -122,7 +122,7 @@ void nuevaLectura(int32_t adcValue)
   Historial[Indice] = nuevo_valor;
 
   Indice++;
-  Indice &= 0x1F;                                   //Clamp the index between 0 and 32.
+  Indice %= HistoryLength;                                   //Clamp the index between 0 and HistoryLength.
   
   filterOut = nuevo_valor - viejo_valor;
   if (conta == 0)
@@ -154,7 +154,7 @@ void nuevaLectura(int32_t adcValue)
       if (conta > 5)
       {
         Balanza_flags |= 0b00000001;
-        pesoEstable = (Acumulador / 32);
+        pesoEstable = (Acumulador / HistoryLength);
         Peso_bruto_f = (float)(pesoEstable) * K;
       }
       else
@@ -172,7 +172,7 @@ void nuevaLectura(int32_t adcValue)
   }
   
  
-  Peso = (float)(Acumulador / 32) * K;              //Obtains the media of the values contains in the FIFO.  
+  Peso = (float)(Acumulador / HistoryLength) * K;              //Obtains the media of the values contains in the FIFO.  
   
   mVxV = ( ValorActual * 62500 ) / ( 128 * 65536 / 16 );
 
@@ -181,10 +181,10 @@ void nuevaLectura(int32_t adcValue)
 float getDevStd(void)
 {
   uint64_t accum = 0;
-  for (int i = 0; i < 32; i++)
+  for (int i = 0; i < HistoryLength; i++)
     accum += pow((Historial[i] - ValorActual),2);
   
-  return sqrt((float)accum/(float)31);
+  return sqrt((float)accum/(float)(HistoryLength-1));
 }
 
 void calcularCorrimiento(void)
@@ -195,7 +195,7 @@ void calcularCorrimiento(void)
 char* getPeso(void)
 {
   static float PesoNetoBkp = -999999999999.0;
-
+  char* i;
   if (Peso != PesoNetoBkp)
   {
     sprintf(Peso_neto, formato, Peso);
@@ -213,7 +213,7 @@ char* getPeso(void)
 char* getPesoBruto(void)
 {
   static float PesoBrutoBkp = -999999999999.0;
-  
+  char* i;
   if (Peso_bruto_f != PesoBrutoBkp)
   {
     sprintf(Peso_bruto, formato, Peso_bruto_f);
@@ -231,7 +231,7 @@ char* getPesoBruto(void)
 char* getTara(void)
 {
   static float PesoTaraBkp = -999999999999.0;
-
+  char* i;
   if (Peso_tara_f != PesoTaraBkp)
   {
     sprintf(Peso_tara, formato, Peso_tara_f);
