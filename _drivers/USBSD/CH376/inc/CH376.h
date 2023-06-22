@@ -203,7 +203,7 @@
 #define	ERR_LONG_BUF_OVER	0x48			/* desbordamiento del buffer */
 #define	ERR_LONG_NAME_ERR	0x49			/* diferencia entre nombre corto y nombre largo */
 #define	ERR_NAME_EXIST		0x4A			/* ya existe un archivo con el mismo nombre */
-#define ERR_USB_UNKNOWN		
+#define ERR_USB_UNKNOWN		0xFA			//error desconocido, no deberia suceder, revisar hardware o codigo
 //}
 
 /* @name -Other commands-*/
@@ -322,8 +322,8 @@ uint8_t ch376_writeDataFromBuff(char *, uint16_t);
 uint8_t ch376_writeByte(char *, uint32_t, uint16_t);
 uint8_t ch376_readDataToBuff(char *);
 uint16_t ch376_readByte(char *, uint32_t, uint16_t);
-void ch376_byteLocate(uint32_t offset);
-void ch376_closeFile(uint8_t);
+uint8_t ch376_byteLocate(uint32_t offset);
+uint8_t ch376_closeFile(uint8_t);
 void ch376_readFatInfo(void);
 void ch376_writeVar32(uint8_t var, uint32_t dat);
 uint8_t	ch376_readVar8(uint8_t var);
@@ -339,12 +339,10 @@ uint32_t ch376_diskQuery(void);
 uint8_t ch376_diskConnect(void);
 void	ch376_sleep(void);
 void	ch376_wakeUp(void);
-
-/*
 uint8_t ch376_getIntStatus(void);
 uint8_t ch376_queryInterrupt(void);
 uint8_t	ch376_waitInterrupt(void);
-*/
+
 
 
 #endif

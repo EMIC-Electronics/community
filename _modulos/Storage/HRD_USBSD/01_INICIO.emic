@@ -7,6 +7,7 @@
 #newRFIcode(_api\Indicators\LEDs\led.emic)
 #newRFIcode(_api\Timer\Timer_API_V1.emic)
 #newRFIcode(_api\Storage\USBSD\usbsd.emic)
+#newRFIcode(_api\EMICbus\emicBus.emic)
 
 //---------------------------------------------------
 #include "_main/baremetal/main.emic"

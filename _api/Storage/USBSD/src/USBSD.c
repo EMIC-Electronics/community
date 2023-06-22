@@ -1,30 +1,58 @@
 void USBSD_Init(void)
 {
 	ch376_init();
-	ch376_checkDevice();	
+	memset(Path, 0, sizeof(Path));
+	error = ch376_checkDevice();
+	if (error) error_code = 1;
 }
-void readFile(uint8_t src,char *path)
+void setDevice(uint8_t src)
+{
+	switch (src)					//select device
+	{
+	case 'd':
+	case 'D':
+		error = ch376_setSrc(0);		//set default
+		break;
+	case 's':
+	case 'S':
+		error = ch376_setSrc(1);		//set SD
+		break;
+	case 'u':
+	case 'U':
+		error = ch376_setSrc(2);		//set USB host mode
+		break;
+	}
+	if (error)
+	{
+		error_code = 2;
+	#ifdef event_eErrRD_active
+		eErrRD();
+	#endif
+		return;
+	}
+}
+
+void readFile(char *path)
 {
 	uint8_t ret = 0;
-	error = ch376_setSrc(src);
+	while (ch376_diskConnect() != USB_INT_SUCCESS)	//wait for pendrive to connect
+	{
+		uint32_t prev = timeStamp;
+		while (timeStamp - prev < 100);
+	}
+	error = ch376_diskMount();	//mount device
 	if (error)
 	{
+		error_code = 3;
 #ifdef event_eErrRD_active
 		eErrRD();
 #endif
 		return;
 	}
-	error = ch376_diskMount();
-	if (error)
-	{
-#ifdef event_eErrRD_active
-		eErrRD();
-#endif
-		return;
-	}
-	ret = fileOpenPath(path);
+	ret = fileOpenPath(path);		//Open path
 	if (ret != USB_INT_SUCCESS && ret != ERR_OPEN_DIR)
 	{
+		error_code = 4;
 #ifdef event_eErrRD_active
 		eErrRD();
 #endif
@@ -42,38 +70,70 @@ void readFile(uint8_t src,char *path)
 			Buff[usDataCnt] = 0;
 		}
 		FileCursor += usDataCnt;
+#ifdef event_buffRD_active
+		buffRD();
+#endif
 	}
-	ch376_closeFile(0);
+	error = ch376_closeFile(0);
+	if (error != USB_INT_SUCCESS)
+	{
+		error_code = 5;
+	#ifdef event_eErrRD_active
+		eErrRD();
+	#endif
+		return;
+	}
+	error_code = 0;
 	return;
 }
 
-void writeFile(uint8_t src,char *path,char *Buff)
+void setPath(char* PathName)
+{
+	if (sizeof(PathName) > sizeof(Path))
+	{
+		error_code = 7;
+#ifdef event_eErrRD_active
+		eErrWR();
+#endif
+		return;
+	}
+	strcpy(Path, PathName);
+}
+
+void writeFile(char *Buffer)
 {
 	/*uint8_t length=0;
 	uint8_t writed = 0;*/
 	uint8_t ret = 0;
-	error = ch376_setSrc(src);
-	if (error)
+	while (ch376_diskConnect() != USB_INT_SUCCESS)
 	{
-#ifdef event_eErrWR_active
-		eErrWR();
-#endif
-		return;
+		uint32_t prev = timeStamp;
+		while (timeStamp - prev < 100);
 	}
 	error = ch376_diskMount();
 	if (error)
 	{
+		error_code = 3;
 #ifdef event_eErrWR_active
 		eErrWR();
 #endif
 		return;
 	}
-	ret = fileOpenPath(path);
+	if (Path == '\0')
+	{
+		error_code = 8;
+#ifdef event_eErrWR_active
+		eErrWR();
+#endif
+		return;
+	}
+	ret = fileOpenPath(Path);
 	if (ret != USB_INT_SUCCESS && ret != ERR_OPEN_DIR)
 	{
-		error = fileCreatePath(path);
+		error = fileCreatePath(Path);
 		if (error)
 		{
+			error_code = 6;
 #ifdef event_eErrWR_active
 			eErrWR();
 #endif
@@ -86,8 +146,17 @@ void writeFile(uint8_t src,char *path,char *Buff)
 			writed += length+1;
 			length = strlen(Buff + writed);
 		}*/
-		ch376_writeByte(Buff, 0, 0);
-		ch376_closeFile(1);
+		ch376_writeByte(Buffer, 0, 0);
+		error = ch376_closeFile(1);
+		if (error != USB_INT_SUCCESS)
+		{
+			error_code = 5;
+		#ifdef event_eErrRD_active
+			eErrWR();
+		#endif
+			return;
+		}
+		error_code = 0;
 		return;
 	}
 	/*length = strlen(Buff);
@@ -97,8 +166,17 @@ void writeFile(uint8_t src,char *path,char *Buff)
 		writed += length+1;
 		length = strlen(Buff + writed);
 	}*/
-	ch376_appendByte(Buff, 0);
-	ch376_closeFile(1);
+	ch376_appendByte(Buffer, 0);
+	error = ch376_closeFile(1);
+	if (error != USB_INT_SUCCESS)
+	{
+		error_code = 5;
+	#ifdef event_eErrRD_active
+		eErrWR();
+	#endif
+		return;
+	}
+	error_code = 0;
 	return;
 }
 

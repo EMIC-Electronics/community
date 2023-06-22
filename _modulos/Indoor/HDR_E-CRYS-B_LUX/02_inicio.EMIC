@@ -1,7 +1,7 @@
 #define nombreModulo "HRD_CRYS_B_LUX"
 #addToMacro(UC_FAMILY,pic24fj64ga002)
 
-#define Use_I2C
+//#define Use_I2C
 //#addToMacro(AN9,MQ135)
 
 //--------------Hardware Config---------------------
@@ -13,7 +13,7 @@
 #newRFIcode(_api\Indicators\LEDs\led.emic)
 #newRFIcode(_api\Timer\Timer_API_V1.emic)
 #newRFIcode(_api\WiredComm\EMICfieldB\EMICfieldBus.emic,puerto=1,baud=9600,bufferIn=512,bufferOut=512)
-#newRFIcode(_api\Sensors\LUX.emic,driver=BH1750)
+//#newRFIcode(_api\Sensors\LUX.emic,driver=BH1750)
 
 
 //---------------------------------------------------

@@ -40,14 +40,11 @@ uint8_t ch376_setMode(uint8_t mode)
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
 	ret = xchange(CMD_SET_USB_MODE);
 	ret = xchange(mode);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret == CMD_GET_STATUS);
+	__delay_us(10);
+	ret = xchange(0);
+	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
 	ch376_status = ret;
-	if (ret != USB_RET_SUCCESS && ret != USB_INT_CONNECT)
+	if (ret != USB_RET_SUCCESS)
 	{
 		return 1;
 	}
@@ -79,12 +76,7 @@ uint8_t ch376_diskMount()
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
 	ret = xchange(CMD_DISK_MOUNT);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret == CMD_GET_STATUS);
+	ret = ch376_waitInterrupt();
 	ch376_status = ret;
 	if (ret != USB_INT_SUCCESS && ret != USB_INT_CONNECT)
 	{
@@ -112,12 +104,7 @@ uint8_t ch376_createFile(char *name)
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
 	ret = xchange(CMD_FILE_CREATE);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret == CMD_GET_STATUS || ret == 0);
+	ret = ch376_waitInterrupt();
 	ch376_status = ret;
 	if (ret != USB_INT_SUCCESS)
 	{
@@ -145,13 +132,7 @@ uint8_t ch376_writeDataFromBuff(char *buffer, uint16_t len)
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
 	ret = xchange(CMD_BYTE_WR_GO);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret != USB_INT_SUCCESS && ret != USB_INT_DISK_WRITE);
+	ret = ch376_waitInterrupt();
 	ch376_status = ret;
 	return dataLength;
 }
@@ -163,25 +144,23 @@ uint8_t ch376_writeByte(char *buffer, uint32_t offset, uint16_t length)
 		length = strlen(buffer);
 	if (offset)
 		ch376_byteLocate(offset);
-	Nop();
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
 	ret = xchange(CMD_BYTE_WRITE);
 	ret = xchange((uint8_t)length);
 	ret = xchange((uint8_t)(length >> 8));
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret != USB_INT_DISK_WRITE);
-	while (currCount < length)
+	ret = ch376_waitInterrupt();
+	if (ret == USB_INT_DISK_WRITE) 
 	{
-		i = ch376_writeDataFromBuff(buffer, length);
-		currCount += i;
-		buffer += i;
+		while (currCount < length)
+		{
+			i = ch376_writeDataFromBuff(buffer, length);
+			currCount += i;
+			buffer += i;
+		}
+		return 0;
 	}
-	return 0;
+	return 1;
 }
 uint8_t ch376_readDataToBuff(char *buffer)
 {
@@ -220,12 +199,7 @@ uint16_t ch376_readByte(char *buffer, uint32_t offset, uint16_t length)
 	ret = xchange(0);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
 	while (1) {
-		do {
-			HAL_GPIO_PinSet(CSN, GPIO_LOW);
-			ret = xchange(CMD_GET_STATUS);
-			ret = xchange(0);
-			HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-		} while (ret != USB_INT_DISK_READ && ret != USB_INT_SUCCESS);
+		ret = ch376_waitInterrupt();
 		if (ret == USB_INT_DISK_READ)
 		{
 			i = ch376_readDataToBuff(buffer);
@@ -238,44 +212,26 @@ uint16_t ch376_readByte(char *buffer, uint32_t offset, uint16_t length)
 		}
 	}
 }
-void	ch376_byteLocate(uint32_t offset)
+uint8_t	ch376_byteLocate(uint32_t offset)
 {
-	uint8_t ret = 0;
 	union W32Bits var32;
 	var32.entero = offset;
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
-	ret = xchange(CMD_BYTE_LOCATE);
-	ret = xchange(var32.bytes.byte1);  //Funciona para desplazarse al final, revisar si es Little Endian
-	Nop();
-	ret = xchange(var32.bytes.byte2);
-	Nop();
-	ret = xchange(var32.bytes.byte3);
-	Nop();
-	ret = xchange(var32.bytes.byte4);
-	Nop();
+	xchange(CMD_BYTE_LOCATE);
+	xchange(var32.bytes.byte1);  //Funciona para desplazarse al final, revisar si es Little Endian
+	xchange(var32.bytes.byte2);
+	xchange(var32.bytes.byte3);
+	xchange(var32.bytes.byte4);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret != USB_INT_SUCCESS && ret != USB_RET_SUCCESS);
-	uint32_t prev = timeStamp;
-	while (timeStamp - prev < 2);
+	return (ch376_waitInterrupt());
 }
-void	ch376_closeFile(uint8_t update)
+uint8_t	ch376_closeFile(uint8_t update)
 {
-	uint8_t ret = 0;
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
-	ret = xchange(CMD_FILE_CLOSE);
-	ret = xchange(update);
+	xchange(CMD_FILE_CLOSE);
+	xchange(update);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret != USB_INT_SUCCESS && ret != USB_RET_SUCCESS);
+	return (ch376_waitInterrupt());
 }
 void	ch376_readFatInfo(void)
 {
@@ -343,28 +299,7 @@ uint8_t ch376_openFile(char *name)
 	ret = xchange(CMD_FILE_OPEN);
 	ret = xchange(0);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret == CMD_GET_STATUS || ret == 0);
-	//while (ret != USB_INT_SUCCESS && ret != ERR_OPEN_DIR && ret != ERR_MISS_FILE);
-
-	/*if (IC_VER < 0x43)					//Fix version vieja, parece no ser necesario, falta mas testeo
-	{
-		if (ret == USB_INT_SUCCESS)
-		{
-			s = ch376_readVar8(0xCF);
-			if (s)
-			{
-				ch376_writeVar32(0x4C, ch376_readVar32(0x4C) + ((uint16_t)s << 8));
-				ch376_writeVar32(0x50, ch376_readVar32(0x50) + ((uint16_t)s << 8));
-				ch376_writeVar32(0x70, 0);
-			}
-		}
-	}*/
-		return ret;
+	return (ch376_waitInterrupt());
 }
 uint8_t ch376_createDir(char *name)
 {
@@ -374,13 +309,7 @@ uint8_t ch376_createDir(char *name)
 	ret = xchange(CMD_DIR_CREATE);
 	ret = xchange(0);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret != USB_INT_SUCCESS);
-	return ret;
+	return (ch376_waitInterrupt());
 }
 uint32_t ch376_fileSize(void)
 {
@@ -417,13 +346,7 @@ uint32_t ch376_diskCapacity(void)
 	ret = xchange(CMD_DISK_CAPACITY);
 	ret = xchange(0);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret != USB_INT_SUCCESS);
-
+	ch376_waitInterrupt();
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
 	ret = xchange(CMD_RD_USB_DATA0);
 	ret = xchange(0);
@@ -444,12 +367,7 @@ uint32_t ch376_diskQuery(void)
 	ret = xchange(CMD_DISK_QUERY);
 	ret = xchange(0);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	do {
-		HAL_GPIO_PinSet(CSN, GPIO_LOW);
-		ret = xchange(CMD_GET_STATUS);
-		ret = xchange(0);
-		HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	} while (ret != USB_INT_SUCCESS);
+	ch376_waitInterrupt();
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
 	ret = xchange(CMD_RD_USB_DATA0);
 	ret = xchange(0);
@@ -489,10 +407,9 @@ uint8_t ch376_diskConnect(void)
 	ret = xchange(CMD_DISK_CONNECT);
 	ret = xchange(0);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
-	ret = ch376_waitInterrupt(void);
+	ret = ch376_waitInterrupt();
 	return ret;
 }
-
 void ch376_sleep(void)
 {
 	HAL_GPIO_PinSet(CSN, GPIO_LOW);
@@ -506,8 +423,6 @@ void ch376_wakeUp(void)
 	while (timeStamp - prev < 13);
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
 }
-
-/*
 uint8_t ch376_getIntStatus(void) 
 {
 	uint8_t ret;
@@ -517,17 +432,15 @@ uint8_t ch376_getIntStatus(void)
 	HAL_GPIO_PinSet(CSN, GPIO_HIGH);
 	return ret;
 }
-
 uint8_t ch376_queryInterrupt(void)
 {
 	return (HAL_GPIO_PinGet(INT) ? 0:1);
 }
-
 uint8_t	ch376_waitInterrupt(void)  // waits for interrupt, return int status or ERR_USB_UNKNOWN when timeout 
 {
 #ifdef	DEF_INT_TIMEOUT
 #if		DEF_INT_TIMEOUT < 1
-	while (ch376_queryInterrupt() == FALSE);  // waits for interrupt 
+	while (!ch376_queryInterrupt());  // waits for interrupt 
 	return(ch376_getIntStatus());  // interrupt detected 
 #else
 	uint32_t	i;
@@ -549,4 +462,3 @@ uint8_t	ch376_waitInterrupt(void)  // waits for interrupt, return int status or 
 #endif
 #endif
 }
-*/

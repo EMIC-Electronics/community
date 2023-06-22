@@ -29,6 +29,7 @@
 
 
 #include <xc.h> //No RFI scan
+#include <libpic30.h> //No RFI scan
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB15.h,name=MOSI)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB14.h,name=MISO)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB13.h,name=SCK)
