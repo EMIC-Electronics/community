@@ -1,6 +1,6 @@
 void init_led (void)
 {
-	//gpio_init();
+
 #ifdef PIN_Led1
 
 	HAL_PinMap_Led1(PinMap_DIGITAL);
