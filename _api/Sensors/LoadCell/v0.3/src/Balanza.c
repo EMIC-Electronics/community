@@ -36,8 +36,8 @@ void init_Balanza(void)
   Cero = 0;
   Capacidad = 99999999999;
 
-  formato[2] = digitos - 0x30;
-  formato[4] = decimales - 0x30;
+  formato[2] = digitos + 0x30;
+  formato[4] = decimales + 0x30;
 }
 
 void setZero(void)
@@ -46,8 +46,7 @@ void setZero(void)
   {
     
     Cero = pesoEstable + Cero;
-    Tara = Cero;
-    Desviacion_tara = getDevStd();
+    setTara();
   }
   else
   {
@@ -80,7 +79,7 @@ void setTara(void)
   {
     Tara = pesoEstable;
     Desviacion_tara = getDevStd();
-    Peso_tara_f = (float) (Tara - Cero) * K;
+    Peso_tara_f = (float) Tara * K;
   }
   else
   {
@@ -155,24 +154,24 @@ void nuevaLectura(int32_t adcValue)
       {
         Balanza_flags |= 0b00000001;
         pesoEstable = (Acumulador / HistoryLength);
-        Peso_bruto_f = (float)(pesoEstable) * K;
+        Peso_bruto_f = (float)(pesoEstable) * K - Peso_tara_f;
       }
       else
       {
         conta++;
-        Peso_bruto_f = (float)(nuevo_valor) * K;
+        Peso_bruto_f = (float)(nuevo_valor) * K - Peso_tara_f;
       }
     }
     else
     {
       Balanza_flags &= 0b11111110;
       signDiff = nuevo_valor - viejo_valor;
-      Peso_bruto_f = (float)(nuevo_valor) * K;
+      Peso_bruto_f = (float)(nuevo_valor) * K - Peso_tara_f;
     }
   }
   
  
-  Peso = (float)(Acumulador / HistoryLength) * K;              //Obtains the media of the values contains in the FIFO.  
+  Peso = (float)(Acumulador / HistoryLength) * K - Peso_tara_f;              //Obtains the media of the values contains in the FIFO.  
   
   mVxV = ( ValorActual * 62500 ) / ( 128 * 65536 / 16 );
 
@@ -182,7 +181,7 @@ float getDevStd(void)
 {
   uint64_t accum = 0;
   for (int i = 0; i < HistoryLength; i++)
-    accum += pow((Historial[i] - ValorActual),2);
+    accum += pow((Historial[i] - pesoEstable),2);
   
   return sqrt((float)accum/(float)(HistoryLength-1));
 }
@@ -208,6 +207,7 @@ char* getPeso(void)
       i++;
     } while (*i == 0x30);
   }
+  return Peso_neto;
 }
 
 char* getPesoBruto(void)
@@ -226,6 +226,7 @@ char* getPesoBruto(void)
       i++;
     } while (*i == 0x30);
   }
+  return Peso_bruto;
 }
 
 char* getTara(void)
@@ -244,6 +245,7 @@ char* getTara(void)
       i++;
     } while (*i == 0x30);
   }
+  return Peso_tara;
 }
 
 void poll_Balanza(void)
@@ -254,7 +256,7 @@ void poll_Balanza(void)
   {
     if (!(Balanza_flags & 0x04))
     {
-      if ((((pesoEstable - Tara) & 0x00FFFFFF) <= (int32_t)(3*Desviacion_tara)))   //If the measure can considerate near to zero.
+      if ((((pesoEstable - Tara) & 0x00FFFFFF) <= (int32_t)(4*Desviacion_tara)))  //If the measure can considerate near to zero.
       {
         Peso = 0;
         #ifdef event_eZero_active

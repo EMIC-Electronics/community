@@ -42,7 +42,7 @@ int8_t Indice = 0;                  //Position of the new value of the FIFO.
 uint8_t presist_ digitos;
 uint8_t presist_ decimales;
 char presist_ relleno;
-char formato[5] = "%04.2f";
+char formato[6] = "%04.2f";
 
 static int32_t corrimiento = 0;
 static int32_t pesoEstable = 0;
