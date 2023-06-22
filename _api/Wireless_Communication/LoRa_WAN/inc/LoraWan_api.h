@@ -40,7 +40,7 @@
  * OTAA Credentials
  */
 //uint8_t devEUI[LORAWAN_EUI_SIZE*8]="";
-char devEUI[17]; /**< definir */
+char devEUI[17]; /**< TODO: definir */
 //uint8_t appEUI[LORAWAN_EUI_SIZE*8]="";
 char appEUI[LORAWAN_EUI_SIZE*8]; /**< definir */
 //uint8_t appKey[LORAWAN_KEY_SIZE*8]="";

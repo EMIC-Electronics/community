@@ -38,8 +38,13 @@
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB4.h,name=GPS_tx)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB5.h,name=GPS_rx)
 
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinA4.h,name=GPS_POWER)
+
+
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB1.h,name=Led1)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB0.h,name=Led2)
+
+
 
 
 // #define compiler "XC16"

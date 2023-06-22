@@ -1,4 +1,6 @@
 #addToMacro(UC_FAMILY,pic24fj64ga002)
+#addToMacro(__PIC16__,true)
+
 #newRFIcode(_pcb/pcb.emic,pcb=HDR_CRACK_PIN_IOT_V2.1)
 
 
@@ -8,7 +10,7 @@
 #newRFIcode(_api/Timer/Timer_API_V1.emic)
 
 
-//#newRFIcode(_API/GPS/gps.emic,puerto=2,baud=9600,bufferIn=1024,bufferOut=512,frameLf='\n')
+#newRFIcode(_api/DataSource/GPS/gps.emic,puerto=2,baud=9600,bufferIn=1024,bufferOut=512,frameLf='\n')
 #newRFIcode(_api/Wireless_Communication/LoRa_WAN\LoraWan.emic,puerto=1,baud=9600,bufferIn=1024,bufferOut=512,frameLf='\n')
 //#newRFIcode(_API\Power_Management\Power_manager.emic)
 //#newRFIcode(_API\System\system.emic)

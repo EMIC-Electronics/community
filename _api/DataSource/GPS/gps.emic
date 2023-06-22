@@ -1,0 +1,85 @@
+//RFI TAG:driverName=GPS
+
+/*****************************************************************************
+
+  @file     gps.emic
+
+  @brief    API for GPS modules.
+
+  @author   Tomas Pentacolo
+
+  @date     28/11/2022
+
+  @version  v0.0.1 - Initial release.
+  
+*******************************************************************************/
+
+#ifndef GPS_EMIC
+#define GPS_EMIC
+
+/*xRFI JSon
+{
+    'Nombre': 'GPS_config_power_mode',
+    'NombreToolBox': 'GPS_Power_Mode',
+    'Tipo' : 'SistemFnc',
+    'title': 'Use to config the GPS power mode',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [
+                    {'name': 'Mode',
+                    'tooltip': 'Power mode - 0: Sleep mode - 1: Low power mode - 2: Full power mode',
+                    'required': 'true',
+                    'type': 'int'}
+                  ],
+    'InnerHTML':"
+        <div class='lineaDeCodigo' originalclass='funcion' originalid='GPS_config_power_mode' draggable='true' ondragstart='drag_linea(event)'>
+            GPS.PowerMode(<div title='Power mode - 0: Sleep mode - 1: Low power mode - 2: Full power mode' class='parametroDiv'></div>)
+        </div>"
+}
+*/
+
+/**
+* @fn void GPS_config_power_mode(uint8_t mode);
+* @alias PowerMode
+* @brief Use to config the GPS power mode
+* @param mode Power mode - 0: Sleep mode - 1: Low power mode - 2: Full power mode
+* @return Nothing
+*/
+
+/*xRFI JSon
+{
+	'Nombre': 'eGPS',
+	'NombreToolBox': 'first_valid_data_received',
+	'Tipo' : 'SistemEvt',
+	'title': 'When it receives the first valid data from GPS module',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.GPS.FirstReception",
+		"definir":"event_eGPS_first_active",
+		"parametros": []
+		}'
+}
+*/
+
+
+/**
+* @fn extern void eGPS();
+* @alias FirstReception
+* @brief When it receives the first valid data from GPS module
+* @return Nothing
+*/
+
+
+#newRFIcode(_drivers/GPS/AT6558/AT6558.emic,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+
+
+#setFile src.c
+  ##include(inc\gps_api.h,puerto=_{puerto}_)
+#unSetFile
+
+#setFile src.c
+	##include(src\gps_api.c,puerto=_{puerto}_)
+#unSetFile
+
+/*==================[end of file]============================================*/
+#endif
