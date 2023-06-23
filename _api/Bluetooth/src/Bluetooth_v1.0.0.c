@@ -24,8 +24,8 @@ void String_2_BT(const char *str)
 void initBth(void)
 {
 	HAL_PinMap_Bluetooth_RST(PinMap_DIGITAL);
-    HAL_PinMap_Bluetooth_SSPND(PinMap_DIGITAL);
-    HAL_PinMap_Bluetooth_USBCFG(PinMap_DIGITAL);
+    HAL_PinMap_Bluetooth_TX(PinMap_DIGITAL);
+    HAL_PinMap_Bluetooth_KEY(PinMap_DIGITAL);
     HAL_PinMap_Bluetooth_RX(PinMap_DIGITAL);
     HAL_GPIO_PinCfg(Bluetooth_RX,GPIO_INPUT);
     HAL_GPIO_PinCfg(Bluetooth_TX,GPIO_OUTPUT);
