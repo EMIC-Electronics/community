@@ -1,7 +1,0 @@
-#setFile codigo.c
-	##include(inc/index.h)
-#unSetFile
-
-#setFile src.c
-	##include(src/index.c)
-#unSetFile

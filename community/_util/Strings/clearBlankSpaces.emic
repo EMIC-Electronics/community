@@ -1,7 +1,0 @@
-#setFile codigo.c
-	##include(inc/clearBlankSpaces.h)
-#unSetFile
-
-#setFile src.c
-	##include(src/clearBlankSpaces.c)
-#unSetFile
