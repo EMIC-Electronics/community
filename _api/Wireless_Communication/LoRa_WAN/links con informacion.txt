@@ -1,0 +1,5 @@
+https://wiki.seeedstudio.com/LoRa_E5_mini/
+
+https://wiki.seeedstudio.com/Grove_LoRa_E5/
+
+https://www.hackster.io/cstram/lora-e5-mini-tutorial-a5faf3

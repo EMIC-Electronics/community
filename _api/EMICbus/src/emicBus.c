@@ -127,10 +127,11 @@ void push_I2C_OUT(char dato)
 	// aca pregunta si debe transmitir el primero.
 }
 
-void pI2C(char* format,...)
+void pI2C(char* format_,...)
 {
 	va_list arg;
-    va_start(arg, format);
+    va_start(arg, format_);
+    char* format = format_;
 	int i;
 	char strFormat[10];
 	char auxStr[20];
@@ -160,8 +161,8 @@ void pI2C(char* format,...)
 					case 'd':
 						i++;
 						strFormat[i] = 0;
-						auxPtr = va_arg(arg,int64_t*);
-						sprintf(auxStr,strFormat,*(int64_t*)auxPtr);
+						auxPtr = va_arg(arg,int32_t*);
+						sprintf(auxStr,strFormat,*(int32_t*)auxPtr);
 						okFormat = 1;
 						break;
 					case 'u':
@@ -171,16 +172,16 @@ void pI2C(char* format,...)
 						sprintf(auxStr,strFormat,*(uint64_t*)auxPtr);
 						okFormat = 1;
 						break;
-
 				}
-				
 			}
 			str = auxStr;
 			while (*str)
 			{
 				push_I2C_OUT( *str++);
 			}
-			break;
+			format--;
+			continue;
+			// break;   Se intrrumpe el ciclo principal
 			
 			
 		}

@@ -1,0 +1,21 @@
+#addToMacro(UC_FAMILY,pic24fj64ga002)
+#newRFIcode(_pcb/pcb.emic,pcb=HDR_CRACK_PIN_IOT_test)
+
+
+//------------- Driver Config -----------------------
+
+#newRFIcode(_api/Indicators/LEDs/led.emic)
+#newRFIcode(_api/Timer/Timer_API_V1.emic)
+
+
+//#newRFIcode(_API/GPS/gps.emic,puerto=2,baud=9600,bufferIn=1024,bufferOut=512,frameLf='\n')
+#newRFIcode(_api/Wireless_Communication/LoRa_WAN\LoraWan.emic,puerto=1,baud=9600,bufferIn=1024,bufferOut=512,frameLf='\n')
+//#newRFIcode(_API\Power_Management\Power_manager.emic)
+//#newRFIcode(_API\System\system.emic)
+
+//#newRFIcode(_api\WiredComm\USB\usb.emic,driver=MCP2200,puerto=1,baud=9600,bufferIn=512,bufferOut=512)
+
+
+//---------------------------------------------------
+
+#include "_main/baremetal/main.emic"

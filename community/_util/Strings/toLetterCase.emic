@@ -1,7 +1,0 @@
-#setFile codigo.c
-	##include(inc/toUpperCase.h)
-#unSetFile
-
-#setFile src.c
-	##include(src/toUpperCase.c)
-#unSetFile
