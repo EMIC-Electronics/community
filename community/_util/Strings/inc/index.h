@@ -1,1 +1,0 @@
-char index(char* string, uint8_t position);

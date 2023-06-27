@@ -1,0 +1,30 @@
+/*****************************************************************************
+
+  @file     AT6558.emic
+
+  @brief    Driver for GPS modules based on AT6558 chipset.
+
+  @author   Tomas Pentacolo
+
+  @date     28/11/2022
+
+  @version  v0.0.1 - Initial release.
+  
+*******************************************************************************/
+
+#ifndef AT6558_EMIC
+#define AT6558_EMIC
+
+#newRFIcode(_hal\.{UC_FAMILY}.\_hard\Uart\uart.emic,puerto=_{puerto}_,baud=_{baud}_,bufferIn=1024,bufferOut=512,frameLf='\n')
+
+
+#setFile codigo.c
+  ##include(inc\AT6558.h,puerto=_{puerto}_)
+#unSetFile
+
+#setFile src.c
+	##include(src\AT6558.c,puerto=_{puerto}_)
+#unSetFile
+
+/*==================[end of file]============================================*/
+#endif

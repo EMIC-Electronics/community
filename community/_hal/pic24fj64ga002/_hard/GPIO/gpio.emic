@@ -1,6 +1,0 @@
-#ifndef PIC_GPIO_H_
-
-    #setFile codigo.c
-        ##include(inc/gpio.h)
-    #unSetFile
-#endif

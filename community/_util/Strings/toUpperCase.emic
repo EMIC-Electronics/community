@@ -1,7 +1,0 @@
-#setFile codigo.c
-	##include(inc/toLetterCase.h)
-#unSetFile
-
-#setFile src.c
-	##include(src/toLetterCase.c)
-#unSetFile

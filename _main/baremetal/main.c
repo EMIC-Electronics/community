@@ -9,6 +9,7 @@ char presist_ persistEnd;
 
 int main(void)
 {
+	initSystem();
 	#newRFIcode(temp/EMICinits.c,)
 	#ifdef event_OnReset_active
 	onReset();
