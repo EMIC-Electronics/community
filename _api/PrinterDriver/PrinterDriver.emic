@@ -1,0 +1,34 @@
+//RFI TAG:alias=usePrinterDriver,10
+//RFI TAG:driverName=PrinterDriver
+
+/*****************************************************************************
+
+  @file     PrinterDriver.emic
+
+  @brief    API Library to use Printer Driver
+
+  @author   Pentacolo Tomas
+
+  @date     27/06/2023
+
+  @version  v1.0.0 - Initial release.
+
+ ******************************************************************************/
+
+/**
+* @fn printf pPrinter(concat msg);
+* @alias Print
+* @brief Send a string to the Printer port
+* @return Nothing
+* @param msg String to print
+*/
+
+#newRFIcode(_hal\.{UC_FAMILY}.\_hard\Uart\uart.emic,client=PRINTER,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+
+#setFile codigo.c
+	##include(inc\PrinterDriver.h,puerto=_{puerto}_)
+#unSetFile
+
+#setFile src.c
+	##include(src\PrinterDriver.c,puerto=_{puerto}_)
+#unSetFile
