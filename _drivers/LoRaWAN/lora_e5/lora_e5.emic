@@ -1,0 +1,33 @@
+/*****************************************************************************
+
+  @file     lora_e5.emic
+
+  @brief    Driver Library to use module LoRa-E5 STM32WLE5JC.
+
+  @author   Tomas Pentacolo (based on Pablo Llull) 
+
+  @date     29/11/2022
+
+  @version  v0.0.1 - Initial release.
+  
+*******************************************************************************/
+
+#ifndef LORA_E5_EMIC
+#define LORA_E5_EMIC
+
+#newRFIcode(_hal\.{UC_FAMILY}.\_hard\Uart\uart.emic,puerto=_{puerto}_,baud=9600,bufferIn=1024,bufferOut=512,frameLf='\n')
+
+#setFile codigo.c
+  ##include(inc\lora_e5.h,puerto=_{puerto}_)
+#unSetFile
+
+//,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_    <--- BORRAR cuando se compruebe que no da error al generar
+
+#setFile src.c
+	##include(src\lora_e5 copy.c,puerto=_{puerto}_)
+#unSetFile
+
+//,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_   <--- BORRAR cuando se compruebe que no da error al generar
+
+#endif
+/*==================[end of file]============================================*/

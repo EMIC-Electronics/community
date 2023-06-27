@@ -1,0 +1,325 @@
+//RFI TAG:driverName=LoRaWAN
+
+/*************************************************************************//**
+
+  @file     LoraWan.emic
+
+  @brief    API Library to use LoRaWAN
+
+  @author   Tomas Pentacolo 
+
+  @date     29/11/2022
+
+  @version  v0.0.1   PL Initial release.
+
+*******************************************************************************/
+
+#ifndef LORAWAN_EMIC_
+#define LORAWAN_EMIC_
+
+/**
+* @fn void modeLW(uint16_t mode);
+* @alias configMode
+* @brief Use to select work mode
+* @return Nothing
+* @param mode Modes: TEST:0, OTAA:1, ABP:2
+*/
+
+
+/**
+* @fn void classLW(uint16_t class);
+* @alias configClass
+* @brief Use to select work mode
+* @return Nothing
+* @param class Modes: Classes: A:0, B:1, C:2
+*/
+
+
+/**
+* @fn void powerLW(uint16_t power);
+* @alias configPower
+* @brief Use to select work mode
+* @return Nothing
+* @param power power value
+*/
+
+
+/*xRFI JSon
+{
+    'Nombre': 'bandLW',
+    'NombreToolBox': 'configBand',
+    'Tipo' : 'SistemFnc',
+    'title': 'Use to set standard Band Plans',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [
+                    {'name': 'Band',
+                    'tooltip': 'Band to set',
+                    'required': 'true',
+                    'type': 'str'}
+                  ],
+    'InnerHTML':"
+        <div class='lineaDeCodigo' originalclass='funcion' originalid='bandLW' draggable='true' ondragstart='drag_linea(event)'>
+            LORAWAN.configBand(<div title='Class'></div>
+                             <div class='parametroDiv'  opciones='EU868 US915 CN779 EU433 AU915 AS923 KR920 IN865 RU864 US915HYBRID AU915OLD'>
+                             <div class='lineaDeCodigo' opciones='EU868 US915 CN779 EU433 AU915 AS923 KR920 IN865 RU864 US915HYBRID AU915OLD' originalclass='literal' style='width:auto;' onchange='cambioParametroSelect(this)' onclick='selectSelectorDiv(this)' value='AU915'>
+                             AU915</div></div>)
+        </div>"
+}
+*/
+
+/*xRFI JSon
+{
+    'Nombre': 'schemeLW',
+    'NombreToolBox': 'configScheme',
+    'Tipo' : 'SistemFnc',
+    'title': 'Use to set data rate scheme',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [
+                    {'name': 'Data rate',
+                    'tooltip': 'Data rate to set',
+                    'required': 'true',
+                    'type': 'str'}
+                  ],
+    'InnerHTML':"
+        <div class='lineaDeCodigo' originalclass='funcion' originalid='schemeLW' draggable='true' ondragstart='drag_linea(event)'>
+            LORAWAN.configScheme(<div title='Class'></div>
+                             <div class='parametroDiv'  opciones='DR0 DR1 DR2 DR3 DR4 DR5 DR6 DR7 DR8 DR9 DR10 DR11 DR12 DR13'>
+                             <div class='lineaDeCodigo' opciones='DR0 DR1 DR2 DR3 DR4 DR5 DR6 DR7 DR8 DR9 DR10 DR11 DR12 DR13' originalclass='literal' style='width:auto;' onchange='cambioParametroSelect(this)' onclick='selectSelectorDiv(this)' value='DR2'>
+                             DR2</div></div>)
+        </div>"
+}
+*/
+
+/*xRFI JSon
+{
+    'Nombre': 'channelLW',
+    'NombreToolBox': 'configChannel',
+    'Tipo' : 'SistemFnc',
+    'title': 'Enable or Disable Channel',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [
+                    {'name': 'Type',
+                    'tooltip': 'Num or single channel',
+                    'required': 'true',
+                    'type': 'int'},
+                    {'name': 'Ch',
+                    'tooltip': 'Enable and disable channels',
+                    'required': 'true',
+                    'type': 'str'}
+                  ],
+    'InnerHTML':"
+        <div class='lineaDeCodigo' originalclass='funcion' originalid='channelLW' draggable='true' ondragstart='drag_linea(event)'>
+            LORAWAN.configChannel(<div title='Type: Num:0, Single:1' class='parametroDiv'></div>,
+                               <div title='Channel: Format type NUM:chm-chn,...,chx-chy-chz, type Single: chn,ON or chn,OFF' class='parametroDiv'></div>)
+        </div>"
+}
+*/
+
+
+/**
+* @fn void connLW();
+* @alias connect
+* @brief Use to select work mode
+* @return Nothing
+*/
+
+/*xRFI JSon
+{
+    'Nombre': 'readCredLW',
+    'NombreToolBox': 'readParam',
+    'Tipo' : 'SistemFnc',
+    'title': 'Reads the parameters needed to activate the OTAA or ABP methods.',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [
+                    {'name': 'Param',
+                    'tooltip': 'Parameter to read',
+                    'required': 'true',
+                    'type': 'str'}
+                  ],
+    'InnerHTML':"
+        <div class='lineaDeCodigo' originalclass='funcion' originalid='readCredLW' draggable='true' ondragstart='drag_linea(event)'>
+            LORAWAN.readParam(<div title='Param: DEADDR:0, DEVEUI:1, APPEUI:2' class='parametroDiv'></div>)
+        </div>"
+}
+*/
+
+/*xRFI JSon
+{
+    'Nombre': 'sleepLW',
+    'NombreToolBox': 'lowPower',
+    'Tipo' : 'SistemFnc',
+    'title': 'Used to make modem enter sleep mode with ultra-low power consumption',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [
+                    {'name': 'Timeout',
+                    'tooltip': 'Time in milliseconds',
+                    'required': 'true',
+                    'type': 'int'}
+                  ],
+    'InnerHTML':"
+        <div class='lineaDeCodigo' originalclass='funcion' originalid='sleepLW' draggable='true' ondragstart='drag_linea(event)'>
+            LORAWAN.lowPower(<div title='Timeout:Time in milliseconds from 100ms to 129600000ms, 0 for indetermined timeout' class='parametroDiv'></div>)
+        </div>"
+}
+*/
+
+/*xRFI JSon
+{
+    'Nombre': 'awakeLW',
+    'NombreToolBox': 'exitLowPower',
+    'Tipo' : 'SistemFnc',
+    'title': 'Used to make modem awake from sleep mode',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [],
+    'InnerHTML':"
+        <div class='lineaDeCodigo' originalclass='funcion' originalid='sleepLW' draggable='true' ondragstart='drag_linea(event)'>
+            LORAWAN.awake()
+        </div>"
+}
+*/
+
+
+
+/**
+* @fn void awakeLW();
+* @alias awake
+* @brief Used to make modem awake from sleep mode
+* @return Nothing
+*/
+
+
+
+/*xRFI JSon
+{
+    'Nombre': 'beaconLW',
+    'NombreToolBox': 'configBeacon',
+    'Tipo' : 'SistemFnc',
+    'title': 'Used to make modem enter sleep mode with ultra-low power consumption',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [
+                    {'name': 'Periodicity',
+                    'tooltip': 'Enter ping slot timing.Periodicity is set to 5 by default',
+                    'required': 'true',
+                    'type': 'int'},
+                    {'name': 'DRx',
+                    'tooltip': 'Enter data rate',
+                    'required': 'true',
+                    'type': 'str'},
+                    {'name': 'psfreq',
+                    'tooltip': 'Enter ping slot frequency',
+                    'required': 'true',
+                    'type': 'str'},
+                    {'name': 'DRx',
+                    'tooltip': 'Enter data rate',
+                    'required': 'true',
+                    'type': 'str'},
+                    {'name': 'bfreq',
+                    'tooltip': 'Enter Beacon frequency',
+                    'required': 'true',
+                    'type': 'str'}
+                  ],
+    'InnerHTML':"
+        <div class='lineaDeCodigo' originalclass='funcion' originalid='beaconLW' draggable='true' ondragstart='drag_linea(event)'>
+            LORAWAN.configBeacon(<div title='Periodicity: pingSlotPeriod factor (pingSlotPeriod = 2^periodicity seconds) 0-7' class='parametroDiv'></div>,
+                                <div title='DRx: Data rate, where x is 0 to 13' class='parametroDiv'></div>,
+                                <div title='psfreq: ping slot frequency(MHz), e.g. 917.2 for 917,2 MHz' class='parametroDiv'></div>,
+                                <div title='DRx: Data rate, where x is 0 to 13' class='parametroDiv'></div>,
+                                <div title='bfreq:Beacon frequency (Mhz), e.g. 918 for 918 MHz' class='parametroDiv'></div>)
+        </div>"
+}
+*/
+
+
+/**
+* @fn printf pLoRaWAN(concat tag,concat msg);
+* @alias Send
+* @brief Send a EMIC message through the LoRaWAN
+* @return Nothing
+* @param tag Etiqueta que identifica el mensaje
+* @param msg Contenido del mensaje
+*/
+
+
+
+
+/*RxFI JSon
+{
+    'Nombre': 'gLoRaWAN',
+    'NombreToolBox': 'read',
+    'Tipo' : 'SistemFnc',
+    'title': 'Read a string received from LoRaWAN',
+    'returnInfo': {'type':'string','tooltip':'Value read from LoRaWAN'},
+    'parameters': [],
+    'InnerHTML':"
+        <div class='lineaDeCodigo' originalclass='funcion' originalid='gLoRaWAN' draggable='true' ondragstart='drag_linea(event)'>
+            LORAWAN.read()
+        </div>"
+}
+*/
+
+/*xFI JSon
+{
+    'Nombre': 'eLoRaWAN',
+    'NombreToolBox': 'reception',
+    'Tipo' : 'SistemEvt',
+    'title': 'When receive downlink data LoRa Network Server',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [],
+    'instancia':'{
+        "NombreWorkBox":"Event.LORAWAN.Reception",
+        "definir":"event_eLoRaWAN_active",
+        "parametros": []
+        }'
+}
+*/
+
+/*xRFI JSon
+{
+    'Nombre': 'eLWcon',
+    'NombreToolBox': 'connected',
+    'Tipo' : 'SistemEvt',
+    'title': 'When successfully joined a LoRaWAN network',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [],
+    'instancia':'{
+        "NombreWorkBox":"Event.LORAWAN.Connected",
+        "definir":"event_eLoRaWANcon_active",
+        "parametros": []
+        }'
+}
+*/
+
+/**
+* @fn extern void eLWcon();
+* @alias connected
+* @brief Used to make modem awake from sleep mode
+* @return Nothing
+*/
+
+
+/*xRFI JSon
+{
+    'Nombre': 'eLoRaWANdis',
+    'NombreToolBox': 'disconnected',
+    'Tipo' : 'SistemEvt',
+    'title': 'When the LoRaWAN disconnect to one network ',
+    'returnInfo': {'type':'','tooltip':'Nothing'},
+    'parameters': [],
+    'instancia':'{
+        "NombreWorkBox":"Event.LORAWAN.Disconnect",
+        "definir":"event_eLoRaWANdis_active",
+        "parametros": []
+        }'
+}
+*/
+
+#newRFIcode(_drivers/LoRaWAN/lora_e5/lora_e5.emic,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+
+##include(inc\LoraWan_api.h,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+
+#setFile src.c
+	##include(src\LoraWan_api.c,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+#unSetFile
+
+/*==================[end of file]============================================*/
+#endif

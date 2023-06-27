@@ -95,5 +95,5 @@ void init_ADS1231(void)
 
 void ADS1231_speed(uint8_t speed)
 {
-	HAL_GPIO_PinSet(ADS1231_ON_Vcc, speed);
+	HAL_GPIO_PinSet(ADS1231_Speed, speed);
 }

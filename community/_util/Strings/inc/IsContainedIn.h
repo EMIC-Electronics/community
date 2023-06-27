@@ -1,1 +1,0 @@
-int16_t isContainedIn(char* substring, char* string);

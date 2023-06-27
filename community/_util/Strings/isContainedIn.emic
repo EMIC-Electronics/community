@@ -1,7 +1,0 @@
-#setFile codigo.c
-	##include(inc/isContainedIn.h)
-#unSetFile
-
-#setFile src.c
-	##include(src/isContainedIn.c)
-#unSetFile

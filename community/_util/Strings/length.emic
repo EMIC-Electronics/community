@@ -1,7 +1,0 @@
-#setFile codigo.c
-	##include(inc/length.h)
-#unSetFile
-
-#setFile src.c
-	##include(src/length.c)
-#unSetFile

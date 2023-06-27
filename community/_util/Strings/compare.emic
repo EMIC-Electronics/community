@@ -1,7 +1,0 @@
-#setFile codigo.c
-	##include(inc/compare.h)
-#unSetFile
-
-#setFile src.c
-	##include(src/compare.c)
-#unSetFile
