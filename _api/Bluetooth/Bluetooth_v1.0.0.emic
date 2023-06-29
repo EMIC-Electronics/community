@@ -1,0 +1,94 @@
+/*****************************************************************************
+
+  @file     Bluetooth.emic
+
+  @brief    Bluetooth interface
+
+  @author   Pentacolo Tomas (based on Francisco Martinez)
+
+  @date     31/05/2023
+
+  @version  v1.0.0 - Initial release.
+  
+ ******************************************************************************/
+//RFI TAG:driverName=Bluetooth
+
+#ifndef __BLUETOOTH_EMIC__
+#define __BLUETOOTH_EMIC__
+
+/*RFI JSon
+{
+	'Nombre': 'btName',
+	'Tipo' : 'ConfigDynamic',
+	'title': 'Power on Dynamometer',
+	"InnerHTML":"<label>bluetooth name:</label><input type='text' required name='btName' value='dispositivoBT'>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'btPass',
+	'Tipo' : 'ConfigDynamic',
+	'title': 'Power on Dynamometer',
+	"InnerHTML":"<label>bluetooth Pass:</label><input type='text' required name='btPass'  value='1234'>"
+}
+*/
+
+/*xRFI JSon
+{
+	'Nombre': 'pBlth',
+	'NombreToolBox': 'send',
+	'Tipo' : 'SistemFnc',
+	'title': 'Send a message through the bluetooth',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Tag',
+					'tooltip': 'Tag to identify the message',
+					'required': 'true',
+					'type': 'str'},
+					{'name': 'Msg',
+					'tooltip': 'String to send',
+					'required': 'true',
+					'type': 'str'},
+					{'name': 'Extend HEX',
+					'tooltip': 'Add the character indicated in hex at the end of the message',
+					'required': 'false"',
+					'type': 'str'}],
+	'InnerHTML':"
+		<div class='lineaDeCodigo' originalclass='funcion' originalid='pBlth' draggable='true' ondragstart='drag_linea(event)'>
+			Bluetooth.send(<div title='String to send' class='parametroDiv'></div>,<div title='Add the character indicated in hex at the end of the message' class='parametroDiv'></div>,<div title='Add the character indicated in hex at the end of the message' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/**
+* @fn printf pBlth(concat tag,concat msg);
+* @alias Send
+* @brief Send a message through the Bluetooth connection
+* @return Nothing
+* @param tag Etiqueta que identifica el mensaje
+* @param msg Contenido del mensaje
+*/
+
+/**
+* @fn extern void eBlth(char* tag,const streamIn_t* const msg);
+* @define use_eBlth_event
+* @alias Reception
+* @brief When it receives a string through the Bluetooth
+* @return Nothing
+* @param tag Tag to identify the message
+* @param msg message payload
+*/
+
+#newRFIcode(_hal\.{UC_FAMILY}.\_hard\Uart\uart.emic,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+#newRFIcode(_hal\.{UC_FAMILY}.\_hard\GPIO\gpio.emic)
+#newRFIcode(_util/Stream/stream.emic)
+
+#setFile codigo.c
+	##include(inc\Bluetooth_v1.0.0.h,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+#unSetFile
+
+#setFile src.c
+	##include(src\Bluetooth_v1.0.0.c,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+#unSetFile
+
+#endif  //__BLUETOOTH_EMIC__
