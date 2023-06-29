@@ -2,7 +2,7 @@
 #addToMacro(UC_FAMILY,pic24fj64ga002)
 
 //--------------Hardware Config---------------------
-#newRFIcode(_pcb\pcb.emic,pcb=HRD_PRINTER_DRIVER)
+#newRFIcode(_pcb\pcb.emic,pcb=HDR_PRINTER_DRIVER)
 
 //------------- Driver Config -----------------------
 #newRFIcode(_api\Indicators\LEDs\led.emic)

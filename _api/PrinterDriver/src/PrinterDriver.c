@@ -13,7 +13,7 @@
  ******************************************************************************/
 void Printer_Init()
 {
-    HAL_PinMap_PRINTER_RST(PinMap_DIGITAL);
+    HAL_PinMap_PRINTER_RTS(PinMap_DIGITAL);
     HAL_PinMap_PRINTER_TX(PinMap_DIGITAL);
     HAL_PinMap_PRINTER_CTS(PinMap_DIGITAL);
     HAL_PinMap_PRINTER_RX(PinMap_DIGITAL);

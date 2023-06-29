@@ -1,6 +1,4 @@
-//RFI TAG:alias=usePrinterDriver,10
-//RFI TAG:driverName=PrinterDriver
-
+//RFI TAG:driverName=PRINTER
 /*****************************************************************************
 
   @file     PrinterDriver.emic
@@ -14,6 +12,8 @@
   @version  v1.0.0 - Initial release.
 
  ******************************************************************************/
+#ifndef __PRINTER_DRIVER_EMIC__
+#define __PRINTER_DRIVER_EMIC__
 
 /**
 * @fn printf pPrinter(concat msg);
@@ -32,3 +32,5 @@
 #setFile src.c
 	##include(src\PrinterDriver.c,puerto=_{puerto}_)
 #unSetFile
+
+#endif
