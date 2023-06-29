@@ -1,0 +1,67 @@
+#define nombreModulo "HRD_WIFI"
+
+//--------------Hardware Config---------------------
+#include "_placas\HRD_WiFi5Click_V1.0.h"
+//---------------------------------------------------
+
+#define MAX_I2C_IN  256
+#define MAX_I2C_OUT 256
+
+//------------- Driver Config -----------------------
+
+
+#include "_sistemaRFI\mainSuper_XC.h"
+
+
+//#useDriver useTIC(nombre=)
+#newRFIcode(_API/Tic/src/tic.c)
+
+//#useDriver useLedsV2(nombre=)
+#newRFIcode(_API/LEDs/src/ledV2.c)
+
+
+//#useDriver useWiFiV2(socketName=WiFi00,puerto=1,baud=9600,bufferIn=256,bufferOut=256,frameLf='\n')
+#newRFIcode(_API/WiFi/inc/wifiapi_V2.h,socketName=WiFi00,puerto=1,baud=9600,bufferIn=256,bufferOut=256,frameLf='\n')
+
+
+/*RFI JSon
+{
+	'Nombre': 'tcpProtocol',
+	'Tipo' : 'Configurator',
+	'subtype' : 'str',
+	'title': 'Power on Dynamometer',
+	"InnerHTML":"
+	   <fieldset>
+			<legend>Select Click Board Category:</legend>
+
+			<div><input type='radio' required name='tcpProtocol' id='tcpProtocol1' value='`TCP_Server`'><label for='tcpProtocol1'>TCP Server</label></input></div>
+			<div><input type='radio' required name='tcpProtocol' id='tcpProtocol2' value='`TCP_Client`'><label for='tcpProtocol2'>TCP Client</label></input></div>
+			<div><input type='radio' required name='tcpProtocol' id='tcpProtocol3' value='`MQTT`'><label for='tcpProtoco3'>MQTT</label></input></div>
+		</fieldset>
+	"
+}
+*/
+
+
+#if tcpProtocol == "TCP_Client"
+	#useDriver useTCPClientV2(nombre=,socketName=WiFi00)
+    #newRFIcode(_API/TCP/TCP_Client/TCP_api_V2.h,nombre=,socketName=WiFi00)
+#endif
+
+#if tcpProtocol == "MQTT"
+	//#useDriver useMQTT_V2(nombre=,socketName=WiFi00)
+    #newRFIcode(_API/MQTT/MQTT_V2/mqttapi.h,nombre=,socketName=WiFi00)
+	#addToMacro(TemplateReference,MQTT_wifi_template)
+#endif
+
+
+//#useDriver useSystem(nombre=)
+#newRFIcode(_API/System/src/system.c)
+
+//#useDriver useEMICbusV3(nombre=)
+#newRFIcode(_API/I2Crfi/inc/I2CxBufferC.V3.h)
+
+
+//---------------------------------------------------
+
+#include "_sistemaRFI\mainSuper_XC.c"
