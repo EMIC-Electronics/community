@@ -78,7 +78,7 @@
 }
 */
 
-/*RFI JSon
+/*xRFI JSon
 {
 	'Nombre': 'getPeso',
 	'NombreToolBox': 'getPeso',
@@ -91,6 +91,15 @@
 			LoadCell.getPeso()
 		</div>"
 }
+*/
+
+
+
+/**
+* @fn char* getPeso();
+* @alias getPeso
+* @brief Gets current value of net weight.
+* @return Nothing
 */
 
 /*RFI JSon
