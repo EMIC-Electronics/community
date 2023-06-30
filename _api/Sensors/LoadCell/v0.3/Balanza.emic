@@ -78,7 +78,7 @@
 }
 */
 
-/*xRFI JSon
+/*RFI JSon
 {
 	'Nombre': 'getPeso',
 	'NombreToolBox': 'getPeso',
@@ -94,13 +94,6 @@
 */
 
 
-
-/**
-* @fn char* getPeso();
-* @alias getPeso
-* @brief Gets current value of net weight.
-* @return Nothing
-*/
 
 /*RFI JSon
 {
