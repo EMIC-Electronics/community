@@ -1,0 +1,82 @@
+//RFI TAG:driverName=WiFi
+
+/******************************************************************************
+
+  @file     wifiapi.h
+
+  @brief    Driver Library to use WiFi module
+
+  @author   Dario J Pena (DJP)
+
+  @version  20200721 v0.0.1   DJP Initial release.
+ ******************************************************************************/
+
+
+
+/*RFI JSon
+{
+	'Nombre': 'conWIFI',
+	'NombreToolBox': 'connect',
+	'Tipo' : 'SistemFnc',
+	'title': 'connects the wifi with the seated parameters',
+	'returnInfo': {},
+	'parameters': [],
+	'InnerHTML':"
+		<div class='lineaDeCodigo' originalclass='funcion' originalid='conWIFI' draggable='true' ondragstart='drag_linea(event)'>
+			WIFI.connect()
+		</div>"
+}
+*/
+
+
+/*RFI JSon
+{
+	'Nombre': 'eWifi',
+	'NombreToolBox': 'connected',
+	'Tipo' : 'SistemEvt',
+	'title': 'when the wifi connects to one network ',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.WIFI.Connected",
+		"definir":"event_eWifi_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eWifidis',
+	'NombreToolBox': 'disconnected',
+	'Tipo' : 'SistemEvt',
+	'title': 'when the wifi disconnect to one network ',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox":"Event.WIFI.Disconnect",
+		"definir":"event_eWifidis_active",
+		"parametros": []
+		}'
+}
+*/
+
+
+//#newRFIcode(_hal\.{UC_FAMILY}.\_hard\Uart\uart.emic,puerto=_{puerto}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_)
+
+//#newRFIcode(_hal\.{UC_FAMILY}.\_hard\GPIO\gpio.emic)
+
+
+
+#newRFIcode(_util/Stream/stream.emic)
+
+#newRFIcode(_drivers/WiFi/GS1500.v2.0.0.emic,socketName=_{socketName}_,puerto=_{puerto}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_)
+
+
+#setFile codigo.c
+	##include(inc\wifi_api.v2.0.0.h,socketName=_{socketName}_,puerto=_{puerto}_)
+#unSetFile
+
+#setFile src.c
+	##include(src\wifi_api.v2.0.0.c,socketName=_{socketName}_,puerto=_{puerto}_)
+#unSetFile

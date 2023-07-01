@@ -1,0 +1,77 @@
+//RFI TAG:driverName=TCP Client
+
+/***************************************************************************
+
+  @file     wifiTCP.h
+
+  @brief    
+
+  @author   EMIC
+
+  @date     04/03/2021
+
+  @version   v0.0.1 - Initial release.
+  
+ ******************************************************************************/
+
+
+/**
+* @fn printf pTCP(concat tag,concat msg);
+* @alias Send
+* @brief Send a EMIC message through the TCP port
+* @return Nothing
+* @param tag Etiqueta que identifica el mensaje
+* @param msg Contenido del mensaje
+*/
+
+/**
+* @fn extern void eTCP(char* tag,const streamIn_t* const msg);
+* @alias onReceive
+* @brief When it receives a string through the TCP port
+* @return Nothing
+* @param tag Tag to identify the message
+* @param msg message payload
+*/
+
+
+
+//   
+//   /*RFI JSon
+//   {
+//   	'Nombre': 'eTCPcon',
+//   	'NombreToolBox': 'connected',
+//   	'Tipo' : 'SistemEvt',
+//   	'title': 'When the tcp port connects',
+//   	'returnInfo': {'type':'','tooltip':'Nothing'},
+//   	'parameters': [],
+//   	'instancia':'{
+//   		"NombreWorkBox":"Event.TCP.Connected",
+//   		"definir":"event_eTCPcon_active",
+//   		"parametros": []
+//   		}'
+//   }
+//   */
+//   
+//   /*RFI JSon
+//   {
+//   	'Nombre': 'eTCPdis',
+//   	'NombreToolBox': 'disconnected',
+//   	'Tipo' : 'SistemEvt',
+//   	'title': 'When the tcp port disconnects',
+//   	'returnInfo': {'type':'','tooltip':'Nothing'},
+//   	'parameters': [],
+//   	'instancia':'{
+//   		"NombreWorkBox":"Event.TCP.disconnected",
+//   		"definir":"event_eTCPdis_active",
+//   		"parametros": []
+//   		}'
+//   }
+//   */
+
+//#setFile codigo.c
+//	##include(inc\TCP_api.v2.0.0.h,socketName=_{socketName}_)
+//#unSetFile
+//
+//#setFile src.c
+//	##include(src\TCP_api.v2.0.0.c,socketName=_{socketName}_)
+//#unSetFile
