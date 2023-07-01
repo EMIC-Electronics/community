@@ -40,12 +40,17 @@ typedef struct stream_S
   uint16_t data_idx_entr;
   uint16_t data_idx_sal;
   uint16_t data_idx_sal_aux;
-  uint16_t data_count;
+  uint16_t data_count_entr;
+  uint16_t data_count_sal;
+  uint16_t data_count_sal_aux;
   uint16_t frame_idx_entr;
   uint16_t frame_idx_sal;
   uint16_t frame_count;
   uint16_t* frame_fifo;
   unsigned char*  data_fifo;
+  const char frame_indentifier;
+  const uint16_t data_idx_mask;
+  const uint16_t frame_idx_mask;
 
 } stream_t;
 
