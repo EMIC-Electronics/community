@@ -1,0 +1,167 @@
+/*****************************************************************************
+
+  @file     Radio_LoRa.emic
+
+  @brief    Radio LoRa API driver
+
+  @author   Pentacolo Tomas
+
+  @date     04/07/2023
+
+  @version  v1.0.0 - Initial Release
+  
+ ******************************************************************************/
+//RFI TAG:driverName=Radio_LoRa
+
+#ifndef __RADIO_LORA_EMIC__
+#define __RADIO_LORA_EMIC__
+
+/*RFI JSon
+{
+	'Nombre': 'rfSleep',
+	'NombreToolBox': 'sleep',
+	'Tipo' : 'SistemFnc',
+	'title': 'Activate sleep mode',
+	'FunctionReturn': [],
+	'FunctioNParametros': '1',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+
+	'InnerHTML':"
+		<div class='lineaDeCodigo' originalclass='funcion' originalid='rfSleep' draggable='true' ondragstart='drag_linea(event)'>
+			LORA.sleep()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'pRF',
+	'NombreToolBox': 'send',
+	'Tipo' : 'SistemFnc',
+	'title': 'send a text string through the RF port',
+	'FunctionReturn': [],
+	'FunctioNParametros': '2',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Tag',
+					'tooltip': 'Tag to identify the message',
+					'required': 'true',
+					'type': 'str'},
+					{'name': 'Msg',
+					'tooltip': 'String to send',
+					'required': 'true',
+					'type': 'str'},
+					{'name': 'Extend HEX',
+					'tooltip': 'Add the character indicated in hex at the end of the message',
+					'required': 'false"',
+					'type': 'str'}],
+	'InnerHTML':"
+		<div class='lineaDeCodigo' originalclass='funcion' originalid='pRF' draggable='true' ondragstart='drag_linea(event)'>
+			LORA.send(<div title='Tag to identify the message' class='parametroDiv'></div>, <div title='String to send' class='parametroDiv'></div>, <div title='Add the character indicated in hex at the end of the message' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'gRF',
+	'NombreToolBox': 'read',
+	'Tipo' : 'SistemFnc',
+	'title': 'Read a text string received by the RF port',
+	'FunctionReturn': "Cadena de texto",
+	'FunctioNParametros': '1',
+	'returnInfo': {'type':'str','tooltip':'the text received from the Radio'},
+	'parameters': [],
+	'InnerHTML':"
+		<div class='lineaDeCodigo' originalclass='funcion' originalid='gRF' draggable='true' ondragstart='drag_linea(event)'>
+			LORA.read()
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'setIds',
+	'NombreToolBox': 'idConfig',
+	'Tipo' : 'SistemFnc',
+	'title': 'Set local ID and global ID',
+	'FunctionReturn': [],
+	'FunctioNParametros': '2',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [{'name': 'Local ID',
+					'tooltip': 'Set the local ID',
+					'required': 'true',
+					'type': 'str'},
+					{'name': 'Group ID',
+					'tooltip': 'Set the Group ID',
+					'required': 'true',
+					'type': 'str'}],
+	'InnerHTML':"
+		<div class='lineaDeCodigo' originalclass='funcion' originalid='setIds' draggable='true' ondragstart='drag_linea(event)'>
+			LORA.idConfig(<div title='Local ID' class='parametroDiv'></div>,<div title='Group ID' class='parametroDiv'></div>)
+		</div>"
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'WupRF',
+	'NombreToolBox': 'wakeUp',
+	'Tipo' : 'SistemFnc',
+	'title': 'Wake up the radio',
+	'FunctionReturn': [],
+	'FunctioNParametros': '0',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'InnerHTML':"
+		<div class='lineaDeCodigo' originalclass='funcion' originalid='WupRF' draggable='true' ondragstart='drag_linea(event)'>
+			LORA.wakeUp()
+		</div>"
+}
+*/
+
+//  -------- EVENTOS -----------------
+/*RFI JSon
+{
+	'Nombre': 'eRF',
+	'NombreToolBox': 'reception',
+	'Tipo' : 'SistemEvt',
+	'title': 'when it receives a text string on the Radio',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'instancia':'{
+		"NombreWorkBox": "Event.RADIO.reception",
+		"definir":"event_eRf_active",
+		"parametros": [{"value":"Tag","title":"Tag to identify the message (vew EMIC_scripting_manual)"}]
+		}'
+}
+*/
+
+/*xRFI JSon
+{
+	'Nombre': 'eRfNoRcv',
+	'NombreToolBox': 'RecpecionError',
+	'Tipo' : 'SistemEvt',
+	'title': 'cuando falla recepcion por el puerto RF',
+	'FunctionReturn': "",
+	'FunctioNParametros': '',
+	'instancia':'{
+		"NombreWorkBox": "Falla en Recepcion RF ",
+		"definir":"event_eRf_active",
+		"parametros": [{"value":"Rssi","title":"Rssi"}]
+		}'
+}
+*/
+
+#newRFIcode(_drivers/HopeRF/inc/radio_hope.emic)
+#newRFIcode(_hard/GPIO/GPIO_V1.emic)
+
+#setFile codigo.c
+	##include(inc\Radio_LoRa.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\Radio_LoRa.c)
+#unSetFile
+
+#endif //__RADIO_LORA_EMIC__
