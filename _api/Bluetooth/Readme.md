@@ -9,6 +9,10 @@ The interface has one method used to send data via Bluetooth and one event that 
 - `extern void eBlth(char* tag, const streamIn* getBlth)`: This event is triggered when new data arrives via Bluetooth. The message includes a header *tag* with a maximum limit of 20 characters, while *getBlth* is a structure that contains all the characters of the message and information on how to access it.
 
 # Changelog
+## Version 1.0.1:
+### Corrections 
+The end of a message is now detected with the character 0x0A, which solves the problem when receiving a message without the corresponding structure.
+
 ## Version 1.0.0 - Initial Release:
 ### Description
 For this initial version, we started from what was available in the previous version of the EMIC system (repository `Interpreted`), then we adapted the code to be compatible with the new version and the use of current resources, while maintaining consistency with other communication systems such as USB or the EMIC Bus.
