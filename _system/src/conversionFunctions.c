@@ -1,6 +1,5 @@
 #ifndef __CONVERSIONFUNCTIONS_C__
 #define __CONVERSIONFUNCTIONS_C__
-#ifdef __PIC16__
 
 float ato_float(char* number)
 {
@@ -167,5 +166,4 @@ int64_t ato_int64(char* string)
     return 0;
 }
 
-#endif  //__PIC16__
 #endif //__CONVERSIONFUNCTIONS_C__
