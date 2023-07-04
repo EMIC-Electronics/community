@@ -8,7 +8,7 @@
 
   @date     31/05/2023
 
-  @version  v1.0.0 - Initial release.
+  @version  v1.0.1
   
  ******************************************************************************/
 //RFI TAG:driverName=Bluetooth
@@ -88,7 +88,7 @@
 #unSetFile
 
 #setFile src.c
-	##include(src\Bluetooth_v1.0.0.c,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
+	##include(src\Bluetooth_v1.0.1.c,puerto=_{puerto}_,baud=_{baud}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,frameLf=_{frameLf}_)
 #unSetFile
 
 #endif  //__BLUETOOTH_EMIC__

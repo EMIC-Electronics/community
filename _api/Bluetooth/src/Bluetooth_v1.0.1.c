@@ -8,7 +8,7 @@
 
   @date     31/05/2023
 
-  @version   v1.0.0 - Initial release.
+  @version   v1.0.1
   
  ******************************************************************************/
 
@@ -162,7 +162,7 @@ void poll_Bluetooth()
 		uint8_t i = 0;
 	
 		d = UARTX_{puerto}__IN_pop(1);
-		while (d != '\0' && d != '\t' && i < 20)
+		while (d != '\0' && d != 0x0A && d != '\t' && i < 20)
 		{
 			tag[i++] = d;
 			d = UARTX_{puerto}__IN_pop(1);
