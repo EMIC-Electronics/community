@@ -104,15 +104,16 @@ tcp_return_t _{socketName}__TCP_hasData(tcp_socket_t *socket)
 
 void wifiGS1500_init()
 {
-	gpio_init();
+	HAL_GPIO_PinCfg(WiFi_RST,GPIO_OUTPUT);
+	HAL_GPIO_PinSet(WiFi_RST,GPIO_HIGH);
 
-	gpio_pinConfig(PORT_CLICKB_RST,GPIO_OUTPUT);
-	
-	gpio_pinSet(PORT_CLICKB_RST,GPIO_HIGTH);
 	__delay_ms(100);
-	gpio_pinSet(PORT_CLICKB_RST,GPIO_LOW);
+
+	HAL_GPIO_PinSet(WiFi_RST,GPIO_LOW);
+
 	__delay_ms(500);
-	gpio_pinSet(PORT_CLICKB_RST,GPIO_HIGTH);
+
+	HAL_GPIO_PinSet(WiFi_RST,GPIO_HIGH);
 
 	__delay_ms(1000);
 	
@@ -151,7 +152,7 @@ void checkAnswer2()
 
 	while (UARTX_{puerto}__IN_cont_byte > 0)
 	{
-		r = UARTX_{puerto}__IN_pop(1);
+		r = UARTX_{puerto}__IN_pop();
 		switch (bulk_status)
 		{
 			case 0: // no bulk init;
@@ -614,32 +615,28 @@ void wifiGS1500_updateState(char *answer)
 
 }
 
-void _{socketName}__send_TCP_packet(uint8_t *buffer, uint16_t len)
+void _{socketName}__send_TCP_packet(stream_t* stream)
 {
-	uint16_t i;
 	char dataLength[5];
 
 	// <ESC>Z<CID><Data Length>DATO
 
 	if(wifi_state == WIFI_TCP_CONNECTED)
 	{
-
 		UARTX_{puerto}__OUT_push(0x1B);
 		UARTX_{puerto}__OUT_push('Z');
 		UARTX_{puerto}__OUT_push(cid);
 		
-		sprintf(dataLength,"%04u",len);
+		sprintf(dataLength,"%04u",stream->data_count_sal);
 		UARTX_{puerto}__OUT_push(dataLength[0]);
 		UARTX_{puerto}__OUT_push(dataLength[1]);
 		UARTX_{puerto}__OUT_push(dataLength[2]);
 		UARTX_{puerto}__OUT_push(dataLength[3]);
 
-		for(i=0; i<len; i++)
+		while(stream->data_count_sal)
 		{
-            UARTX1_OUT_push(*buffer);
-            buffer++;
+            UARTX1_OUT_push(streamPop(stream));
 		}
-
 	}
 }
 
@@ -662,7 +659,7 @@ void Poll_wifiGS1500(void)
 			// Send "AT" until module response OK.
             String_2_UART("AT\r\n");
             __delay_ms(1000);// es bloqueante, pero es para esperar a que el modulo responda
-		break;
+			break;
 
 		case WIFI_UART_ECHO_OFF:
             if (!wait_UART_response)
@@ -677,7 +674,7 @@ void Poll_wifiGS1500(void)
                 wait_UART_response = 0;
                 wifi_state = WIFI_SERIAL_2_WIFI_APP;
  			}
-		break;
+			break;
 			
 		case WIFI_DHCP_CONF:
             if (!wait_UART_response)
@@ -694,7 +691,7 @@ void Poll_wifiGS1500(void)
                 wait_UART_response = 0;
                 wifi_state = WIFI_UART_ECHO_OFF;
  			}
-		break;
+			break;
                     
 		case WIFI_ANTENNA_CONF:
 			if (!wait_UART_response)
@@ -726,7 +723,7 @@ void Poll_wifiGS1500(void)
                 wait_UART_response = 0;
                 wifi_state = WIFI_ANTENNA_CONF;
  			}
-		break;
+			break;
 		
 		case WIFI_SSID_CONNECT:
             if (!wait_UART_response)

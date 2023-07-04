@@ -36,6 +36,6 @@ wifi_state_t wifi_state = WIFI_AP_IDLE;
 int wait_UART_response = 1;
 uint32_t wifi_timeout;
 
-uint8_t _{socketName}__send_TCP_packet(uint8_t *buffer, uint16_t len);
+void _{socketName}__send_TCP_packet(stream_t* stream);
 
 

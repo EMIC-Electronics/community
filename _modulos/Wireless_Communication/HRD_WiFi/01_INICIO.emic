@@ -8,7 +8,7 @@
 #newRFIcode(_api\Timer\Timer_API_V1.emic)
 
 //#newRFIcode(_api\Bluetooth\Bluetooth_v1.0.0.emic,puerto=1,nombre=,baud=38400,bufferIn=512,bufferOut=512,frameLf='\n')
-#newRFIcode(_api/Wireless_Communication/WiFi/inc/wifi_api.v2.0.0.emic,socketName=WiFi00,puerto=1,baud=9600,bufferIn=256,bufferOut=256,frameLf='\n')
+#newRFIcode(_api/Wireless_Communication/WiFi/wifi_api.v2.0.0.emic,socketName=WiFi00,puerto=1,baud=9600,bufferIn=256,bufferOut=256,frameLf='\n')
 
 
 /*RFI JSon
@@ -32,7 +32,7 @@
 
 #if tcpProtocol == "TCP_Client"
 	#useDriver useTCPClientV2(nombre=,socketName=WiFi00)
-    #newRFIcode(_API/TCP/TCP_Client/TCP_api_V2.h,nombre=,socketName=WiFi00)
+    #newRFIcode(_api/TCP/TCP_Client/TCP_api.v2.0.0.emic,nombre=,socketName=WiFi00)
 #endif
 
 #if tcpProtocol == "MQTT"

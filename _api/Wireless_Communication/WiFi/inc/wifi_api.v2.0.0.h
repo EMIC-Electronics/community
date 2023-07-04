@@ -33,20 +33,17 @@ const streamIn_t getWifi = {wifi_in_fifo, wifi_in_pop, wifi_in_count};
 const streamOut_t setWifi = {wifi_out_fifo, wifi_out_push};
 
 /*==================[external data declaration]==============================*/
-char SSID[32]="";
-doCMDstr(SSID) // AP Identifier.
+char SSID[32]=""; /**< Service Set Identifier. */
 
-char PASS[16]="";
-doCMDstr(PASS) // AP Password.
+char PASS[16]=""; /**< AP Password.  */
 
-uint16_t ANTENNA = 1 ;
-doCMD(ANTENNA)//1-PCB , 2-UFL
+uint16_t ANTENNA;  /**< 1-PCB , 2-UFL  */
 
-void conWIFI(void);
-doCMDf(conWIFI)
+void conWIFI(void); 
+//doCMDf(conWIFI)
 
-void Pull_wifi (void);
-doPoll(Pull_wifi)
+//void Pull_wifi (void);
+//doPoll(Pull_wifi)
 
 void WIFI_Init(void);
 #setFile temp/EMICinits.c

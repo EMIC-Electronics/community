@@ -10,8 +10,11 @@ char presist_ persistEnd;
 int main(void)
 {
 	initSystem();
+	#ifdef event_preReset_active
+	preReset();
+	#endif
 	#newRFIcode(temp/EMICinits.c,)
-	#ifdef event_OnReset_active
+	#ifdef event_onReset_active
 	onReset();
 	#endif
 	do

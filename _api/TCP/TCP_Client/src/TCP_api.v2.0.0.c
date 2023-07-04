@@ -13,19 +13,6 @@
   
  ******************************************************************************/
 
-//#newRFIcode(_drivers/TCP/inc/TCP_V2.h,socketName=_{socketName}_)
-
-void pTCP(void)
-{
-
-	static uint8_t event_connected_flag = 0;
-	if(strlen(ptr_param[0]) > 0)
-	{
-		_{socketName}__send_TCP_packet(ptr_param[0], param_l[0]);
-	}
-}
-
-
 void pTCP(char* format,...)
 {
 	va_list arg;
@@ -34,10 +21,6 @@ void pTCP(char* format,...)
 	char strFormat[10];
 	char auxStr[20];
 	int okFormat = 0;
-
-
-	char buffer[1024];
-	char idx = 0;
 
  	for (; *format > 0; format++)
 	{
@@ -80,7 +63,7 @@ void pTCP(char* format,...)
 			str = auxStr;
 			while (*str)
 			{
-				buffer[idx++] = str++;
+				streamPush(tcpOutStream,*str++);
 			}
 			format-- ;
 			continue;
@@ -98,126 +81,104 @@ void pTCP(char* format,...)
 					str = va_arg(arg, char*);
 					while (*str)
 					{
-						buffer[idx++] = *str++;
+						streamPush(tcpOutStream,*str++);
 					}
 					break;
 				case 'r':
 					dataIn = va_arg(arg, streamIn_t*);
 					while (dataIn->count())
 					{
-						buffer[idx++] = dataIn->get(1);
+						streamPush(tcpOutStream,dataIn->get(1));
 					}
 					break;
 				default:
-					buffer[idx++] = *format;
+					streamPush(tcpOutStream,*format);
 					break;
 
 			}
 		}
 		else
 		{
-			buffer[idx++] = *format;
+			streamPush(tcpOutStream,*format);
 		}
 	}
-	_{socketName}__send_TCP_packet(data, idx);
+	//_{socketName}__send_TCP_packet(data, idx);
+	_{socketName}__send_TCP_packet(tcpOutStream);
 	va_end(arg);
 }
 
 
 
-/**
- * @brief
- */
-void gTCP(void)
-{
-	char data = 0;
-	tcp_return_t rv = TCP_OK;
-	putc_rsp('�');
-	do
-	{
-		rv = _{socketName}__TCP_popData(&data, &TCP_raw_socket);
-		if(rv == TCP_OK && data != 0x00)
-		{
-			putc_rsp(data);
-		}
-	}while(rv == TCP_OK && data != 0x00);
-	putc_rsp('�');
-}
 
-
-/**
- * @brief
- */
 void Poll_TCP(void)
 {
 	tcp_return_t rv = TCP_OK;
 	static uint8_t event_connected_flag = 0;
-//	if(tcpProtocolConfig==TCP_RAW_MODE)
-//	{
-		if (_{socketName}__TCP_hasData(&TCP_raw_socket) == TCP_OK)//if the tcp buffer have data
-		{
+	if (_{socketName}__TCP_hasData(&TCP_raw_socket) == TCP_OK)//if the tcp buffer have data
+	{
 
-#ifdef event_eTCP_active
-
-			static char data[1024];
-			char *ptr = data;
-
-			tcp_return_t rv = TCP_OK;
-			do
-			{
-				rv = _{socketName}__TCP_popData(ptr, &TCP_raw_socket);
-				if(rv == TCP_OK && data != 0x00)
-				{
-					
-				}
-			}while(rv == TCP_OK && data != 0x00);
-
-			eTCP(data);
-
-
-
+		#ifdef event_eTCP_active
 
 			char tag[20];
-			char d;
 			uint8_t i = 0;
-		
-			d =  _{socketName}__TCP_popData(ptr, &TCP_raw_socket);
-			while (d != TCPFrameLf && d != '\t' && i < 20)
+			char *data;
+
+			tcp_return_t rv = TCP_OK;
+
+
+			do
 			{
-				tag[i++] = d;
-				d =  _{socketName}__TCP_popData(ptr, &TCP_raw_socket);
-			}
-			
+				rv = _{socketName}__TCP_popData(data, &TCP_raw_socket);
+				if(rv == TCP_OK )
+				{
+					if (d != '\t' && i < 20)
+					{
+						tag[i++] = d;
+					}
+					else
+					{
+						break;
+					}
+					
+					//streamPush(tcpInStream,data);
+				}
+			}while(rv == TCP_OK );
+
 			tag[i] = 0;
-			
-			eUSB(tag,&getUart_{puerto}_);
 
-
-
-
-
-#endif
-			_{socketName}__TCP_resetData(&TCP_raw_socket);
-		}
-		if(tcp_state == TCP_STATE_CONNECTED )
-		{
-			if(event_connected_flag == 0)
+			do
 			{
-				event_connected_flag = 1;
-#ifdef event_eTCPcon_active
-			eTCPcon();
-#endif
-			}
-		}
-		else
+				rv = _{socketName}__TCP_popData(data, &TCP_raw_socket);
+				if(rv == TCP_OK )
+				{
+					streamPush(tcpInStream,data);
+				}
+			}while(rv == TCP_OK );
+
+			eTCP(tag, tcpInStream);
+
+
+		#endif
+		_{socketName}__TCP_resetData(&TCP_raw_socket);
+	}
+	if(tcp_state == TCP_STATE_CONNECTED )
+	{
+		if(event_connected_flag == 0)
 		{
-			if(event_connected_flag == 1)
-			{
-#ifdef event_eTCPdis_active
+			event_connected_flag = 1;
+			#ifdef event_eTCPcon_active
+				eTCPcon();
+			#endif
+		}
+	}
+	else
+	{
+		if(event_connected_flag == 1)
+		{
+			#ifdef event_eTCPdis_active
 				eTCPdis();
-#endif
-			}
-			event_connected_flag = 0;
+			#endif
 		}
-//	}
+		event_connected_flag = 0;
+	}
 }

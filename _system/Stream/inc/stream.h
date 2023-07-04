@@ -14,16 +14,26 @@
 #ifndef __stream_h__
 #define __stream_h__
 
+//typedef struct streamIn_S
+//{
+//	unsigned char* data;
+//    unsigned char (*get)(void);
+//    uint16_t (*countData)(void);
+//    uint16_t (*countFrames)(void);
+//    void (*startRead)(void);
+//    void (*endRead)(void);
+//
+//} streamIn_t;
+
+
 typedef struct streamIn_S
 {
 	unsigned char* data;
-    unsigned char (*get)(void);
-    uint16_t (*countData)(void);
-    uint16_t (*countFrames)(void);
-    void (*startRead)(void);
-    void (*endRead)(void);
-
+    unsigned char (*get)(unsigned char);
+    uint16_t (*count)(void);
 } streamIn_t;
+
+
 
 typedef struct streamOut_S
 {

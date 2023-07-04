@@ -36,6 +36,12 @@
 //extern unsigned char UARTX_{puerto}__OUT_fifo; Preguntar a Penta
 
 
+uint8_t UARTX_{puerto}__bufferEmpty;
+uint16_t UARTX_{puerto}__IN_punt_entr;
+uint16_t UARTX_{puerto}__IN_punt_sal;
+uint16_t UARTX_{puerto}__IN_cont_byte;
+uint16_t UARTX_{puerto}__IN_n_frame;
+unsigned char UARTX_{puerto}__IN_fifo[UARTX_{puerto}__IN_MAX];
 
 
 uint16_t UARTX_{puerto}__OUT_punt_entr;

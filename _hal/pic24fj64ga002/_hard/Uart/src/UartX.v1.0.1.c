@@ -222,15 +222,15 @@ void UARTX_{puerto}__init(void)
 #if miPuerto == 1
 
 
-	RPOUT_U1_TX =_RPOUT_U1TX;	// RPIN_TX1 -> UART1:U1TX
-	_U1RXR = RPIN_U1_RX;  		//	RPINR18bits.U1RXR = RPIN_U1RX		// RB15->UART1:U1RX
+	RPOUT__{pins}__TX =_RPOUT_U1TX;	// RPIN_TX1 -> UART1:U1TX
+	_U1RXR = RPIN__{pins}__RX;  		//	RPINR18bits.U1RXR = RPIN_U1RX		// RB15->UART1:U1RX
 
-	#ifdef RPIN_U1CTS
-		_U1CTSR = RPIN_U1_CTS
+	#ifdef RPIN__{pins}__CTS
+		_U1CTSR = RPIN__{pins}__CTS
 	#endif
 
-	#ifdef RPOUT_U1RTS
-		RPOUT_U1_RTS = _RPOUT_U1RTS
+	#ifdef RPOUT__{pins}__RTS
+		RPOUT__{pins}__RTS = _RPOUT_U1RTS
 	#endif
 
 
@@ -253,15 +253,15 @@ void UARTX_{puerto}__init(void)
 #elif miPuerto == 2
 
 
-	RPOUT_U2TX =_RPOUT_U2TX;
-	_U1RXR = RPIN_U2RX;
+	RPOUT__{pins}__TX =_RPOUT_U2TX;
+	_U1RXR = RPIN__{pins}__RX;
 
-	#ifdef RPIN_U2CTS
-		_U2CTSR = RPIN_U2CTS
+	#ifdef RPIN__{pins}__CTS
+		_U2CTSR = RPIN__{pins}__CTS
 	#endif
 
-	#ifdef RPOUT_U1RTS
-		RPOUT_U2RTS = _RPOUT_U2RTS
+	#ifdef RPOUT__{pins}__RTS
+		RPOUT__{pins}__RTS = _RPOUT_U2RTS
 	#endif
 
 #endif

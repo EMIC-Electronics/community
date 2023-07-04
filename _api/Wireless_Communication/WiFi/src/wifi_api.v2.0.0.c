@@ -14,6 +14,7 @@
 
 void WIFI_Init()
 {
+	ANTENNA = 1;
 	wifiGS1500_init();
 }
 

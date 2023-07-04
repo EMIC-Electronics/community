@@ -10,10 +10,18 @@
 	'parameters': [],
 	'instancia':'{
 		"NombreWorkBox": "Event.SYSTEM.onReset",
-		"definir":"event_OnReset_active",
+		"definir":"event_onReset_active",
 		"parametros": []
 		}'
 }
+*/
+
+
+/**
+* @fn extern void preReset();
+* @alias preReset
+* @brief before initializing the drivers, recommended for initializing system variables. 
+* @return Nothing
 */
 
 #include <stdint.h>
@@ -23,7 +31,7 @@
 
 #newRFIcode(_system\systemInclusions.emic)
 
-#newRFIcode(main.c,)
+#newRFIcode(main.c)
 
 
 

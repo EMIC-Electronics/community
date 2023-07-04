@@ -68,7 +68,7 @@
 
 
 
-#newRFIcode(_util/Stream/stream.emic)
+#newRFIcode(_system/Stream/stream.emic)
 
 #newRFIcode(_drivers/WiFi/GS1500.v2.0.0.emic,socketName=_{socketName}_,puerto=_{puerto}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_)
 

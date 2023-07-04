@@ -1,4 +1,7 @@
-#newRFIcode(_hal\.{UC_FAMILY}.\_hard\Uart\uart.emic,puerto=_{puerto}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,baud=9600,frameLf='\n')
+#newRFIcode(_hal\.{UC_FAMILY}.\_hard\Uart\uart.v1.0.1.emic,puerto=_{puerto}_,bufferIn=_{bufferIn}_,bufferOut=_{bufferOut}_,baud=9600,frameLf='\n',pins=WiFi)
+
+#newRFIcode(_hal\.{UC_FAMILY}.\_hard\GPIO\gpio.emic)
+
 
 #setFile codigo.c
 	##include(inc\GS1500_inc.v2.0.0.h,socketName=_{socketName}_)

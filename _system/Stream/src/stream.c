@@ -46,20 +46,20 @@ void streamPush(stream_t* stream, unsigned char dato)
 unsigned char streamPop(stream_t* stream)
 {
     unsigned char dato;
-     dato = stream->data_fifo[stream->data_idx_out];
-    stream->data_idx_out ++;
+     dato = stream->data_fifo[stream->data_idx_sal];
+    stream->data_idx_sal ++;
     stream->data_count_sal --;
 
-    stream->data_idx_out &= stream->data_idx_mask;
+    stream->data_idx_sal &= stream->data_idx_mask;
 }
 
 
 void streamOpenWriteFrame(stream_t* stream)
 {
-        stream->frame_fifo[stream->data_idx_entr] = data_count_entr;
+        stream->frame_fifo[stream->data_idx_entr] = stream->data_count_entr;
         stream->frame_idx_entr ++;
         stream->frame_count ++;
-        data_count_entr = 0;
+        stream->data_count_entr = 0;
         stream->frame_idx_entr &= stream->frame_idx_mask;
         // stream->frame_count &= stream->frame_idx_mask;
 }
@@ -67,23 +67,23 @@ void streamOpenWriteFrame(stream_t* stream)
 unsigned char streamOpenReadFrame(stream_t* stream)
 {
     
-    data_count_sal = stream->frame_fifo[stream->frame_idx_out];
+    stream->data_count_sal = stream->frame_fifo[stream->frame_idx_sal];
 
-    stream->data_idx_out_aux = stream->data_idx_out;
+    stream->data_idx_sal_aux = stream->data_idx_sal;
     stream->data_count_sal_aux = stream->data_count_sal;
 
 
-    stream->frame_idx_out ++;
+    stream->frame_idx_sal ++;
     stream->frame_count --;
 
-    stream->frame_idx_out &= stream->frame_idx_mask;
+    stream->frame_idx_sal &= stream->frame_idx_mask;
 
 }
 
 unsigned char streamReOpenReadFrame(stream_t* stream)
 {
 
-    stream->data_idx_out = stream->data_idx_out_aux;
+    stream->data_idx_sal = stream->data_idx_sal_aux;
     stream->data_count_sal = stream->data_count_sal_aux;    
 
 }

@@ -34,6 +34,9 @@
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB4.h,name=WiFi_TX)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB5.h,name=WiFi_RX)
 
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB10.h,name=WiFi_RST)
+
+
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinA2.h,name=Led1)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinA1.h,name=Led2)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinA0.h,name=Led3)
