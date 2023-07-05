@@ -126,6 +126,7 @@ void wifiGS1500_init()
 void wifiGS1500_start()
 {
 	wifi_state = WIFI_SERIAL_2_WIFI_APP;
+    wait_UART_response = 0;
 }
 
 void checkAnswer2()
@@ -618,6 +619,7 @@ void wifiGS1500_updateState(char *answer)
 void _{socketName}__send_TCP_packet(stream_t* stream)
 {
 	char dataLength[5];
+	streamOpenReadFrame(stream);
 
 	// <ESC>Z<CID><Data Length>DATO
 
@@ -656,9 +658,17 @@ void Poll_wifiGS1500(void)
 	switch(wifi_state)
 	{
         case WIFI_SERIAL_2_WIFI_APP:
-			// Send "AT" until module response OK.
-            String_2_UART("AT\r\n");
-            __delay_ms(1000);// es bloqueante, pero es para esperar a que el modulo responda
+            if (!wait_UART_response)
+            {
+                String_2_UART("AT\r\n");
+                wait_UART_response = 1;
+				wifi_timeout = timeStamp + 1000;
+            }
+			else if (timeStamp >= wifi_timeout)
+			{
+                wait_UART_response = 0;
+                wifi_state = WIFI_SERIAL_2_WIFI_APP;
+ 			}
 			break;
 
 		case WIFI_UART_ECHO_OFF:

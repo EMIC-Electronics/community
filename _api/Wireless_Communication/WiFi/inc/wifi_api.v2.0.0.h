@@ -50,9 +50,9 @@ void WIFI_Init(void);
 	WIFI_Init();
 #unSetFile
 
-void Pull_wifi(void);
+void Poll_wifi(void);
 #setFile temp/EMICpolling.c
-	Pull_wifi();
+	  Poll_wifi();
 #unSetFile
 
 

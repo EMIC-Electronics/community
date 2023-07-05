@@ -24,7 +24,7 @@ void conWIFI(void)
 	wifiGS1500_start();
 }
 
-void Pull_wifi (void)
+void Poll_wifi (void)
 {
 	static uint8_t event_connected_flag = 0;
 	if(wifi_connection_state == 1)

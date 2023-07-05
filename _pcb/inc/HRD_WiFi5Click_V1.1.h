@@ -31,8 +31,8 @@
 #include <xc.h> //No RFI scan
 #include <libpic30.h> //No RFI scan
 
-#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB4.h,name=WiFi_TX)
-#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB5.h,name=WiFi_RX)
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB5.h,name=WiFi_TX)
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB4.h,name=WiFi_RX)
 
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB10.h,name=WiFi_RST)
 

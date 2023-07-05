@@ -1,4 +1,3 @@
-//RFI TAG:alias=useTCPClientV2,10
 //RFI TAG:driverName=TCP Client
 
 /***************************************************************************
@@ -15,12 +14,10 @@
   
  ******************************************************************************/
 
-doCMD(DHCP_EN)
+//doCMD(DHCP_EN)
 
-#define  TCPserver IPTCP
-doCMDstr(TCPserver) // IP number of TCP server.
-#define TCPport PORTTCP
-doCMDstr(TCPport) // IP port of TCP server.
+char* TCPserver = IPTCP; /**< TCP server url. */
+char* TCPport = PORTTCP; /**< TCP sever port. */
 
 /*==================[inclusions]=============================================*/
 
@@ -29,9 +26,9 @@ doCMDstr(TCPport) // IP port of TCP server.
 /**
  * @brief
  */
-void pTCP(void);
-doCMDf(pTCP)
+void pTCP(char* format,...);
 
 void Poll_TCP(void);
-doPoll(Poll_TCP)
-
+#setFile temp/EMICpolling.c
+	 Poll_TCP();
+#unSetFile

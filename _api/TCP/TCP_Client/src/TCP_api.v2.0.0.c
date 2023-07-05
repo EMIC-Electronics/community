@@ -63,7 +63,7 @@ void pTCP(char* format,...)
 			str = auxStr;
 			while (*str)
 			{
-				streamPush(tcpOutStream,*str++);
+				streamPush(&tcpOutStream,*str++);
 			}
 			format-- ;
 			continue;
@@ -81,29 +81,30 @@ void pTCP(char* format,...)
 					str = va_arg(arg, char*);
 					while (*str)
 					{
-						streamPush(tcpOutStream,*str++);
+						streamPush(&tcpOutStream,*str++);
 					}
 					break;
 				case 'r':
 					dataIn = va_arg(arg, streamIn_t*);
 					while (dataIn->count())
 					{
-						streamPush(tcpOutStream,dataIn->get(1));
+						streamPush(&tcpOutStream,dataIn->get(1));
 					}
 					break;
 				default:
-					streamPush(tcpOutStream,*format);
+					streamPush(&tcpOutStream,*format);
 					break;
 
 			}
 		}
 		else
 		{
-			streamPush(tcpOutStream,*format);
+			streamPush(&tcpOutStream,*format);
 		}
 	}
 	//_{socketName}__send_TCP_packet(data, idx);
-	_{socketName}__send_TCP_packet(tcpOutStream);
+	streamOpenWriteFrame(&tcpOutStream);
+	_{socketName}__send_TCP_packet(&tcpOutStream);
 	va_end(arg);
 }
 
@@ -121,7 +122,7 @@ void Poll_TCP(void)
 
 			char tag[20];
 			uint8_t i = 0;
-			char *data;
+			char* data;
 
 			tcp_return_t rv = TCP_OK;
 
@@ -131,9 +132,9 @@ void Poll_TCP(void)
 				rv = _{socketName}__TCP_popData(data, &TCP_raw_socket);
 				if(rv == TCP_OK )
 				{
-					if (d != '\t' && i < 20)
+					if (*data != '\t' && i < 20)
 					{
-						tag[i++] = d;
+						tag[i++] = *data;
 					}
 					else
 					{
@@ -151,11 +152,11 @@ void Poll_TCP(void)
 				rv = _{socketName}__TCP_popData(data, &TCP_raw_socket);
 				if(rv == TCP_OK )
 				{
-					streamPush(tcpInStream,data);
+					streamPush(&tcpInStream,*data);
 				}
 			}while(rv == TCP_OK );
 
-			eTCP(tag, tcpInStream);
+			eTCP(tag, &tcpInStream);
 
 
 		#endif

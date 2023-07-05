@@ -46,17 +46,17 @@ void streamPush(stream_t* stream, unsigned char dato)
 unsigned char streamPop(stream_t* stream)
 {
     unsigned char dato;
-     dato = stream->data_fifo[stream->data_idx_sal];
+    dato = stream->data_fifo[stream->data_idx_sal];
     stream->data_idx_sal ++;
     stream->data_count_sal --;
-
     stream->data_idx_sal &= stream->data_idx_mask;
+    return dato;
 }
 
 
 void streamOpenWriteFrame(stream_t* stream)
 {
-        stream->frame_fifo[stream->data_idx_entr] = stream->data_count_entr;
+        stream->frame_fifo[stream->frame_idx_entr] = stream->data_count_entr;
         stream->frame_idx_entr ++;
         stream->frame_count ++;
         stream->data_count_entr = 0;

@@ -20,8 +20,8 @@
 * @alias Send
 * @brief Send a EMIC message through the TCP port
 * @return Nothing
-* @param tag Etiqueta que identifica el mensaje
-* @param msg Contenido del mensaje
+* @param tag Tag to identify the message
+* @param msg msg message payload
 */
 
 /**
@@ -67,10 +67,10 @@
 //   }
 //   */
 
-//#setFile codigo.c
-//	##include(inc\TCP_api.v2.0.0.h,socketName=_{socketName}_)
-//#unSetFile
-//
-//#setFile src.c
-//	##include(src\TCP_api.v2.0.0.c,socketName=_{socketName}_)
-//#unSetFile
+#setFile codigo.c
+	##include(inc\TCP_api.v2.0.0.h,socketName=_{socketName}_)
+#unSetFile
+
+#setFile src.c
+	##include(src\TCP_api.v2.0.0.c,socketName=_{socketName}_)
+#unSetFile
