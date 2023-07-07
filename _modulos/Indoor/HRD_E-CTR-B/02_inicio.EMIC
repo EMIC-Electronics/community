@@ -9,6 +9,7 @@
 #newRFIcode(_api\Indicators\LEDs\led.emic)
 #newRFIcode(_api\Timer\Timer_API_V1.emic)
 #newRFIcode(_api/WiredComm/EMICfieldB/EMICfieldBus.emic,puerto=1,baud=9600,bufferIn=512,bufferOut=512)
+#newRFIcode(_api\EMICbus\emicBus.emic)
 
 
 //---------------------------------------------------

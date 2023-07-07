@@ -7,6 +7,7 @@
 #define RPOUT_U_{puerto}__RTS	RPOUT_RS485_RTS
 
 #include <stdarg.h>
+#include <stdio.h>
 
 void init_EMICfb (void);
 #setFile temp/EMICinits.c

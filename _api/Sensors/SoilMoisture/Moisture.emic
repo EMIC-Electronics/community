@@ -1,0 +1,12 @@
+#ifndef MOISTURE_EMIC_
+#define MOISTURE_EMIC_
+
+#setFile codigo.c
+	##include(inc\Moisture.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\Moisture.c)
+#unSetFile
+
+#endif

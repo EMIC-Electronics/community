@@ -54,7 +54,7 @@
 	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB11.h,name=.{PWM}.)
 #endif
 #ifdef Use_Analog
-	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB12.h,name=.{AN9}.)
+	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB12.h,name=.{AN12}.)
 #endif
 #ifdef Use_Reset
 	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB13.h,name=.{RST}.)
@@ -71,11 +71,8 @@
 #ifdef Use_MOSI
 	#newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB1.h,name=.{MOSI}.)
 #endif
-#ifdef Use_I2C
-	#define setI2cPullUp CNPU1bits.CN7PUE = 1; CNPU1bits.CN6PUE = 1
-#endif
 
-	//#define S_I2C2 
+//#define S_I2C2 
 
 	//#include "myId.h"
 
