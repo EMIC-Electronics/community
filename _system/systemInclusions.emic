@@ -1,0 +1,9 @@
+
+#setFile codigo.c
+    #newRFIcode(inc\includesLibraries.h)
+    ##include(inc\conversionFunctions.h)
+#unSetFile
+
+#setFile src.c
+    ##include(src\conversionFunctions.c)
+#unSetFile

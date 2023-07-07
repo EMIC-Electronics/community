@@ -1,20 +1,20 @@
+/*****************************************************************************
+  @file     emicBus.h
 
-/*************************************************************************//**
+  @brief    API Library to use emic bus
 
-  @file     I2CxBufferC.V2.1.h
+  @author   Tomas Pentacolo (based on Ivan Schneider work)
 
-  @brief    Driver Library to use I2C
+  @date 	22/05/2023
 
-  @author   Ivan Schneider (IS)
-
-  @version  20200810 v0.0.1   IS Initial release.
+  @version  v0.0.1 - Initial release.
  ******************************************************************************/
 
-#ifndef _I2CXBUFFERC_V3_H_
-#define _I2CXBUFFERC_V3_H_
+#ifndef __EMICBUS_H__
+#define __EMICBUS_H__
 
 /*==================[inclusions]=============================================*/
-
+#include <stdarg.h>
 /*==================[macros]=================================================*/
 
 #ifndef MAX_I2C_IN
@@ -55,7 +55,7 @@ enum
 #ifdef _I2C_ID
 char I2C_ID = _I2C_ID;
 #else
-char I2C_ID = 0x64;
+#error _I2C_ID no definido
 #endif
 
 uint8_t i2c_packet_id = 0;
@@ -144,5 +144,5 @@ void poll_I2C(void);
 const streamIn_t  getI2C = {fifo_I2C_IN,pop_I2C_IN,EB_in_count};
 const streamOut_t setI2C = {fifo_I2C_OUT,push_I2C_OUT};
 
-#endif
+#endif	//__EMICBUS_H__
 
