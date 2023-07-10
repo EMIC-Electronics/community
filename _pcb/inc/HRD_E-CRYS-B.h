@@ -39,6 +39,9 @@
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB4.h,name=RS485_TX)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB5.h,name=RS485_RX)
 
+#addToMacro(CLKB_RST, B13)
+
+
 #ifdef Use_TXRX
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB6.h,name=.{RX}.)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB7.h,name=.{TX}.)

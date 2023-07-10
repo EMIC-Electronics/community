@@ -1,15 +1,14 @@
 #define nombreModulo "HRD_CRYS_B_LUX"
 #addToMacro(UC_FAMILY,pic24fj64ga002)
 
-#define Use_I2C
 #define Use_Reset
-//#define Use_SDASCL
-
 #addToMacro(RST,BH1750_RST)
+
 //#addToMacro(AN9,MQ135)
 
 //--------------Hardware Config---------------------
 #newRFIcode(_pcb\pcb.emic,pcb=HRD_E-CRYS-B)
+
 //---------------------------------------------------
 
 //------------- Driver Config -----------------------
