@@ -44,9 +44,15 @@ void setZero(void)
 {
   if (Balanza_flags & 0x01)                 //If the measure is stable.
   {
-    
     Cero = pesoEstable + Cero;
     setTara();
+    for (int i = 0; i < HistoryLength; i++)
+    {
+      Historial[i] = 0;
+    }
+    Indice = 0;
+    Acumulador = 0;
+    Lecturas = 0;
   }
   else
   {
@@ -60,9 +66,9 @@ void setReference(float Peso_de_referencia)
 {
   if (Balanza_flags & 0x01)                               //If the measure is stable.
   {
-    if (pesoEstable - Cero != 0)
+    if (pesoEstable != 0)
     {
-        K = Peso_de_referencia/(float)(pesoEstable - Cero);   //Determines the slope of the linear function that represent the load cell.
+        K = Peso_de_referencia/(float)(pesoEstable);   //Determines the slope of the linear function that represent the load cell.
     }
   }
   else
@@ -115,6 +121,11 @@ void nuevaLectura(int32_t adcValue)
   int32_t viejo_valor;
   int32_t nuevo_valor = adcValue - Cero;
 
+  if (Lecturas < HistoryLength)
+    Lecturas++;
+
+  NuevoValor = nuevo_valor; 
+
   viejo_valor = Historial[Indice];
   Acumulador -= Historial[Indice];
   Acumulador += nuevo_valor;
@@ -153,7 +164,7 @@ void nuevaLectura(int32_t adcValue)
       if (conta > 5)
       {
         Balanza_flags |= 0b00000001;
-        pesoEstable = (Acumulador / HistoryLength);
+        pesoEstable = (Acumulador / Lecturas);
         Peso_bruto_f = (float)(pesoEstable) * K - Peso_tara_f;
       }
       else
@@ -171,7 +182,7 @@ void nuevaLectura(int32_t adcValue)
   }
   
  
-  Peso = (float)(Acumulador / HistoryLength) * K - Peso_tara_f;              //Obtains the media of the values contains in the FIFO.  
+  Peso = (float)(Acumulador / Lecturas) * K - Peso_tara_f;              //Obtains the media of the values contains in the FIFO.  
   
   mVxV = ( ValorActual * 62500 ) / ( 128 * 65536 / 16 );
 
@@ -180,10 +191,10 @@ void nuevaLectura(int32_t adcValue)
 float getDevStd(void)
 {
   uint64_t accum = 0;
-  for (int i = 0; i < HistoryLength; i++)
+  for (int i = 0; i < Lecturas; i++)
     accum += pow((Historial[i] - pesoEstable),2);
   
-  return sqrt((float)accum/(float)(HistoryLength-1));
+  return sqrt((float)accum/(float)(Lecturas-1));
 }
 
 void calcularCorrimiento(void)
