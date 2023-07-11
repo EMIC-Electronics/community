@@ -1,0 +1,98 @@
+#ifndef _USBSD_EMIC_
+#define _USBSD_EMIC_
+//RFI TAG:driverName=USBSD
+
+
+/**
+* @fn void setPath(concat PathName);
+* @alias setPath
+* @brief complete file path
+* @return Nothing
+* @param PathName Complete file path (all uppercase numeric or some special characters)
+*/
+
+/**
+* @fn void setDevice(concat src);
+* @alias setDevice
+* @brief select the device
+* @return Nothing
+* @param src Device Device D for default, S for SD, U for USB
+*/
+
+/**
+* @fn void writeFile(concat Buff);
+* @alias Write
+* @brief Write data to file
+* @return Nothing
+* @param Buff Buffer with data to write max 255 characters
+*/
+
+/**
+* @fn void readFile(concat path);
+* @alias Read
+* @brief Reads file
+* @return Nothing
+* @param path Complete file path (all uppercase, numeric or some special characters)
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eErrWR',
+	'NombreToolBox': 'WrError',
+	'Tipo' : 'SistemEvt',
+	'title': 'If occured an error when writing file',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox": "Event.USBSD.ErrorWR",
+		"definir":"event_eErrWR_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'eErrRD',
+	'NombreToolBox': 'RdError',
+	'Tipo' : 'SistemEvt',
+	'title': 'If occured an error when reading file',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox": "Event.USBSD.ErrorRD",
+		"definir":"event_eErrRD_active",
+		"parametros": []
+		}'
+}
+*/
+
+/*RFI JSon
+{
+	'Nombre': 'buffRD',
+	'NombreToolBox': 'buffRead',
+	'Tipo' : 'SistemEvt',
+	'title': 'read finished or buffer full',
+	'returnInfo': {'type':'','tooltip':'Nothing'},
+	'parameters': [],
+	'instancia':'{
+		"NombreWorkBox": "Event.USBSD.buffRead",
+		"definir":"event_buffRD_active",
+		"parametros": []
+		}'
+}
+*/
+
+#newRFIcode(_drivers/USBSD/CH376/CH376.emic)
+
+
+#setFile codigo.c
+	##include(inc\USBSD.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\USBSD.c)
+#unSetFile
+
+/*==================[end of file]============================================*/
+#endif

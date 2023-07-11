@@ -1,0 +1,22 @@
+#ifndef LUX_EMIC_
+#define LUX_EMIC_
+
+/**
+* @fn uint16_t getIntensity(void);
+* @alias getIntensity
+* @brief reads light intensity in lumens
+* @return light intensity in lumens
+*/
+
+#newRFIcode(_drivers\Sensors\_{driver}_\_{driver}_.emic)
+
+#setFile codigo.c
+	##include(inc\LUX.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\LUX.c)
+#unSetFile
+
+/*==================[end of file]============================================*/
+#endif

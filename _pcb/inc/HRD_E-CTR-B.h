@@ -40,7 +40,7 @@
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB11.h,name=RS485_RX)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB15.h,name=RS485_RTS)
 #newRFIcode(_hal/.{UC_FAMILY}./_hard/pines/setPinB14.h,name=RS485_CTS)
-//#define S_I2C2 
+#define S_I2C2 
 
 //#include "myId.h"
 

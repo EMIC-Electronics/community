@@ -1,0 +1,14 @@
+#ifndef _MQ135_EMIC_
+#define _MQ135_EMIC_
+
+    #setFile codigo.c
+        ##include(inc\MQ135.h)
+    #unSetFile
+
+	#setFile src.c
+		##include(src\MQ135.c)
+	#unSetFile
+
+#newRFIcode(_hal/.{UC_FAMILY}./_hard/GPIO/gpio.emic)
+
+#endif

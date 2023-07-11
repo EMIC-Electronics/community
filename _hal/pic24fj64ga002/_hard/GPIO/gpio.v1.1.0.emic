@@ -1,0 +1,11 @@
+#ifndef _PIC_GPIO_EMIC_
+#define _PIC_GPIO_EMIC_
+
+    #setFile codigo.c
+        ##include(inc\gpio.h)
+    #unSetFile
+
+	#setFile src.c
+		##include(src\gpio.c)
+	#unSetFile
+#endif
