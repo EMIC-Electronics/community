@@ -46,7 +46,6 @@ char formato[6] = "%04.2f";
 
 static int32_t corrimiento = 0;
 static int32_t pesoEstable = 0;
-static int32_t NuevoValor = 0;
 
 uint8_t Lecturas = 0;
 

@@ -45,7 +45,9 @@ void setZero(void)
   if (Balanza_flags & 0x01)                 //If the measure is stable.
   {
     Cero = pesoEstable + Cero;
-    setTara();
+    Tara = pesoEstable;
+    Desviacion_tara = getDevStd();
+    Peso_tara_f = 0;
     for (int i = 0; i < HistoryLength; i++)
     {
       Historial[i] = 0;
@@ -123,8 +125,6 @@ void nuevaLectura(int32_t adcValue)
 
   if (Lecturas < HistoryLength)
     Lecturas++;
-
-  NuevoValor = nuevo_valor; 
 
   viejo_valor = Historial[Indice];
   Acumulador -= Historial[Indice];
