@@ -26,7 +26,7 @@ uint8_t streamIn_t_ptr_to_uint8_t(streamIn_t* dataIn)
     }
     *strPtr = 0;
 
-    return (uint8_t)ato_uint8(str);
+    return ato_uint8_t(str);
 }
 
 uint16_t streamIn_t_ptr_to_uint16_t(streamIn_t* dataIn)
@@ -41,7 +41,7 @@ uint16_t streamIn_t_ptr_to_uint16_t(streamIn_t* dataIn)
     }
     *strPtr = 0;
 
-    return (uint16_t)ato_uint16(str);
+    return ato_uint16_t(str);
 
 }
 
@@ -57,7 +57,7 @@ uint32_t streamIn_t_ptr_to_uint32_t(streamIn_t* dataIn)
     }
     *strPtr = 0;
 
-    return (uint32_t)ato_uint32(str);
+    return ato_uint32_t(str);
 
 }
 
@@ -73,7 +73,7 @@ uint64_t streamIn_t_ptr_to_uint64(streamIn_t* dataIn)
     }
     *strPtr = 0;
 
-    return (uint64_t)ato_uint64(str);
+    return ato_uint64_t(str);
 
 }
 
@@ -89,7 +89,7 @@ int8_t streamIn_t_ptr_to_int8_t(streamIn_t* dataIn)
     }
     *strPtr = 0;
 
-    return (int8_t)ato_int8(str);
+    return ato_int8_t(str);
 
 }
 
@@ -105,7 +105,7 @@ int16_t streamIn_t_ptr_to_int16_t(streamIn_t* dataIn)
     }
     *strPtr = 0;
 
-    return (int16_t)ato_int16(str);
+    return ato_int16_t(str);
 
 }
 
@@ -121,7 +121,7 @@ int32_t streamIn_t_ptr_to_int32_t(streamIn_t* dataIn)
     }
     *strPtr = 0;
 
-    return (int32_t)ato_int32(str);
+    return ato_int32_t(str);
 
 }
 
@@ -137,6 +137,6 @@ int64_t streamIn_t_ptr_to_int64_t(streamIn_t* dataIn)
     }
     *strPtr = 0;
 
-    return (int64_t)ato_int64(str);
+    return ato_int64_t(str);
 
 }
