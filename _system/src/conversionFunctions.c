@@ -51,22 +51,22 @@ void int64_t_to_ascii(char* string, int64_t number)
     sprintf(string, "%lld", number);                 //64bits are long long data type   
 }
 
-uint8_t ato_uint8(char* string)
+uint8_t ato_uint8_t(char* string)
 {
     return (uint8_t)atoi(string);
 }
 
-uint16_t ato_uint16(char* string)
+uint16_t ato_uint16_t(char* string)
 {
     return (uint16_t)atoi(string);
 }
 
-uint32_t ato_uint32(char* string)
+uint32_t ato_uint32_t(char* string)
 {
     return (uint32_t)atol(string);
 }
 
-uint64_t ato_uint64(char* string)
+uint64_t ato_uint64_t(char* string)
 {  
     int64_t conversion = 0;
     //Clear empties spaces
@@ -108,22 +108,22 @@ uint64_t ato_uint64(char* string)
 
 }
 
-int8_t ato_int8(char* string)
+int8_t ato_int8_t(char* string)
 {
     return (int8_t)atoi(string);
 }
 
-int16_t ato_int16(char* string)
+int16_t ato_int16_t(char* string)
 {
     return atoi(string);
 }
 
-int32_t ato_int32(char* string)
+int32_t ato_int32_t(char* string)
 {
     return atol(string);
 }
 
-int64_t ato_int64(char* string)
+int64_t ato_int64_t(char* string)
 {
     int64_t conversion = 0;
     //Clear empties spaces

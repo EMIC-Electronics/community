@@ -12,13 +12,13 @@ inline void int16_t_to_ascii(char* string, int16_t number);     //int16_t to str
 inline void int32_t_to_ascii(char* string, int32_t number);     //int32_t to string
 inline void int64_t_to_ascii(char* string, int64_t number);     //int64_t to string
 
-inline uint8_t ato_uint8(char* string);                         //string to uint8_t
-inline uint16_t ato_uint16(char* string);                       //string to uint16_t
-inline uint32_t ato_uint32(char* string);                       //string to uint32_t
-inline uint64_t ato_uint64(char* string);                       //string to uint64_t
-inline int8_t ato_int8(char* string);                           //string to int8_t
-inline int16_t ato_int16(char* string);                         //string to int16_t
-inline int32_t ato_int32(char* string);                         //string to int32_t
-inline int64_t ato_int64(char* string);                         //string to int64_t
+inline uint8_t ato_uint8_t(char* string);                         //string to uint8_t
+inline uint16_t ato_uint16_t(char* string);                       //string to uint16_t
+inline uint32_t ato_uint32_t(char* string);                       //string to uint32_t
+inline uint64_t ato_uint64_t(char* string);                       //string to uint64_t
+inline int8_t ato_int8_t(char* string);                           //string to int8_t
+inline int16_t ato_int16_t(char* string);                         //string to int16_t
+inline int32_t ato_int32_t(char* string);                         //string to int32_t
+inline int64_t ato_int64_t(char* string);                         //string to int64_t
 
 #endif //__CONVERSIONFUNCTIONS_H__
