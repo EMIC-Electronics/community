@@ -1,0 +1,43 @@
+/*****************************************************************************
+  @file     Rele.emic
+
+  @brief    API Library to use RELE
+
+  @author   Pentacolo Tomas
+
+  @date     12/07/2023
+
+  @version  1.0.2 
+ ******************************************************************************/
+//RFI TAG:driverName=RELAY
+
+#ifdef PORT_Rele1
+/**
+* @fn void relay1(uint8_t stateRelay1);
+* @alias relay1
+* @brief Modifies Relay 1 state (1-on 0-off 2-toggle)
+* @return Nothing
+* @param stateRelay1 1-on, 0-off, 2-toggle
+*/
+#endif
+
+
+
+#ifdef PORT_Rele2
+/**
+* @fn void relay2(uint8_t stateRelay2);
+* @alias relay2
+* @brief Modifies Relay 2 state (1-on 0-off 2-toggle)
+* @return Nothing
+* @param stateRelay2 1-on, 0-off, 2-toggle
+*/
+#endif
+
+#setFile codigo.c
+	##include(inc\Rele_v1.0.1.h)
+#unSetFile
+
+#setFile src.c
+	##include(src\Rele_v1.0.1.c)
+#unSetFile
+

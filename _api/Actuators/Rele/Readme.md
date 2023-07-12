@@ -8,6 +8,19 @@ There are two methods: one to set the status of the first relay and the second o
 - `void relay2(uint8_t statusRelay2)`: This method is responsible for set the status of the second relay.
   
 # Changelog
+## Version 1.0.2:
+### Description
+The representation of the user functions in the `Rele.emic` file has been modified to fix minor errors in the type conversions. 
+
+### Fixes.
+- Implemented a new representation of the user functions in the `Rele.emic` file.
+- Modified the enumeration of relay states.
+
+### Files Modifies
+- Rele_v1.0.2.emic (Previous version: 1.0.1)
+- Rele_v1.0.1.h (Previous version: 1.0.0)
+- Rele_v1.0.1.h (Previous version: 1.0.0)
+- 01_INICIO.emic (From Relay module)
 
 ## Version 1.0.1:
 ### Description
